@@ -326,7 +326,7 @@ ul.auto-toc {
 
 
 <div class="section" id="introduction">
-<h1>Introduction</h1>
+<h1>1. Introduction</h1>
 <p>In this homework, you will lay the foundations for an Android application that
 displays multiple-choice quizzes on your phone.</p>
 <p>This app will fetch quiz questions from the <a class="reference external" href="https://sweng-quiz.appspot.com/quizquestions/random">SwEng quiz server</a> and display
@@ -339,6 +339,7 @@ ones, search for questions by tags, and more.</p>
 <li>Evaluate the code coverage of your unit and integration tests</li>
 <li>Integrate your project into the SwEng testing infrastructure</li>
 <li>Fetch a question from the SwEng server and display it</li>
+<li>Achieve a minimum code coverage value</li>
 </ul>
 <p>Please keep track of how many hours it takes you to solve each exercise, as we
 will ask you to provide us with this information in a text file named <tt class="docutils literal">homework_1_time_spent.txt</tt> that
@@ -355,9 +356,17 @@ parts thereof) handed in late will not be graded.</p>
 your project needs to satisfy a certain structure. Paragraphs formatted like this one
 explain these constraints.</p>
 </div>
+<div class="section" id="basic-track-vs-full-track">
+<h2>Basic track vs. Full track</h2>
+<p>This homework has two parts:</p>
+<ul class="simple">
+<li>The basic track implements the app's functionality, and</li>
+<li>The full track additionally adds tests to ensure the reliability of the features implemented in the basic track.</li>
+</ul>
+<p>The total number of points for this homework is 100. Completely and correctly solving the basic track will earn you 70 points, while completely and correctly solving the full track will earn you 30 additional points, for a maximum of 100.</p>
 </div>
 <div class="section" id="a-note-on-the-formatting-styles-used-in-this-document">
-<h1>A note on the formatting styles used in this document</h1>
+<h2>A note on the formatting styles used in this document</h2>
 <p>Fixed-width text lines that start with a dollar sign are <tt class="docutils literal">Bash</tt> shell commands that you should
 execute in a terminal. For example:</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizApp
@@ -368,7 +377,7 @@ like <tt class="docutils literal">~/myfiles/sweng2012</tt>.</p>
 <p>Throughout this course we will assume that you are using the Linux machines in BC07/08 with the <tt class="docutils literal">Bash</tt> shell.</p>
 </div>
 <div class="section" id="setting-up-your-project">
-<h1>Setting up your project</h1>
+<h2>Setting up your project</h2>
 <p>For this homework, you can either use your computer or a machine from
 the BC computer labs. Create an Android project, as described in the <a class="reference external" href="https://myedu.epfl.ch/courses/module/16">Android
 tutorial</a> or in the <a class="reference external" href="http://developer.android.com/training/basics/firstapp/index.html">Android developer documentation</a>. The project must use Android 4.1 (API Level 16).</p>
@@ -399,7 +408,7 @@ ${REPO}
 </div>
 </div>
 <div class="section" id="tool-chain">
-<h1>Tool chain</h1>
+<h2>Tool chain</h2>
 <p>Now that the basic skeleton is in place, let us integrate it with the version
 control, building, and testing system. For this, you will need a git repository.
 We will provide you with a repository on GitHub; you will receive information
@@ -439,8 +448,11 @@ build status of your homework will no be <tt class="docutils literal">Successful
 Note that you need to be connected to EPFL's network in order to access the SwEng continuous integration server.
 This means either being on campus or being connected to EPFL's VPN.</p>
 </div>
+</div>
+<div class="section" id="basic-track-70-points">
+<h1>2. Basic track (70 points)</h1>
 <div class="section" id="creating-the-first-activity">
-<h1>Creating the first <tt class="docutils literal">Activity</tt></h1>
+<h2>Creating the first <tt class="docutils literal">Activity</tt></h2>
 <p>Now it is time to create your first <tt class="docutils literal">Activity</tt>; it will show quiz questions to the
 user.</p>
 <ol class="arabic simple">
@@ -463,7 +475,7 @@ stated in the manifest, is <tt class="docutils literal">.showquestions.ShowQuest
 <p>Commit and push your changes (<tt class="docutils literal">git commit</tt> and <tt class="docutils literal">git push</tt>).</p>
 </div>
 <div class="section" id="unit-tests">
-<h1>Unit tests</h1>
+<h2>Unit tests</h2>
 <p>Test coverage is an important code quality metric. The better you test your app,
 the fewer bugs you will have. Detailed information on unit testing can be found in the <a class="reference external" href="http://developer.android.com/tools/testing/index.html#Introduction">Android testing
 documentation</a>.</p>
@@ -518,10 +530,10 @@ improve as you write tests for your code.</p>
 <p>Do not forget to commit and push your changes.</p>
 </div>
 <div class="section" id="features">
-<h1>Features</h1>
+<h2>Features</h2>
 <p>Now that the infrastructure is in place, you are ready to implement some cool features.</p>
 <div class="section" id="displaying-quiz-questions">
-<h2>Displaying quiz questions</h2>
+<h3>Displaying quiz questions</h3>
 <p>You are building an app for solving quizzes on your mobile phone. The first
 feature is to display a single question. Each question has a question text, a set of possible answers, and a number specifying which
 answer is the correct solution. There are a few more fields; have a look at a <a class="reference external" href="https://sweng-quiz.appspot.com/quizquestions/random">random question from the server</a> to see what they look like.</p>
@@ -558,21 +570,21 @@ reference, here is a possible test:</p>
 Robotium is a third-party test framework for simulating user interaction with Android applications.
 You can choose to use Robotium or not. For this homework, we will not grade you on the content of your unit tests.
 We will, however, measure your test coverage.</p>
-<p>To develop tests you can use the default testing features provided by the Android SDK or use <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>.
-Using any other other testing tools, libraries, or versions of Robotium is prohibited.
-Otherwise, we might not be able to automatically run your tests and compute their code coverage, and you will lose points.</p>
+<p>Your tests may only use the default testing features provided by the Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>. Using any other other testing tools, libraries, or versions of Robotium will make it impossible for us to automatically run your tests and compute their code coverage, so you will lose points.</p>
 <div class="admonition-grading admonition">
 <p class="first admonition-title">Grading</p>
 <p>Include in your repository all the libraries your application needs to successfully run on a new machine.
 Commit and push your changes early on and frequently to detect possible issues with building and testing your application on the SwEng testing infrastructure.</p>
 <p>Your application must compile by executing the following command:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">ant clean debug
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012Quiz
+<span style="color: #19177C">$ </span>ant clean debug
 </pre></div>
 <p>Your application must run on an emulator by executing the following command:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.showquestions.ShowQuestionsActivity
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.showquestions.ShowQuestionsActivity
 </pre></div>
 <p>Your tests must compile and run by executing the following command:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">ant clean emma debug install <span style="color: #008000">test</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
 </pre></div>
 <p class="last">If our test machines cannot build or run your code, they will give you 0 points.
 Therefore, it is in your interest to thoroughly check that all runs smoothly before the deadline.</p>
@@ -580,7 +592,7 @@ Therefore, it is in your interest to thoroughly check that all runs smoothly bef
 <p>Do not forget to commit and push your changes (<tt class="docutils literal">git commit</tt> and <tt class="docutils literal">git push</tt>).</p>
 </div>
 <div class="section" id="fetching-a-random-quiz-question-from-the-server">
-<h2>Fetching a random quiz question from the server</h2>
+<h3>Fetching a random quiz question from the server</h3>
 <p>The app will be much more interesting if it does not display the same question
 all the time. This is why it should fetch a random question from the
 server. Your <tt class="docutils literal">Activity</tt> should fetch the first question on creation, and
@@ -606,7 +618,7 @@ a response in <a class="reference external" href="http://www.json.org">JSON</a> 
     <span style="color: #BA2121">&quot;geography&quot;</span>,
     <span style="color: #BA2121">&quot;countries&quot;</span>
   ],
-  <span style="color: #BA2121">&quot;owner&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;sweng&quot;</span>,
+  <span style="color: #BA2121">&quot;owner&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;sweng&quot;</span>
 }
 </pre></div>
 <p>The fields of this JSON object are as follows:</p>
@@ -664,7 +676,7 @@ Have a look at <a class="reference external" href="resources/MockHttpClient.java
 </div>
 </div>
 <div class="section" id="interacting-with-the-app">
-<h1>Interacting with the app</h1>
+<h2>Interacting with the app</h2>
 <p>Now that questions are displayed, let's solve some quizzes! Here are the steps to follow:</p>
 <p>Write a click listener that is called when the user clicks on an answer. If you
 display your answers in a <tt class="docutils literal">ListView</tt>, for example, set its <a class="reference external" href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html">OnItemClickListener</a> handler (<tt class="docutils literal">ListView.setOnItemClickListener(AdapterView.OnItemClickListener)</tt>).
@@ -693,9 +705,32 @@ be <a class="reference external" href="http://developer.android.com/reference/an
 <p class="last">Otherwise, your code will fail to pass our automated tests, and you will lose points.</p>
 </div>
 <div class="section" id="that-s-it">
-<h2>That's it</h2>
+<h3>That's it</h3>
 <p>Do not forget to commit your changes to your git repository and push them to the
 central server. Then watch our test cases pass, and be proud to have created perhaps your first Android application.</p>
+</div>
+</div>
+</div>
+<div class="section" id="full-track-30-points">
+<h1>3. Full track (30 points)</h1>
+<p>Now that you have implemented the basic track for this homework, it is time to make sure that your code is reliable. You will achieve this by writing unit tests for your application. The goal for the tests you write is to achieve high code coverage for the code you wrote for the basic track.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p class="last">Your tests may only use the default testing features provided by the Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>.
+Using any other other testing tools, libraries, or versions of Robotium will make it impossible for us to automatically run your tests and compute their code coverage, so you will lose points.</p>
+</div>
+<div class="section" id="code-coverage">
+<h2>Code coverage</h2>
+<p>To compute the code coverage achieved by your tests, use <tt class="docutils literal">ant</tt> as follows:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+<span style="color: #19177C">$ </span>firefox bin/coverage.html
+</pre></div>
+<p>The <tt class="docutils literal">emma</tt> build target instructs the Android build system to collect source code line coverage metrics. While your tests are running, <tt class="docutils literal">emma</tt> will monitor which of your application's lines of code get executed. Once the tests finish running, <tt class="docutils literal">emma</tt> compares their number to the total number of lines of code in your application and reports the percentage of lines executed at least once. This value ranges from 0%, when your tests do not execute any application line of code, to 100%, when your tests cause every line of code from the application to be executed at least once. Note that a 100% source code line coverage does not mean your code is bug-free.</p>
+<p>After running the tests, the code coverage report can be found in <tt class="docutils literal"><span class="pre">${REPO}/Sweng2012QuizAppTest/bin/coverage.html</span></tt>. You can see an example report <a class="reference external" href="http://emma.sourceforge.net/coverage_sample_b/index.html">here</a>.</p>
+<p>The number of points for this part of the homework will be computed as a quadratic function of the line coverage your tests achieve, with 30 points corresponding to 80% line code coverage. The formula below serves as a guideline (<a class="reference external" href="resources/grade.png">plot</a>).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">30 * min<span style="color: #666666">(</span>1, <span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">CODE_COVERAGE</span><span style="color: #008000; font-weight: bold">}</span>/80<span style="color: #666666">)</span>^2<span style="color: #666666">)</span>
+</pre></div>
 </div>
 </div>
 </div>
