@@ -415,7 +415,7 @@ We will provide you with a repository on GitHub; you will receive information
 regarding this via Piazza. Now go follow the <a class="reference external" href="https://sites.google.com/site/swengepfl/tutorials/git">Git tutorial</a>.</p>
 <p>We will assume that the URL to your repository is stored in the <tt class="docutils literal">Bash</tt> variable
 <tt class="docutils literal">${GIT_REPO_URL}</tt>. Export it using a <tt class="docutils literal">Bash</tt> command similar to the following:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">export </span><span style="color: #19177C">GIT_REPO_URL</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;https://github.com/dslab-epfl/&lt;reponame&gt;.git&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">export </span><span style="color: #19177C">GIT_REPO_URL</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;https://github.com/dslab-epfl/reponame.git&quot;</span>
 </pre></div>
 <p>Replace <tt class="docutils literal">reponame</tt> with the name of the repository created for your team.</p>
 <p>Now initialize your personal git repository and commit your files:</p>
@@ -444,7 +444,7 @@ process. You can do this as often as you want before the deadline. We recommend,
 indeed, that you execute <tt class="docutils literal">git commit</tt> and <tt class="docutils literal">git push</tt> often. Now, log in
 to the <a class="reference external" href="http://jenkins.epfl.ch/">SwEng continuous integration server</a> with your GASPAR ID and password, click on &quot;Build now&quot;,
 and check the console log of the build to see that your git repository was successfully checked out. The
-build status of your homework will no be <tt class="docutils literal">Successful</tt>, since your have not implemented your homework yet.
+build status of your homework will not be <tt class="docutils literal">Successful</tt>, since your have not implemented your homework yet.
 Note that you need to be connected to EPFL's network in order to access the SwEng continuous integration server.
 This means either being on campus or being connected to EPFL's VPN.</p>
 </div>
@@ -570,7 +570,7 @@ reference, here is a possible test:</p>
 Robotium is a third-party test framework for simulating user interaction with Android applications.
 You can choose to use Robotium or not. For this homework, we will not grade you on the content of your unit tests.
 We will, however, measure your test coverage.</p>
-<p>Your tests may only use the default testing features provided by the Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>. Using any other other testing tools, libraries, or versions of Robotium will make it impossible for us to automatically run your tests and compute their code coverage, so you will lose points.</p>
+<p>Your tests may only use the default testing features provided by the Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>. Using any other testing tools, libraries or versions of Robotium will make it impossible for us to automatically run your tests and compute their code coverage, so you will lose points.</p>
 <div class="admonition-grading admonition">
 <p class="first admonition-title">Grading</p>
 <p>Include in your repository all the libraries your application needs to successfully run on a new machine.
