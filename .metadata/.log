@@ -1,0 +1,127 @@
+!SESSION 2012-09-24 21:32:20.964 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2012-09-24 21:37:35.682
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: No repository found at http://download.scala-ide.org/releases/2.0.0-beta.
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.fail(AbstractRepositoryManager.java:393)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:675)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:82)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2012-09-24 21:37:35.682
+!MESSAGE No repository found at http://download.scala-ide.org/releases/2.0.0-beta.
+
+!ENTRY org.eclipse.equinox.p2.metadata.repository 4 1000 2012-09-24 21:37:35.687
+!MESSAGE No repository found at http://download.scala-ide.org/releases/2.0.0-beta.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-09-24 21:40:58.887
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-09-24 21:40:58.887
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:40:58.887
+!MESSAGE Software being installed: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:40:58.887
+!MESSAGE Missing requirement: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395) requires 'org.eclipse.wst.sse.core 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-09-24 21:40:58.900
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-09-24 21:40:58.900
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:40:58.900
+!MESSAGE Software being installed: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:40:58.900
+!MESSAGE Missing requirement: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395) requires 'org.eclipse.wst.sse.core 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-09-24 21:42:53.867
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-09-24 21:42:53.867
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:42:53.867
+!MESSAGE Software being installed: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:42:53.867
+!MESSAGE Missing requirement: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395) requires 'org.eclipse.wst.sse.core 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-09-24 21:42:53.870
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-09-24 21:42:53.870
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:42:53.870
+!MESSAGE Software being installed: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:42:53.870
+!MESSAGE Missing requirement: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395) requires 'org.eclipse.wst.sse.core 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-09-24 21:52:45.908
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-09-24 21:52:45.908
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:52:45.908
+!MESSAGE Software being installed: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:52:45.909
+!MESSAGE Missing requirement: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395) requires 'org.eclipse.wst.sse.core 0.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2012-09-24 21:52:45.910
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2012-09-24 21:52:45.910
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:52:45.910
+!MESSAGE Software being installed: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2012-09-24 21:52:45.910
+!MESSAGE Missing requirement: Android Development Tools 20.0.3.v201208082019-427395 (com.android.ide.eclipse.adt.feature.group 20.0.3.v201208082019-427395) requires 'org.eclipse.wst.sse.core 0.0.0' but it could not be found
+!SESSION 2012-09-24 21:59:36.760 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-09-24 22:09:34.402
+!MESSAGE Failed to load properties file for project 'My first Android App'
+!SESSION 2012-09-25 19:10:20.087 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-09-25 19:10:35.614
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-09-25 20:30:52.322
+!MESSAGE Warning: Ignoring name conflict in resource file for name hello_world
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-09-25 20:30:52.325
+!MESSAGE Warning: Ignoring name conflict in resource file for name menu_settings
+!SESSION 2012-09-28 18:29:18.496 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.core.resources 2 10035 2012-09-28 18:29:34.194
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2012-09-28 21:12:02.452 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-09-28 21:15:51.207
+!MESSAGE Failed to load properties file for project 'Sweng2012QuizApp'
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-09-28 21:19:18.587
+!MESSAGE Failed to load properties file for project 'Sweng2012QuizApp'
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2012-09-28 22:17:36.467
+!MESSAGE Failed to load properties file for project 'Sweng2012QuizApp'
