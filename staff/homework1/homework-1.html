@@ -415,7 +415,7 @@ We will provide you with a repository on GitHub; you will receive information
 regarding this via Piazza. Now go follow the <a class="reference external" href="https://sites.google.com/site/swengepfl/tutorials/git">Git tutorial</a>.</p>
 <p>We will assume that the URL to your repository is stored in the <tt class="docutils literal">Bash</tt> variable
 <tt class="docutils literal">${GIT_REPO_URL}</tt>. Export it using a <tt class="docutils literal">Bash</tt> command similar to the following:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">export </span><span style="color: #19177C">GIT_REPO_URL</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;https://github.com/dslab-epfl/reponame.git&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">export </span><span style="color: #19177C">GIT_REPO_URL</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;https://github.com/dslab-epfl/&lt;reponame&gt;.git&quot;</span>
 </pre></div>
 <p>Replace <tt class="docutils literal">reponame</tt> with the name of the repository created for your team.</p>
 <p>Now initialize your personal git repository and commit your files:</p>
@@ -557,13 +557,26 @@ User Interface</a> in the tutorial.</p>
 <p>Before you write the code that actually displays questions, consider writing
 unit tests for this (in the spirit of test-driven development, which we will discuss later in the semester). For
 reference, here is a possible test:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">testShowQuestion</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> JSONException <span style="color: #666666">{</span>
-    assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Question is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;What is the answer to Life, the universe and everything?&quot;</span><span style="color: #666666">));</span>
-    assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Correct answer is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Forty-two&quot;</span><span style="color: #666666">));</span>
-    assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Incorrect answer is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Twenty-seven&quot;</span><span style="color: #666666">));</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">ShowQuestionsActivityTest</span> <span style="color: #008000; font-weight: bold">extends</span> ActivityInstrumentationTestCase2<span style="color: #666666">&lt;</span>ShowQuestionsActivity<span style="color: #666666">&gt;</span> <span style="color: #666666">{</span>
+    <span style="color: #008000; font-weight: bold">private</span> Solo solo<span style="color: #666666">;</span>
 
-    Button nextQuestionButton <span style="color: #666666">=</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">getButton</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Next question&quot;</span><span style="color: #666666">);</span>
-    assertFalse<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Next question button is disabled&quot;</span><span style="color: #666666">,</span> nextQuestionButton<span style="color: #666666">.</span><span style="color: #7D9029">isEnabled</span><span style="color: #666666">());</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">ShowQuestionsActivityTest</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>
+        <span style="color: #008000; font-weight: bold">super</span><span style="color: #666666">(</span>ShowQuestionsActivity<span style="color: #666666">.</span><span style="color: #7D9029">class</span><span style="color: #666666">);</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #AA22FF">@Override</span>
+    <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">setUp</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> Exception <span style="color: #666666">{</span>
+        solo <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> Solo<span style="color: #666666">(</span>getInstrumentation<span style="color: #666666">(),</span> getActivity<span style="color: #666666">());</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">testShowQuestion</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> JSONException <span style="color: #666666">{</span>
+        assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Question is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;What is the answer to Life, the universe and everything?&quot;</span><span style="color: #666666">));</span>
+        assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Correct answer is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Forty-two&quot;</span><span style="color: #666666">));</span>
+        assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Incorrect answer is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Twenty-seven&quot;</span><span style="color: #666666">));</span>
+
+        Button nextQuestionButton <span style="color: #666666">=</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">getButton</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Next question&quot;</span><span style="color: #666666">);</span>
+        assertFalse<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Next question button is disabled&quot;</span><span style="color: #666666">,</span> nextQuestionButton<span style="color: #666666">.</span><span style="color: #7D9029">isEnabled</span><span style="color: #666666">());</span>
+   <span style="color: #666666">}</span>
 <span style="color: #666666">}</span>
 </pre></div>
 <p>This test uses the <a class="reference external" href="http://code.google.com/p/robotium/">Robotium</a> library.
@@ -575,9 +588,9 @@ We will, however, measure your test coverage.</p>
 <p class="first admonition-title">Grading</p>
 <p>Include in your repository all the libraries your application needs to successfully run on a new machine.
 Commit and push your changes early on and frequently to detect possible issues with building and testing your application on the SwEng testing infrastructure.</p>
-<p>Your application must compile by executing the following command:</p>
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012Quiz
-<span style="color: #19177C">$ </span>ant clean debug
+<p>Your application must compile and install on an emulator by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizApp
+<span style="color: #19177C">$ </span>ant clean debug install
 </pre></div>
 <p>Your application must run on an emulator by executing the following command:</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.showquestions.ShowQuestionsActivity
@@ -661,11 +674,11 @@ for every request you make.</li>
 </ul>
 <p>Here is some sample code that fetches two questions from the server and
 illustrates how to use the <tt class="docutils literal">SwengHttpClientFactory</tt>:</p>
-<div class="last"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">HttpGet firstRandom <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HttpGet<span style="color: #666666">(</span><span style="color: #BA2121">&quot;http://sweng-quiz.appspot.com/quizquestions/random&quot;</span><span style="color: #666666">);</span>
+<div class="last"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">HttpGet firstRandom <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HttpGet<span style="color: #666666">(</span><span style="color: #BA2121">&quot;https://sweng-quiz.appspot.com/quizquestions/random&quot;</span><span style="color: #666666">);</span>
 ResponseHandler<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> firstHandler <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> BasicResponseHandler<span style="color: #666666">();</span>
 String firstQuestion <span style="color: #666666">=</span> SwengHttpClientFactory<span style="color: #666666">.</span><span style="color: #7D9029">getInstance</span><span style="color: #666666">().</span><span style="color: #7D9029">execute</span><span style="color: #666666">(</span>firstRandom<span style="color: #666666">,</span> firstHandler<span style="color: #666666">);</span>
 
-HttpGet secondRandom <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HttpGet<span style="color: #666666">(</span><span style="color: #BA2121">&quot;http://sweng-quiz.appspot.com/quizquestions/random&quot;</span><span style="color: #666666">);</span>
+HttpGet secondRandom <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HttpGet<span style="color: #666666">(</span><span style="color: #BA2121">&quot;https://sweng-quiz.appspot.com/quizquestions/random&quot;</span><span style="color: #666666">);</span>
 ResponseHandler<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> secondHandler <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> BasicResponseHandler<span style="color: #666666">();</span>
 String secondQuestion <span style="color: #666666">=</span> SwengHttpClientFactory<span style="color: #666666">.</span><span style="color: #7D9029">getInstance</span><span style="color: #666666">().</span><span style="color: #7D9029">execute</span><span style="color: #666666">(</span>secondRandom<span style="color: #666666">,</span> secondHandler<span style="color: #666666">);</span>
 </pre></div>
@@ -677,9 +690,11 @@ Have a look at <a class="reference external" href="resources/MockHttpClient.java
 </div>
 <div class="section" id="interacting-with-the-app">
 <h2>Interacting with the app</h2>
-<p>Now that questions are displayed, let's solve some quizzes! Here are the steps to follow:</p>
-<p>Write a click listener that is called when the user clicks on an answer. If you
-display your answers in a <tt class="docutils literal">ListView</tt>, for example, set its <a class="reference external" href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html">OnItemClickListener</a> handler (<tt class="docutils literal">ListView.setOnItemClickListener(AdapterView.OnItemClickListener)</tt>).
+<p>Now that questions are displayed, let's solve some quizzes! Whenever the user gets the correct answer, (s)he can move to solve another quiz. Here are the steps to follow:</p>
+<p>Have a <a class="reference external" href="http://developer.android.com/reference/android/widget/Button.html">Button</a> labeled <tt class="docutils literal">Next question</tt> that when clicked triggers the application to fetch a new quiz question from the server. This button must initially
+be <a class="reference external" href="http://developer.android.com/reference/android/view/View.html#setEnabled%28boolean%29">disabled</a>. It is enabled as soon as the correct answer has been clicked on.</p>
+<p>Users interact with the app by clicking on the <tt class="docutils literal">View</tt> that contains the text of the answer they consider to be correct. Do not expect users to click on UI widgets next to the correct answer.</p>
+<p>Write a click listener that is called when the user clicks on an answer. If you display your answers in a <tt class="docutils literal">ListView</tt>, for example, set its <a class="reference external" href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html">OnItemClickListener</a> handler (<tt class="docutils literal">ListView.setOnItemClickListener(AdapterView.OnItemClickListener)</tt>).
 When the user clicks on an answer, the following should happen:</p>
 <ul class="simple">
 <li>If the answer is wrong, the text &quot;✘&quot; should appear somewhere next to the
@@ -691,14 +706,11 @@ answer.</li>
 </ul>
 </li>
 </ul>
-<p>You will also need a <a class="reference external" href="http://developer.android.com/reference/android/widget/Button.html">Button</a> labeled <em>Next question</em> which, when pressed, causes
-the next random question to be fetched and displayed. This button must initially
-be <a class="reference external" href="http://developer.android.com/reference/android/view/View.html#setEnabled%28boolean%29">disabled</a>. It is enabled as soon as the correct answer has been clicked on.</p>
 <div class="admonition-grading admonition">
 <p class="first admonition-title">Grading</p>
 <p>Please ensure that</p>
 <ul class="simple">
-<li>the text for a wrong answer is &quot;✘&quot;. This corresponds to unicode 2781 HEAVY BALLOT X.</li>
+<li>the text for a wrong answer is &quot;✘&quot;. This corresponds to unicode 2718 HEAVY BALLOT X.</li>
 <li>the text for the correct answer is &quot;✔&quot;. This corresponds to unicode 2714 HEAVY CHECK MARK.</li>
 <li>the text on the <a class="reference external" href="http://developer.android.com/reference/android/widget/Button.html">Button</a> is &quot;Next question&quot;.</li>
 </ul>
@@ -732,6 +744,75 @@ Using any other other testing tools, libraries, or versions of Robotium will mak
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">30 * min<span style="color: #666666">(</span>1, <span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">CODE_COVERAGE</span><span style="color: #008000; font-weight: bold">}</span>/80<span style="color: #666666">)</span>^2<span style="color: #666666">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="final-checklist">
+<h1>4. Final checklist</h1>
+<p>Grading for this homework will be completely automated. This means that your homework's project structure, code, package names, button labels, <tt class="docutils literal">Activity</tt> names, etc., must conform to a few precise rules. Otherwise, we won't be able to automatically grade your entire homework, so you will lose points.</p>
+<p>Here is a recap of the most important rules your homework must obey (these are not necessarily all the rules):</p>
+<ul>
+<li><p class="first">Your project must reside in a folder named <tt class="docutils literal">Sweng2012QuizApp</tt>.</p>
+</li>
+<li><p class="first">Use <tt class="docutils literal">epfl.sweng</tt> as package name for the project, in <tt class="docutils literal">Sweng2012QuizApp/AndroidManifest.xml</tt>.</p>
+</li>
+<li><p class="first">Your test project must reside in a folder named <tt class="docutils literal">Sweng2012QuizAppTest</tt>.</p>
+</li>
+<li><p class="first">Your <tt class="docutils literal">${REPO}</tt> must have the following folder structure:</p>
+<pre class="literal-block">
+${REPO}
+├── Sweng2012QuizApp
+|&nbsp;&nbsp; ├── assets
+|&nbsp;&nbsp; ├── libs
+|&nbsp;&nbsp; ├── res
+|&nbsp;&nbsp; └── src
+| &nbsp;     └── epfl
+|&nbsp;&nbsp;         └── sweng
+|               └── showquestions
+|                   └── ShowQuestionsActivity.java
+└── Sweng2012QuizApp
+ &nbsp;&nbsp; ├── assets
+ &nbsp;&nbsp; ├── libs
+ &nbsp;&nbsp; ├── res
+ &nbsp;&nbsp; └── src
+ &nbsp;&nbsp;     └── epfl
+ &nbsp;&nbsp;         └── sweng
+                └── test
+</pre>
+</li>
+<li><p class="first">Of course, you can have additional classes.</p>
+</li>
+<li><p class="first">Your application must compile and install on an emulator by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizApp
+<span style="color: #19177C">$ </span>ant clean debug install
+</pre></div>
+</li>
+<li><p class="first">Your application must run on an emulator by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.showquestions.ShowQuestionsActivity
+</pre></div>
+</li>
+<li><p class="first">Your tests must compile and run by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+</pre></div>
+</li>
+<li><p class="first">When your application is started, the <tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> should immediately start and it should fetch and display a question. We will test your app with a special testing server and verify that the app displays the questions returned by this specific testing server.</p>
+</li>
+<li><p class="first">You must use <tt class="docutils literal">HttpClient</tt> objects created by the <tt class="docutils literal">SwengHttpClientFactory</tt> when issuing requests to the server. Never communicate with the server using different means! Do not reuse an <tt class="docutils literal">HttpClient</tt> for issuing multiple requests. Call <tt class="docutils literal">SwengHttpClientFactory.getInstance()</tt> for every request you make.</p>
+</li>
+<li><p class="first">There exist a button with the <tt class="docutils literal">Next question</tt> label that is disabled as long as the user has not selected the correct answer.</p>
+</li>
+<li><p class="first">The application must respond to users clicking on the UI element that contains the text of an answer. When the user clicks on an answer, the following should happen:</p>
+<ul class="simple">
+<li>If the answer is wrong, the text &quot;✘&quot; should appear somewhere next to the answer.</li>
+<li>If the answer is correct, then the text &quot;✔&quot; must appear somewhere next to the answer, and the <tt class="docutils literal">Next question</tt> button becomes enabled.</li>
+</ul>
+</li>
+<li><p class="first">Your tests may only use the default testing features provided by the Android SDK or Robotium 3.4.1.</p>
+</li>
+<li><p class="first">To obtain 100% of the Full track points, your tests must achieve at least 80% code coverage.</p>
+</li>
+<li><p class="first">You code is committed to the <tt class="docutils literal"><span class="pre">https://github.com/dslab-epfl/&lt;reponame&gt;.git</span></tt> git repository.</p>
+</li>
+</ul>
 </div>
 </div>
 </body>

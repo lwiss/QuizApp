@@ -22,6 +22,9 @@ import org.apache.http.protocol.HttpContext;
 public class SwengHttpClientFactory {
 
 	private static AbstractHttpClient httpClient;
+	private static final int HTTP_PORT = 80;
+	private final static int HTTPS_PORT = 443;
+	
 	
 	public static synchronized AbstractHttpClient getInstance() {
 		if (httpClient == null) {
@@ -35,7 +38,7 @@ public class SwengHttpClientFactory {
 		httpClient = instance;
 	}
 
-	final private static RedirectHandler redirectNoFollow = new RedirectHandler() {
+	final private static RedirectHandler REDIRECT_NO_FOLLOW = new RedirectHandler() {
 		@Override
 		public boolean isRedirectRequested(HttpResponse response, HttpContext context) {
 			return false;
@@ -49,12 +52,12 @@ public class SwengHttpClientFactory {
 
 	private static AbstractHttpClient create() {
 		SchemeRegistry schemeRegistry = new SchemeRegistry();
-		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-		schemeRegistry.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
+		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), HTTP_PORT));
+		schemeRegistry.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), HTTPS_PORT));
 		HttpParams params = new BasicHttpParams();
 		ThreadSafeClientConnManager connManager = new ThreadSafeClientConnManager(params, schemeRegistry);
 		AbstractHttpClient result = new DefaultHttpClient(connManager, params);
-		result.setRedirectHandler(redirectNoFollow);
+		result.setRedirectHandler(REDIRECT_NO_FOLLOW);
 		return result;
 	}
 
