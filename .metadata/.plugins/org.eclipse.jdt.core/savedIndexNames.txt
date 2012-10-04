@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+/Users/MohamedBenArbia/Documents/SysCom3eme/Sweng/WorkspaceSweng/.metadata/.plugins/org.eclipse.jdt.core
-2556953747.index
-3883520915.index
-1534844771.index
