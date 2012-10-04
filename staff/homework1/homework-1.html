@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7434 2012-05-11 21:06:27Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { /* line numbers */
+  color: grey;
+}
+
+.code {
+  background-color: #eeeeee
+}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="introduction">
+<h1>1. Introduction</h1>
+<p>In this homework, you will lay the foundations for an Android application that
+displays multiple-choice quizzes on your phone.</p>
+<p>This app will fetch quiz questions from the <a class="reference external" href="https://sweng-quiz.appspot.com/quizquestions/random">SwEng quiz server</a> and display
+them on your phone. The user of your application will have the possibility to rate questions, add new
+ones, search for questions by tags, and more.</p>
+<p>The goals for this homework are the following:</p>
+<ul class="simple">
+<li>Set up an Android project</li>
+<li>Set up unit tests</li>
+<li>Evaluate the code coverage of your unit and integration tests</li>
+<li>Integrate your project into the SwEng testing infrastructure</li>
+<li>Fetch a question from the SwEng server and display it</li>
+<li>Achieve a minimum code coverage value</li>
+</ul>
+<p>Please keep track of how many hours it takes you to solve each exercise, as we
+will ask you to provide us with this information in a text file named <tt class="docutils literal">homework_1_time_spent.txt</tt> that
+resides in the <tt class="docutils literal">${REPO}</tt> folder (defined below).</p>
+<p>Please abide by the <a class="reference external" href="http://sweng.epfl.ch/collaboration">Collaboration Policy</a>. If you have any questions
+regarding the assignment requirements, ask on <a class="reference external" href="https://piazza.com/epfl.ch/fall2012/cs305/home">Piazza</a>. If you have any doubts
+about whether it is appropriate to ask something, mark the question private. You
+are allowed to use Web search to find answers to questions.</p>
+<p>The deadline for this homework is <strong>Friday, October 5, 2012</strong>, at <strong>19:00</strong>. Any assignments (or
+parts thereof) handed in late will not be graded.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p class="last">Grading for this homework will be completely automated. This means that
+your project needs to satisfy a certain structure. Paragraphs formatted like this one
+explain these constraints.</p>
+</div>
+<div class="section" id="basic-track-vs-full-track">
+<h2>Basic track vs. Full track</h2>
+<p>This homework has two parts:</p>
+<ul class="simple">
+<li>The basic track implements the app's functionality, and</li>
+<li>The full track additionally adds tests to ensure the reliability of the features implemented in the basic track.</li>
+</ul>
+<p>The total number of points for this homework is 100. Completely and correctly solving the basic track will earn you 70 points, while completely and correctly solving the full track will earn you 30 additional points, for a maximum of 100.</p>
+</div>
+<div class="section" id="a-note-on-the-formatting-styles-used-in-this-document">
+<h2>A note on the formatting styles used in this document</h2>
+<p>Fixed-width text lines that start with a dollar sign are <tt class="docutils literal">Bash</tt> shell commands that you should
+execute in a terminal. For example:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizApp
+</pre></div>
+<p>We use a number of shell variables. <tt class="docutils literal">${REPO}</tt>, for example, represents the
+path where your code is located. On BC computer labs, this would be something
+like <tt class="docutils literal">~/myfiles/sweng2012</tt>.</p>
+<p>Throughout this course we will assume that you are using the Linux machines in BC07/08 with the <tt class="docutils literal">Bash</tt> shell.</p>
+</div>
+<div class="section" id="setting-up-your-project">
+<h2>Setting up your project</h2>
+<p>For this homework, you can either use your computer or a machine from
+the BC computer labs. Create an Android project, as described in the <a class="reference external" href="https://myedu.epfl.ch/courses/module/16">Android
+tutorial</a> or in the <a class="reference external" href="http://developer.android.com/training/basics/firstapp/index.html">Android developer documentation</a>. The project must use Android 4.1 (API Level 16).</p>
+<p>You should create an empty project (do not create any <tt class="docutils literal">Activity</tt> yet). Choose
+<tt class="docutils literal"><span class="pre">${REPO}/Sweng2012QuizApp</span></tt> as project location.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>For us to successfully grade your project, you need to choose the
+following settings:</p>
+<ul class="last">
+<li><p class="first">Name your project <tt class="docutils literal">Sweng2012QuizApp</tt>.</p>
+</li>
+<li><p class="first">Use <tt class="docutils literal">epfl.sweng</tt> as package name for the project.</p>
+</li>
+<li><p class="first">This will lead to the following directory layout:</p>
+<pre class="literal-block">
+${REPO}
+└── Sweng2012QuizApp
+ &nbsp;&nbsp; ├── assets
+ &nbsp;&nbsp; ├── libs
+ &nbsp;&nbsp; ├── res
+ &nbsp;&nbsp; └── src
+ &nbsp;&nbsp;     └── epfl
+ &nbsp;&nbsp;         └── sweng
+</pre>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="tool-chain">
+<h2>Tool chain</h2>
+<p>Now that the basic skeleton is in place, let us integrate it with the version
+control, building, and testing system. For this, you will need a git repository.
+We will provide you with a repository on GitHub; you will receive information
+regarding this via Piazza. Now go follow the <a class="reference external" href="https://sites.google.com/site/swengepfl/tutorials/git">Git tutorial</a>.</p>
+<p>We will assume that the URL to your repository is stored in the <tt class="docutils literal">Bash</tt> variable
+<tt class="docutils literal">${GIT_REPO_URL}</tt>. Export it using a <tt class="docutils literal">Bash</tt> command similar to the following:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">export </span><span style="color: #19177C">GIT_REPO_URL</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;https://github.com/dslab-epfl/&lt;reponame&gt;.git&quot;</span>
+</pre></div>
+<p>Replace <tt class="docutils literal">reponame</tt> with the name of the repository created for your team.</p>
+<p>Now initialize your personal git repository and commit your files:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>
+<span style="color: #19177C">$ </span>git init .
+<span style="color: #19177C">$ </span>cat <span style="color: #BA2121">&lt;&lt;EOF &gt; .gitignore</span>
+<span style="color: #BA2121">  .metadata/</span>
+<span style="color: #BA2121">  .classpath</span>
+<span style="color: #BA2121">  .project</span>
+<span style="color: #BA2121">  .settings</span>
+<span style="color: #BA2121">  bin/</span>
+<span style="color: #BA2121">  gen/</span>
+<span style="color: #BA2121">  local.properties</span>
+<span style="color: #BA2121">  EOF</span>
+<span style="color: #19177C">$ </span>git add .
+<span style="color: #19177C">$ </span>git config user.name <span style="color: #BA2121">&quot;Your Name&quot;</span>
+<span style="color: #19177C">$ </span>git config user.email <span style="color: #BA2121">&quot;your.name@epfl.ch&quot;</span>
+<span style="color: #408080; font-style: italic"># NOTE: do not use --global, as global settings are lost on BC machines</span>
+<span style="color: #19177C">$ </span>git commit
+<span style="color: #19177C">$ </span>git remote add origin <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">GIT_REPO_URL</span><span style="color: #008000; font-weight: bold">}</span>
+<span style="color: #19177C">$ </span>git push -u origin master
+<span style="color: #408080; font-style: italic"># Introduce your GitHub user name and password</span>
+</pre></div>
+<p>Once you push your commit to the server, you trigger the automatic grading
+process. You can do this as often as you want before the deadline. We recommend,
+indeed, that you execute <tt class="docutils literal">git commit</tt> and <tt class="docutils literal">git push</tt> often. Now, log in
+to the <a class="reference external" href="http://jenkins.epfl.ch/">SwEng continuous integration server</a> with your GASPAR ID and password, click on &quot;Build now&quot;,
+and check the console log of the build to see that your git repository was successfully checked out. The
+build status of your homework will not be <tt class="docutils literal">Successful</tt>, since your have not implemented your homework yet.
+Note that you need to be connected to EPFL's network in order to access the SwEng continuous integration server.
+This means either being on campus or being connected to EPFL's VPN.</p>
+</div>
+</div>
+<div class="section" id="basic-track-70-points">
+<h1>2. Basic track (70 points)</h1>
+<div class="section" id="creating-the-first-activity">
+<h2>Creating the first <tt class="docutils literal">Activity</tt></h2>
+<p>Now it is time to create your first <tt class="docutils literal">Activity</tt>; it will show quiz questions to the
+user.</p>
+<ol class="arabic simple">
+<li>Create a new blank <tt class="docutils literal">Activity</tt> called <tt class="docutils literal">ShowQuestionsActivity</tt> using Eclipse's
+wizard (<tt class="docutils literal">File</tt> → <tt class="docutils literal">New</tt> → <tt class="docutils literal">Other</tt> → <tt class="docutils literal">Android Activity</tt>). Eclipse will create it in the
+<tt class="docutils literal">epfl.sweng</tt> package.</li>
+<li>Create a new package named <tt class="docutils literal">epfl.sweng.showquestions</tt>. Drag and drop the
+<tt class="docutils literal">ShowQuestionsActivity.java</tt> file there.</li>
+</ol>
+<p>You should now be able to run your application (Click on <tt class="docutils literal">Project → Run as →
+Android Application</tt>). It should show the <tt class="docutils literal">Hello World</tt> text.</p>
+<p>If the previous step did not work, the cause may be that your project's <tt class="docutils literal">AndroidManifest.xml</tt>
+file has not been updated. Double check that the application's <tt class="docutils literal">activity</tt> name, as
+stated in the manifest, is <tt class="docutils literal">.showquestions.ShowQuestionsActivity</tt> .</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p class="last">Please double-check that your <tt class="docutils literal">Activitiy</tt> is called
+<tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt>.</p>
+</div>
+<p>Commit and push your changes (<tt class="docutils literal">git commit</tt> and <tt class="docutils literal">git push</tt>).</p>
+</div>
+<div class="section" id="unit-tests">
+<h2>Unit tests</h2>
+<p>Test coverage is an important code quality metric. The better you test your app,
+the fewer bugs you will have. Detailed information on unit testing can be found in the <a class="reference external" href="http://developer.android.com/tools/testing/index.html#Introduction">Android testing
+documentation</a>.</p>
+<p>Create a test project in Eclipse (<tt class="docutils literal">File</tt> → <tt class="docutils literal">New</tt> → <tt class="docutils literal">Android Test Project</tt>). Call it
+<tt class="docutils literal">Sweng2012QuizAppTest</tt> and make sure it is located in
+<tt class="docutils literal"><span class="pre">${REPO}/Sweng2012QuizAppTest</span></tt>.</p>
+<p>Add a new test case (<tt class="docutils literal">File</tt> → <tt class="docutils literal">New</tt> → <tt class="docutils literal">JUnit Test</tt>) that extends
+<tt class="docutils literal">ActivityInstrumentationTestCase2</tt>. Change the test's code to match the code below.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">ShowQuestionsActivityTest</span> <span style="color: #008000; font-weight: bold">extends</span>
+        ActivityInstrumentationTestCase2<span style="color: #666666">&lt;</span>ShowQuestionsActivity<span style="color: #666666">&gt;</span> <span style="color: #666666">{</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">ShowQuestionsActivityTest</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>
+        <span style="color: #008000; font-weight: bold">super</span><span style="color: #666666">(</span>ShowQuestionsActivity<span style="color: #666666">.</span><span style="color: #7D9029">class</span><span style="color: #666666">);</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">testHello</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>
+        fail<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Not yet implemented&quot;</span><span style="color: #666666">);</span>
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>
+<p>Ensure you can run the test defined above on the emulator. In Eclipse, right-click on the test project (<tt class="docutils literal">Sweng2012QuizAppTest</tt>) → <tt class="docutils literal">Run as</tt> →
+<tt class="docutils literal">Android JUnit Test</tt>. The test will fail, and that is its expected behavior. Commit and push your changes once you successfully ran the test on the emulator.</p>
+<p>To enable unit testing from the command line (and thus test-coverage
+measurements), you first need to set up your project for compilation with
+<tt class="docutils literal">ant</tt>. In the following, we assume that <tt class="docutils literal">${ANDROID_SDK}</tt> contains the path
+to your installation of the Android SDK. On the BC machines, the Android
+SDK is installed in <tt class="docutils literal"><span class="pre">/usr/lib/android-sdks</span></tt>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>
+<span style="color: #19177C">$ </span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">ANDROID_SDK</span><span style="color: #008000; font-weight: bold">}</span>/tools/android update project --path Sweng2012QuizApp
+<span style="color: #19177C">$ </span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">ANDROID_SDK</span><span style="color: #008000; font-weight: bold">}</span>/tools/android update project --path Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">ANDROID_SDK</span><span style="color: #008000; font-weight: bold">}</span>/tools/android update <span style="color: #008000">test</span>-project --path Sweng2012QuizAppTest --main ../Sweng2012QuizApp
+</pre></div>
+<p>You should follow this (and other changes) immediately with a commit and push to the remote repository:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>git add .
+<span style="color: #19177C">$ </span>git commit
+<span style="color: #19177C">$ </span>git push
+</pre></div>
+<p>Ant builds interact unfavorably with Eclipse, so disable <tt class="docutils literal">Build Automatically</tt>
+from Eclipse's <tt class="docutils literal">Project</tt> menu.</p>
+<p>Now, you should be able to build your project and run unit tests from the
+command line:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">ANDROID_SDK</span><span style="color: #008000; font-weight: bold">}</span>/tools/emulator-arm -avd SwengAndroidDevice
+<span style="color: #408080; font-style: italic"># start an emulator from the terminal (or from Eclipse, if you prefer)</span>
+<span style="color: #408080; font-style: italic"># SwengAndroidDevice is the name of your Android Virtual Device, as per the Android tutorial</span>
+<span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+<span style="color: #19177C">$ </span>firefox bin/coverage.html
+<span style="color: #408080; font-style: italic"># or xdg-open, or the name of your browser</span>
+</pre></div>
+<p>You will find that test coverage is not yet very high, but that will soon
+improve as you write tests for your code.</p>
+<p>Do not forget to commit and push your changes.</p>
+</div>
+<div class="section" id="features">
+<h2>Features</h2>
+<p>Now that the infrastructure is in place, you are ready to implement some cool features.</p>
+<div class="section" id="displaying-quiz-questions">
+<h3>Displaying quiz questions</h3>
+<p>You are building an app for solving quizzes on your mobile phone. The first
+feature is to display a single question. Each question has a question text, a set of possible answers, and a number specifying which
+answer is the correct solution. There are a few more fields; have a look at a <a class="reference external" href="https://sweng-quiz.appspot.com/quizquestions/random">random question from the server</a> to see what they look like.</p>
+<p>You are free to choose your app's look and feel, and how exactly questions
+are displayed. There are, however, some constraints that we require in order to
+automatically grade your app. Failing to comply with these requirements will cause your homework to fail our tests, and you will receive 0 points
+even if your code might otherwise work.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>The <tt class="docutils literal">Activity</tt> that shows the question needs to be called
+<tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt>.</p>
+<p>You need to display the question text and the answers in <tt class="docutils literal">TextView</tt>
+elements (or a subclass of <tt class="docutils literal">TextView</tt>) so that our tests can find it. It is
+important that the question and answer texts appear unmodified in your
+graphical user interface.</p>
+<p class="last">Upon creation, your <tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> should immediately display a question.</p>
+</div>
+<p>You can find relevant documentation for this part of the assignment on the
+Android developer sites. In particular, check out the section <a class="reference external" href="http://developer.android.com/training/basics/firstapp/building-ui.html">Building a Simple
+User Interface</a> in the tutorial.</p>
+<p>Before you write the code that actually displays questions, consider writing
+unit tests for this (in the spirit of test-driven development, which we will discuss later in the semester). For
+reference, here is a possible test:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">ShowQuestionsActivityTest</span> <span style="color: #008000; font-weight: bold">extends</span> ActivityInstrumentationTestCase2<span style="color: #666666">&lt;</span>ShowQuestionsActivity<span style="color: #666666">&gt;</span> <span style="color: #666666">{</span>
+    <span style="color: #008000; font-weight: bold">private</span> Solo solo<span style="color: #666666">;</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">ShowQuestionsActivityTest</span><span style="color: #666666">()</span> <span style="color: #666666">{</span>
+        <span style="color: #008000; font-weight: bold">super</span><span style="color: #666666">(</span>ShowQuestionsActivity<span style="color: #666666">.</span><span style="color: #7D9029">class</span><span style="color: #666666">);</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #AA22FF">@Override</span>
+    <span style="color: #008000; font-weight: bold">protected</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">setUp</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> Exception <span style="color: #666666">{</span>
+        solo <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> Solo<span style="color: #666666">(</span>getInstrumentation<span style="color: #666666">(),</span> getActivity<span style="color: #666666">());</span>
+    <span style="color: #666666">}</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">testShowQuestion</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> JSONException <span style="color: #666666">{</span>
+        assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Question is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;What is the answer to Life, the universe and everything?&quot;</span><span style="color: #666666">));</span>
+        assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Correct answer is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Forty-two&quot;</span><span style="color: #666666">));</span>
+        assertTrue<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Incorrect answer is displayed&quot;</span><span style="color: #666666">,</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">searchText</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Twenty-seven&quot;</span><span style="color: #666666">));</span>
+
+        Button nextQuestionButton <span style="color: #666666">=</span> solo<span style="color: #666666">.</span><span style="color: #7D9029">getButton</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Next question&quot;</span><span style="color: #666666">);</span>
+        assertFalse<span style="color: #666666">(</span><span style="color: #BA2121">&quot;Next question button is disabled&quot;</span><span style="color: #666666">,</span> nextQuestionButton<span style="color: #666666">.</span><span style="color: #7D9029">isEnabled</span><span style="color: #666666">());</span>
+   <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>
+<p>This test uses the <a class="reference external" href="http://code.google.com/p/robotium/">Robotium</a> library.
+Robotium is a third-party test framework for simulating user interaction with Android applications.
+You can choose to use Robotium or not. For this homework, we will not grade you on the content of your unit tests.
+We will, however, measure your test coverage.</p>
+<p>Your tests may only use the default testing features provided by the Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>. Using any other testing tools, libraries or versions of Robotium will make it impossible for us to automatically run your tests and compute their code coverage, so you will lose points.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>Include in your repository all the libraries your application needs to successfully run on a new machine.
+Commit and push your changes early on and frequently to detect possible issues with building and testing your application on the SwEng testing infrastructure.</p>
+<p>Your application must compile and install on an emulator by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizApp
+<span style="color: #19177C">$ </span>ant clean debug install
+</pre></div>
+<p>Your application must run on an emulator by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.showquestions.ShowQuestionsActivity
+</pre></div>
+<p>Your tests must compile and run by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+</pre></div>
+<p class="last">If our test machines cannot build or run your code, they will give you 0 points.
+Therefore, it is in your interest to thoroughly check that all runs smoothly before the deadline.</p>
+</div>
+<p>Do not forget to commit and push your changes (<tt class="docutils literal">git commit</tt> and <tt class="docutils literal">git push</tt>).</p>
+</div>
+<div class="section" id="fetching-a-random-quiz-question-from-the-server">
+<h3>Fetching a random quiz question from the server</h3>
+<p>The app will be much more interesting if it does not display the same question
+all the time. This is why it should fetch a random question from the
+server. Your <tt class="docutils literal">Activity</tt> should fetch the first question on creation, and
+subsequent questions whenever the user presses the <em>Next question</em> button.
+Note that there must be a button with this exact text, otherwise we will not be able
+to automatically test this part of your homework, and you will lose points.</p>
+<p>To fetch a question from the server, issue an HTTP GET request to the URL
+<tt class="docutils literal"><span class="pre">https://sweng-quiz.appspot.com/quizquestions/random</span></tt> using an object of type <tt class="docutils literal">org.apache.http.client.HttpClient</tt>. You will get back
+a response in <a class="reference external" href="http://www.json.org">JSON</a> format.</p>
+<p>If the request is successful, the returned HTTP status code is 200. The body of a successful request has the following form:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+  <span style="color: #BA2121">&quot;id&quot;</span><span style="color: #666666">:</span> <span style="color: #666666">17005</span>,
+  <span style="color: #BA2121">&quot;question&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;What is the capital of Antigua and Barbuda?&quot;</span>,
+  <span style="color: #BA2121">&quot;answers&quot;</span><span style="color: #666666">:</span> [
+    <span style="color: #BA2121">&quot;Chisinau&quot;</span>,
+    <span style="color: #BA2121">&quot;Saipan&quot;</span>,
+    <span style="color: #BA2121">&quot;St. John&#39;s&quot;</span>,
+    <span style="color: #BA2121">&quot;Plymouth&quot;</span>
+  ],
+  <span style="color: #BA2121">&quot;solutionIndex&quot;</span><span style="color: #666666">:</span> <span style="color: #666666">2</span>,
+  <span style="color: #BA2121">&quot;tags&quot;</span><span style="color: #666666">:</span> [
+    <span style="color: #BA2121">&quot;capitals&quot;</span>,
+    <span style="color: #BA2121">&quot;geography&quot;</span>,
+    <span style="color: #BA2121">&quot;countries&quot;</span>
+  ],
+  <span style="color: #BA2121">&quot;owner&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;sweng&quot;</span>
+}
+</pre></div>
+<p>The fields of this JSON object are as follows:</p>
+<ul class="simple">
+<li><tt class="docutils literal">id</tt> is a number that uniquely identifies a question.</li>
+<li><tt class="docutils literal">question</tt> contains the text of the question.</li>
+<li><tt class="docutils literal">answers</tt> is a list of strings containing possible answers. The list is 0-indexed, meaning that the first element's index is 0. The order of the answers is important, because the correct answer is identified by its index in the <tt class="docutils literal">answers</tt> list.</li>
+<li><tt class="docutils literal">solutionIndex</tt> indicates the correct answer by its position in the <tt class="docutils literal">answers</tt> list.</li>
+<li><tt class="docutils literal">tags</tt> is a set of question tags.</li>
+</ul>
+<p>If anything goes wrong (for example, the server responds with a non-200 status code, or executing the request generates an <tt class="docutils literal">Exception</tt>)
+you must set the question text to display &quot;There was an error
+retrieving the question&quot;. Note that there must be a <tt class="docutils literal">View</tt> with this exact text, otherwise we will not be able
+to automatically test this part of your homework, and you will lose points.</p>
+<p>The following documentation will help you accomplish the task of displaying questions fetched from the server.
+A number of classes help you fetch data over HTTP: <a class="reference external" href="http://developer.android.com/reference/org/apache/http/impl/client/DefaultHttpClient.html">DefaultHttpClient</a>, <a class="reference external" href="http://developer.android.com/reference/org/apache/http/client/methods/HttpGet.html">HttpGet</a>, and
+<a class="reference external" href="http://developer.android.com/reference/org/apache/http/impl/client/BasicResponseHandler.html">BasicResponseHandler</a>. To parse the JSON returned by the server, use an instance
+of <a class="reference external" href="http://developer.android.com/reference/org/json/JSONObject.html">JSONObject</a>. All network communication must be executed in a background
+thread (not the main UI thread). For this, you can use <a class="reference external" href="http://developer.android.com/reference/android/os/AsyncTask.html">AsyncTask</a>.
+A good starting point for information about communicating with a server using <tt class="docutils literal">AsyncTask</tt> can be found in the <a class="reference external" href="http://developer.android.com/training/basics/network-ops/connecting.html">Connecting to the Network</a> tutorial.</p>
+<p>To enable your application to perform the network operations described in this assignment, your application's manifest must include the following permissions:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+</pre></div>
+<p>Add these permission just before the <tt class="docutils literal">&lt;application&gt;</tt> node in your AndroidManifest.xml file.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>It is important that your app fetches a question on
+startup and displays it. We will test your app with a special testing
+server and verify that the app displays the questions returned by this
+specific testing server.</p>
+<p>During grading, we need to intercept your communication with the server, so you must use <tt class="docutils literal">HttpClient</tt> objects created by the <a class="reference external" href="resources/SwengHttpClientFactory.java">SwengHttpClientFactory</a> when issuing requests to the server. Never communicate with the server using different means! Otherwise, your code will fail our automated tests, and you will lose points.</p>
+<p>Here are the step-by-step instructions:</p>
+<ul class="simple">
+<li>Download the <a class="reference external" href="resources/SwengHttpClientFactory.java">SwengHttpClientFactory</a> and include it in your application.
+Ensure it is in the package named <tt class="docutils literal">epfl.sweng.servercomm</tt>.</li>
+<li>In all places where you need an <tt class="docutils literal">HttpClient</tt>, use <tt class="docutils literal">SwengHttpClientFactory.getInstance()</tt> instead of <tt class="docutils literal">new DefaultHttpClient()</tt> or <tt class="docutils literal">new AndroidHttpClient()</tt> or any other class that implements the <tt class="docutils literal">HttpClient</tt> interface.</li>
+<li>Do not reuse an <tt class="docutils literal">HttpClient</tt> for issuing multiple requests. Call <tt class="docutils literal">SwengHttpClientFactory.getInstance()</tt>
+for every request you make.</li>
+</ul>
+<p>Here is some sample code that fetches two questions from the server and
+illustrates how to use the <tt class="docutils literal">SwengHttpClientFactory</tt>:</p>
+<div class="last"><div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">HttpGet firstRandom <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HttpGet<span style="color: #666666">(</span><span style="color: #BA2121">&quot;https://sweng-quiz.appspot.com/quizquestions/random&quot;</span><span style="color: #666666">);</span>
+ResponseHandler<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> firstHandler <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> BasicResponseHandler<span style="color: #666666">();</span>
+String firstQuestion <span style="color: #666666">=</span> SwengHttpClientFactory<span style="color: #666666">.</span><span style="color: #7D9029">getInstance</span><span style="color: #666666">().</span><span style="color: #7D9029">execute</span><span style="color: #666666">(</span>firstRandom<span style="color: #666666">,</span> firstHandler<span style="color: #666666">);</span>
+
+HttpGet secondRandom <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HttpGet<span style="color: #666666">(</span><span style="color: #BA2121">&quot;https://sweng-quiz.appspot.com/quizquestions/random&quot;</span><span style="color: #666666">);</span>
+ResponseHandler<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> secondHandler <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> BasicResponseHandler<span style="color: #666666">();</span>
+String secondQuestion <span style="color: #666666">=</span> SwengHttpClientFactory<span style="color: #666666">.</span><span style="color: #7D9029">getInstance</span><span style="color: #666666">().</span><span style="color: #7D9029">execute</span><span style="color: #666666">(</span>secondRandom<span style="color: #666666">,</span> secondHandler<span style="color: #666666">);</span>
+</pre></div>
+</div></div>
+<p>You can use the same network interception method for your own tests. Doing so will allow you to test your application without contacting the actual server.
+Have a look at <a class="reference external" href="resources/MockHttpClient.java">MockHttpClient</a> and
+<a class="reference external" href="resources/MockHttpRequestExecutor.java">MockHttpRequestExecutor</a> if you are interested.</p>
+</div>
+</div>
+<div class="section" id="interacting-with-the-app">
+<h2>Interacting with the app</h2>
+<p>Now that questions are displayed, let's solve some quizzes! Whenever the user gets the correct answer, (s)he can move to solve another quiz. Here are the steps to follow:</p>
+<p>Have a <a class="reference external" href="http://developer.android.com/reference/android/widget/Button.html">Button</a> labeled <tt class="docutils literal">Next question</tt> that when clicked triggers the application to fetch a new quiz question from the server. This button must initially
+be <a class="reference external" href="http://developer.android.com/reference/android/view/View.html#setEnabled%28boolean%29">disabled</a>. It is enabled as soon as the correct answer has been clicked on.</p>
+<p>Users interact with the app by clicking on the <tt class="docutils literal">View</tt> that contains the text of the answer they consider to be correct. Do not expect users to click on UI widgets next to the correct answer.</p>
+<p>Write a click listener that is called when the user clicks on an answer. If you display your answers in a <tt class="docutils literal">ListView</tt>, for example, set its <a class="reference external" href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html">OnItemClickListener</a> handler (<tt class="docutils literal">ListView.setOnItemClickListener(AdapterView.OnItemClickListener)</tt>).
+When the user clicks on an answer, the following should happen:</p>
+<ul class="simple">
+<li>If the answer is wrong, the text &quot;✘&quot; should appear somewhere next to the
+answer.</li>
+<li>If the answer is correct, then<ul>
+<li>the text &quot;✔&quot; must appear somewhere next to the answer.</li>
+<li>the <em>Next question</em> button must be enabled.</li>
+<li>no more clicks should be accepted for answers, i.e., if the user clicks on a correct answer and <em>then</em> on an incorrect answer, the second click should have no effect.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>Please ensure that</p>
+<ul class="simple">
+<li>the text for a wrong answer is &quot;✘&quot;. This corresponds to unicode 2718 HEAVY BALLOT X.</li>
+<li>the text for the correct answer is &quot;✔&quot;. This corresponds to unicode 2714 HEAVY CHECK MARK.</li>
+<li>the text on the <a class="reference external" href="http://developer.android.com/reference/android/widget/Button.html">Button</a> is &quot;Next question&quot;.</li>
+</ul>
+<p class="last">Otherwise, your code will fail to pass our automated tests, and you will lose points.</p>
+</div>
+<div class="section" id="that-s-it">
+<h3>That's it</h3>
+<p>Do not forget to commit your changes to your git repository and push them to the
+central server. Then watch our test cases pass, and be proud to have created perhaps your first Android application.</p>
+</div>
+</div>
+</div>
+<div class="section" id="full-track-30-points">
+<h1>3. Full track (30 points)</h1>
+<p>Now that you have implemented the basic track for this homework, it is time to make sure that your code is reliable. You will achieve this by writing unit tests for your application. The goal for the tests you write is to achieve high code coverage for the code you wrote for the basic track.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p class="last">Your tests may only use the default testing features provided by the Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>.
+Using any other other testing tools, libraries, or versions of Robotium will make it impossible for us to automatically run your tests and compute their code coverage, so you will lose points.</p>
+</div>
+<div class="section" id="code-coverage">
+<h2>Code coverage</h2>
+<p>To compute the code coverage achieved by your tests, use <tt class="docutils literal">ant</tt> as follows:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+<span style="color: #19177C">$ </span>firefox bin/coverage.html
+</pre></div>
+<p>The <tt class="docutils literal">emma</tt> build target instructs the Android build system to collect source code line coverage metrics. While your tests are running, <tt class="docutils literal">emma</tt> will monitor which of your application's lines of code get executed. Once the tests finish running, <tt class="docutils literal">emma</tt> compares their number to the total number of lines of code in your application and reports the percentage of lines executed at least once. This value ranges from 0%, when your tests do not execute any application line of code, to 100%, when your tests cause every line of code from the application to be executed at least once. Note that a 100% source code line coverage does not mean your code is bug-free.</p>
+<p>After running the tests, the code coverage report can be found in <tt class="docutils literal"><span class="pre">${REPO}/Sweng2012QuizAppTest/bin/coverage.html</span></tt>. You can see an example report <a class="reference external" href="http://emma.sourceforge.net/coverage_sample_b/index.html">here</a>.</p>
+<p>The number of points for this part of the homework will be computed as a quadratic function of the line coverage your tests achieve, with 30 points corresponding to 80% line code coverage. The formula below serves as a guideline (<a class="reference external" href="resources/grade.png">plot</a>).</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">30 * min<span style="color: #666666">(</span>1, <span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">CODE_COVERAGE</span><span style="color: #008000; font-weight: bold">}</span>/80<span style="color: #666666">)</span>^2<span style="color: #666666">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="final-checklist">
+<h1>4. Final checklist</h1>
+<p>Grading for this homework will be completely automated. This means that your homework's project structure, code, package names, button labels, <tt class="docutils literal">Activity</tt> names, etc., must conform to a few precise rules. Otherwise, we won't be able to automatically grade your entire homework, so you will lose points.</p>
+<p>Here is a recap of the most important rules your homework must obey (these are not necessarily all the rules):</p>
+<ul>
+<li><p class="first">Your project must reside in a folder named <tt class="docutils literal">Sweng2012QuizApp</tt>.</p>
+</li>
+<li><p class="first">Use <tt class="docutils literal">epfl.sweng</tt> as package name for the project, in <tt class="docutils literal">Sweng2012QuizApp/AndroidManifest.xml</tt>.</p>
+</li>
+<li><p class="first">Your test project must reside in a folder named <tt class="docutils literal">Sweng2012QuizAppTest</tt>.</p>
+</li>
+<li><p class="first">Your <tt class="docutils literal">${REPO}</tt> must have the following folder structure:</p>
+<pre class="literal-block">
+${REPO}
+├── Sweng2012QuizApp
+|&nbsp;&nbsp; ├── assets
+|&nbsp;&nbsp; ├── libs
+|&nbsp;&nbsp; ├── res
+|&nbsp;&nbsp; └── src
+| &nbsp;     └── epfl
+|&nbsp;&nbsp;         └── sweng
+|               └── showquestions
+|                   └── ShowQuestionsActivity.java
+└── Sweng2012QuizApp
+ &nbsp;&nbsp; ├── assets
+ &nbsp;&nbsp; ├── libs
+ &nbsp;&nbsp; ├── res
+ &nbsp;&nbsp; └── src
+ &nbsp;&nbsp;     └── epfl
+ &nbsp;&nbsp;         └── sweng
+                └── test
+</pre>
+</li>
+<li><p class="first">Of course, you can have additional classes.</p>
+</li>
+<li><p class="first">Your application must compile and install on an emulator by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizApp
+<span style="color: #19177C">$ </span>ant clean debug install
+</pre></div>
+</li>
+<li><p class="first">Your application must run on an emulator by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.showquestions.ShowQuestionsActivity
+</pre></div>
+</li>
+<li><p class="first">Your tests must compile and run by executing the following command:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+</pre></div>
+</li>
+<li><p class="first">When your application is started, the <tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> should immediately start and it should fetch and display a question. We will test your app with a special testing server and verify that the app displays the questions returned by this specific testing server.</p>
+</li>
+<li><p class="first">You must use <tt class="docutils literal">HttpClient</tt> objects created by the <tt class="docutils literal">SwengHttpClientFactory</tt> when issuing requests to the server. Never communicate with the server using different means! Do not reuse an <tt class="docutils literal">HttpClient</tt> for issuing multiple requests. Call <tt class="docutils literal">SwengHttpClientFactory.getInstance()</tt> for every request you make.</p>
+</li>
+<li><p class="first">There exist a button with the <tt class="docutils literal">Next question</tt> label that is disabled as long as the user has not selected the correct answer.</p>
+</li>
+<li><p class="first">The application must respond to users clicking on the UI element that contains the text of an answer. When the user clicks on an answer, the following should happen:</p>
+<ul class="simple">
+<li>If the answer is wrong, the text &quot;✘&quot; should appear somewhere next to the answer.</li>
+<li>If the answer is correct, then the text &quot;✔&quot; must appear somewhere next to the answer, and the <tt class="docutils literal">Next question</tt> button becomes enabled.</li>
+</ul>
+</li>
+<li><p class="first">Your tests may only use the default testing features provided by the Android SDK or Robotium 3.4.1.</p>
+</li>
+<li><p class="first">To obtain 100% of the Full track points, your tests must achieve at least 80% code coverage.</p>
+</li>
+<li><p class="first">You code is committed to the <tt class="docutils literal"><span class="pre">https://github.com/dslab-epfl/&lt;reponame&gt;.git</span></tt> git repository.</p>
+</li>
+</ul>
+</div>
+</div>
+</body>
+</html>
