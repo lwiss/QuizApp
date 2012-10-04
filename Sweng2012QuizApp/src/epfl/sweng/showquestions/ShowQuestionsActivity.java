@@ -101,8 +101,7 @@ public class ShowQuestionsActivity extends Activity {
 						+ solutionIndex);
 
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.err.println("ERREUR Lors de l'extraction des données");
 			}
 
 		}
