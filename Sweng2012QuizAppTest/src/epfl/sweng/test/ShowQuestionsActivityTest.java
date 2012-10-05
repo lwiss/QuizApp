@@ -16,10 +16,10 @@ import android.widget.Button;
 public class ShowQuestionsActivityTest extends
 		ActivityInstrumentationTestCase2<ShowQuestionsActivity> {
 	private Solo solo;
-	private String question = (String) ShowQuestionsActivity.getQuestion()
-			.getText();
-	private String [] answers = ShowQuestionsActivity.getAnswers();
-	private int solution = ShowQuestionsActivity.getSolution();
+	private String question;
+	private String[] answers;
+	private int solution;
+	private static final int TIME = 1000;
 
 	public ShowQuestionsActivityTest() {
 		super(ShowQuestionsActivity.class);
@@ -28,6 +28,11 @@ public class ShowQuestionsActivityTest extends
 	@Override
 	protected void setUp() throws Exception {
 		solo = new Solo(getInstrumentation(), getActivity());
+		Thread.sleep(TIME);
+		question = (String) ShowQuestionsActivity.getQuestion().getText();
+		answers = ShowQuestionsActivity.getAnswers();
+		solution = ShowQuestionsActivity.getSolution();
+
 	}
 
 	public void testShowQuestion() throws JSONException {
@@ -64,6 +69,7 @@ public class ShowQuestionsActivityTest extends
 	}
 
 	public void testNoMoreEffects() {
+		solo.clickOnText(answers[solution]);
 		for (int i = 0; i < answers.length; i++) {
 			solo.clickOnText(answers[i]);
 			Button nextQuestionButton = solo.getButton("Next question");
