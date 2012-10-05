@@ -19,7 +19,7 @@ public class ShowQuestionsActivityTest extends
 	private String question;
 	private String[] answers;
 	private int solution;
-	private static final int TIME = 1000;
+	private static final int TIME = 5000;
 
 	public ShowQuestionsActivityTest() {
 		super(ShowQuestionsActivity.class);
