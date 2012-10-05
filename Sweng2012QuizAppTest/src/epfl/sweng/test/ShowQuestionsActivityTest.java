@@ -10,9 +10,9 @@ import android.widget.Button;
 
 public class ShowQuestionsActivityTest extends ActivityInstrumentationTestCase2<ShowQuestionsActivity> {
     private Solo solo;
-    String question=(String) ShowQuestionsActivity.question.getText();
-    String answers[]=ShowQuestionsActivity.answers;
-    int solution=ShowQuestionsActivity.solution;
+    String question=(String) ShowQuestionsActivity.getQuestion().getText();
+    String answers[]=ShowQuestionsActivity.getAnswers();
+    int solution=ShowQuestionsActivity.getSolution();
 
     public ShowQuestionsActivityTest() {
         super(ShowQuestionsActivity.class);

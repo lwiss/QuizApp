@@ -2,14 +2,19 @@ package epfl.sweng.showquestions;
 
 import org.json.JSONObject;
 
+/**
+ * 
+ * @author Eagles
+ * 
+ */
 public class Couple {
 	private JSONObject jsonObject;
 	private ShowQuestionsActivity showQuestionsActivity;
 
-	public Couple(JSONObject jsonObject,
-			ShowQuestionsActivity showQuestionsActivity) {
-		this.jsonObject = jsonObject;
-		this.showQuestionsActivity = showQuestionsActivity;
+	public Couple(JSONObject json,
+			ShowQuestionsActivity show) {
+		this.jsonObject = json;
+		this.showQuestionsActivity = show;
 	}
 
 	public JSONObject getJsonObject() {

@@ -10,8 +10,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import epfl.sweng.R;
-import epfl.sweng.R.layout;
-import epfl.sweng.R.menu;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -28,17 +26,32 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View;
-
+/**
+ * 
+ * @author Eagles
+ *
+ */
 public class ShowQuestionsActivity extends Activity {
-	static public TextView question;
+	private static TextView question;
 	private ListView answersList;
-	static public int solution;
-	static public String[] answers;
+	private static int solution;
+	private static String[] answers;
 	private Button nextQuestionButton;
-	private final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
-	
-	private void nextQuestion()
-	{
+	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
+
+	public static TextView getQuestion() {
+		return question;
+	}
+
+	public static int getSolution() {
+		return solution;
+	}
+
+	public static String[] getAnswers() {
+		return answers;
+	}
+
+	private void nextQuestion() {
 		new DownloadJSONObject().execute(URL);
 	}
 
@@ -54,7 +67,6 @@ public class ShowQuestionsActivity extends Activity {
 			question.setText("There was an error retrieving the question");
 		}
 
-		
 		return new Couple(new JSONObject(request), this);
 	}
 
@@ -75,7 +87,11 @@ public class ShowQuestionsActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_show_questions, menu);
 		return true;
 	}
-
+/**
+ * 
+ * @author Eagles
+ *
+ */
 	private class DownloadJSONObject extends AsyncTask<String, String, Couple> {
 
 		@Override
@@ -112,25 +128,25 @@ public class ShowQuestionsActivity extends Activity {
 						R.layout.answer, answers);
 				answersList = (ListView) findViewById(R.id.answersList);
 				answersList.setAdapter(aAdapter);
-		        nextQuestionButton = (Button) findViewById(R.id.nextQuestion);
-		        answersList.setOnItemClickListener(new OnItemClickListener() {
-		        	public void onItemClick (AdapterView<?> parent, View view, int position, long id) {
-		        		TextView textView = (TextView) view;
-		        		if (position==solution) {
-		        			textView.setText(textView.getText()+" \u2714");
-		        			nextQuestionButton.setEnabled(true);
-		        			answersList.setEnabled(false);
-		        		}
-		        		else {
-		        			if (textView.isEnabled()) {
-		        				textView.setText(textView.getText()+" \u2718");
-		        				textView.setEnabled(false);
-		        			}
-		        		}
-		        	}
+				nextQuestionButton = (Button) findViewById(R.id.nextQuestion);
+				answersList.setOnItemClickListener(new OnItemClickListener() {
+					public void onItemClick(AdapterView<?> parent, View view,
+							int position, long id) {
+						TextView textView = (TextView) view;
+						if (position == solution) {
+							textView.setText(textView.getText() + " \u2714");
+							nextQuestionButton.setEnabled(true);
+							answersList.setEnabled(false);
+						} else {
+							if (textView.isEnabled()) {
+								textView.setText(textView.getText() + " \u2718");
+								textView.setEnabled(false);
+							}
+						}
+					}
 				});
-		        nextQuestionButton.setOnClickListener(new OnClickListener() {
-					
+				nextQuestionButton.setOnClickListener(new OnClickListener() {
+
 					@Override
 					public void onClick(View v) {
 						nextQuestion();
