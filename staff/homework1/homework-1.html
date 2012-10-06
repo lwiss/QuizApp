@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.8.1: http://docutils.sourceforge.net/" />
 <title></title>
 <style type="text/css">
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 7434 2012-05-11 21:06:27Z milde $
+:Id: $Id: html4css1.css 7056 2011-06-17 10:50:48Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
@@ -249,17 +249,9 @@ pre.address {
   margin-top: 0 ;
   font: inherit }
 
-pre.literal-block, pre.doctest-block, pre.math, pre.code {
+pre.literal-block, pre.doctest-block, pre.math {
   margin-left: 2em ;
   margin-right: 2em }
-
-pre.code .ln { /* line numbers */
-  color: grey;
-}
-
-.code {
-  background-color: #eeeeee
-}
 
 span.classifier {
   font-family: sans-serif ;
@@ -583,7 +575,10 @@ reference, here is a possible test:</p>
 Robotium is a third-party test framework for simulating user interaction with Android applications.
 You can choose to use Robotium or not. For this homework, we will not grade you on the content of your unit tests.
 We will, however, measure your test coverage.</p>
-<p>Your tests may only use the default testing features provided by the Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>. Using any other testing tools, libraries or versions of Robotium will make it impossible for us to automatically run your tests and compute their code coverage, so you will lose points.</p>
+<p>Your tests may only use the default testing features provided by the Android
+SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>. Using any other testing tools, libraries or versions
+of Robotium will make it impossible for us to automatically run your tests and
+compute their code coverage, so you will lose points.</p>
 <div class="admonition-grading admonition">
 <p class="first admonition-title">Grading</p>
 <p>Include in your repository all the libraries your application needs to successfully run on a new machine.
@@ -728,8 +723,11 @@ central server. Then watch our test cases pass, and be proud to have created per
 <p>Now that you have implemented the basic track for this homework, it is time to make sure that your code is reliable. You will achieve this by writing unit tests for your application. The goal for the tests you write is to achieve high code coverage for the code you wrote for the basic track.</p>
 <div class="admonition-grading admonition">
 <p class="first admonition-title">Grading</p>
-<p class="last">Your tests may only use the default testing features provided by the Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>.
-Using any other other testing tools, libraries, or versions of Robotium will make it impossible for us to automatically run your tests and compute their code coverage, so you will lose points.</p>
+<p class="last">Your tests may only use the default testing features provided by the
+Android SDK or <a class="reference external" href="http://code.google.com/p/robotium/downloads/detail?name=robotium-solo-3.4.1.jar">Robotium 3.4.1</a>.  Using any other other testing tools,
+libraries, or versions of Robotium will make it impossible for us to
+automatically run your tests and compute their code coverage, so you will
+lose points.</p>
 </div>
 <div class="section" id="code-coverage">
 <h2>Code coverage</h2>
@@ -768,7 +766,7 @@ ${REPO}
 |&nbsp;&nbsp;         └── sweng
 |               └── showquestions
 |                   └── ShowQuestionsActivity.java
-└── Sweng2012QuizApp
+└── Sweng2012QuizAppTest
  &nbsp;&nbsp; ├── assets
  &nbsp;&nbsp; ├── libs
  &nbsp;&nbsp; ├── res
