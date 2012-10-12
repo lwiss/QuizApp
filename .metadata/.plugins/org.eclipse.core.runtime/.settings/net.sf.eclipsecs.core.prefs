@@ -1,0 +1,6 @@
+#Wed Oct 03 21:21:39 CEST 2012
+include.rule.names=false
+include.module.ids=false
+eclipse.preferences.version=1
+marker.amount.limit=100
+limit.markers.per.resource=false

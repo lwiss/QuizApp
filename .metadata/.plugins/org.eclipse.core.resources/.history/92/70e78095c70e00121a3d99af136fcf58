@@ -1,0 +1,152 @@
+package epfl.sweng.showquestions;
+
+<<<<<<< HEAD
+import java.lang.Character.UnicodeBlock;
+
+import epfl.sweng.R;
+=======
+import java.io.IOException;
+
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import epfl.sweng.R;
+import epfl.sweng.R.layout;
+import epfl.sweng.R.menu;
+import epfl.sweng.servercomm.SwengHttpClientFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+>>>>>>> 3c6aa4f70bc5b8f2c8e21708ce993afafb837030
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.view.Menu;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.view.View;
+
+
+
+public class ShowQuestionsActivity extends Activity {
+	private TextView question;
+	private ListView answersList;
+	private int solution=3;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		String[] ansList = new String[10];
+
+		for (int i = 0; i < 10; i++) {
+			ansList[i] = "" + (char) ('a' + i);
+		}
+		question= (TextView) findViewById(R.id.question);
+		question.setText("here should appear the question");
+		ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(this,R.layout.answers, ansList);
+		answersList=(ListView) findViewById(android.R.id.list);
+		answersList.setAdapter(aAdapter);
+		answersList.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+				
+				TextView tv=((TextView)view);
+				tv.setText(tv.getText()+"U+2718");
+			}
+			
+		});
+
+		
+	}
+
+<<<<<<< HEAD
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
+=======
+	private final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_show_questions);
+
+		// check the Network Connection
+		ConnectivityManager conMan = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = conMan.getActiveNetworkInfo();
+
+		if (netInfo != null && netInfo.isConnected()) {
+			System.out.println("il y a une conexion !");
+			new DownloadJSONObject().execute(URL);
+		}
+
+	}
+
+	private JSONObject downloadContent(String urlServer) throws JSONException {
+		HttpGet httpget = new HttpGet(urlServer);
+		ResponseHandler<String> handler = new BasicResponseHandler();
+		String question = "";
+		try {
+			question = SwengHttpClientFactory.getInstance().execute(httpget,
+					handler);
+		} catch (IOException e) {
+			System.err.println("Enable to connect to the Server!");
+		}
+
+		return new JSONObject(question);
+
+	}
+
+	private class DownloadJSONObject extends
+			AsyncTask<String, String, JSONObject> {
+
+		@Override
+		protected JSONObject doInBackground(String... urls) {
+			// TODO Auto-generated method stub
+			try {
+				return downloadContent(urls[0]);
+
+			} catch (JSONException e) {
+				System.err.println("ERROR! NULL JSONOBJECT");
+				return null;
+			}
+
+		}
+
+		@Override
+		protected void onPostExecute(JSONObject jsonObject) {
+			try {
+
+				String quesion = jsonObject.getString("question");
+				int solutionIndex = jsonObject.getInt("solutionIndex");
+				JSONArray answersArray = jsonObject.getJSONArray("answers");
+				System.out.println("la question est : " + quesion);
+				System.out.println("les reponses sont " + answersArray);
+				System.out.println("L'index de la solution est "
+						+ solutionIndex);
+
+			} catch (JSONException e) {
+				System.err.println("ERREUR Lors de l'extraction des donnŽes");
+			}
+
+		}
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_show_questions, menu);
+		return true;
+	}
+
+>>>>>>> 3c6aa4f70bc5b8f2c8e21708ce993afafb837030
+}

@@ -1,0 +1,8 @@
+package epfl.sweng.showquestions;
+
+public class Question {
+	protected String theQuestion;
+	protected String [] answers;
+	
+
+}
