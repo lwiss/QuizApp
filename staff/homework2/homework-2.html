@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.8.1: http://docutils.sourceforge.net/" />
+<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
 <title>Homework #2</title>
 <style type="text/css">
 
 /*
 :Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 7056 2011-06-17 10:50:48Z milde $
+:Id: $Id: html4css1.css 7434 2012-05-11 21:06:27Z milde $
 :Copyright: This stylesheet has been placed in the public domain.
 
 Default cascading style sheet for the HTML output of Docutils.
@@ -249,9 +249,17 @@ pre.address {
   margin-top: 0 ;
   font: inherit }
 
-pre.literal-block, pre.doctest-block, pre.math {
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
   margin-left: 2em ;
   margin-right: 2em }
+
+pre.code .ln { /* line numbers */
+  color: grey;
+}
+
+.code {
+  background-color: #eeeeee
+}
 
 span.classifier {
   font-family: sans-serif ;
@@ -382,7 +390,7 @@ The <tt class="docutils literal">QuizQuestion</tt> class must have at least the 
 <span style="color: #408080; font-style: italic">* @param id The id of the question</span>
 <span style="color: #408080; font-style: italic">* @param owner The owner of the question</span>
 <span style="color: #408080; font-style: italic">*/</span>
-<span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">QuizQuestion</span><span style="color: #666666">(</span>String text<span style="color: #666666">,</span> List<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> answers<span style="color: #666666">,</span> <span style="color: #B00040">int</span> solutionIndex<span style="color: #666666">,</span> Set<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> tags<span style="color: #666666">,</span> String id<span style="color: #666666">,</span> String owner<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+<span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">QuizQuestion</span><span style="color: #666666">(</span>String text<span style="color: #666666">,</span> List<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> answers<span style="color: #666666">,</span> <span style="color: #B00040">int</span> solutionIndex<span style="color: #666666">,</span> Set<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> tags<span style="color: #666666">,</span> <span style="color: #B00040">int</span> id<span style="color: #666666">,</span> String owner<span style="color: #666666">)</span> <span style="color: #666666">{</span>
     <span style="color: #666666">...</span>
 <span style="color: #666666">}</span>
 </pre></div>
@@ -410,11 +418,11 @@ The <tt class="docutils literal">QuizQuestion</tt> class must have at least the 
 <li>No string can be blank, i.e., empty or consisting only of whitespace (as defined
 by the <tt class="docutils literal">isWhitespace</tt> method of the <tt class="docutils literal">Character</tt> class).</li>
 <li>A question has at least two answers and no more than ten answers.</li>
-<li><tt class="docutils literal">solutionIndex</tt> is a valid 0-based index into the <tt class="docutils literal">answers</tt> array</li>
+<li><tt class="docutils literal">solutionIndex</tt> is a valid 0-based index into the <tt class="docutils literal">answers</tt> array.</li>
 <li><tt class="docutils literal">tags</tt> is a set of zero or more strings. Each string must be no longer than
 20 alphanumeric characters (<tt class="docutils literal">Character.isLetterOrDigit()</tt>).</li>
 <li><tt class="docutils literal">owner</tt> is a string no longer than 20 alphanumeric characters.</li>
-<li><tt class="docutils literal">id</tt> is a string no longer than 20 alphanumeric characters.</li>
+<li><tt class="docutils literal">id</tt> is an <tt class="docutils literal">Integer</tt> greater than 0.</li>
 <li>All the fields, i.e., <tt class="docutils literal">question</tt>, <tt class="docutils literal">answers</tt>, <tt class="docutils literal">solutionIndex</tt>, <tt class="docutils literal">tags</tt>, <tt class="docutils literal">owner</tt>, and <tt class="docutils literal">id</tt> are present.</li>
 </ul>
 <p>Now, you have to write an audit method that checks how many of the question requirements defined above are <em>not</em> respected.
@@ -432,7 +440,7 @@ useful later on.</p>
 <p>To recap, you must add a quiz question class with the full name <tt class="docutils literal">epfl.sweng.quizquestions.QuizQuestion</tt> that has the following constructors and method:</p>
 <ul class="last simple">
 <li><tt class="docutils literal">public QuizQuestion(String json) throws JSONException</tt></li>
-<li><tt class="docutils literal">public QuizQuestion(String text, List&lt;String&gt; answers, int solutionIndex, Set&lt;String&gt; tags, String id, String owner)</tt></li>
+<li><tt class="docutils literal">public QuizQuestion(String text, List&lt;String&gt; answers, int solutionIndex, Set&lt;String&gt; tags, int id, String owner)</tt></li>
 <li><tt class="docutils literal">public int auditErrors(int depth)</tt></li>
 </ul>
 </div>
@@ -476,9 +484,10 @@ question. It must have its hint set to &quot;Type in the question's tags&quot;.<
 </ul>
 <div class="hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">We recommend that you do not use a <tt class="docutils literal">ListView</tt> to display the set of possible
+<p>We recommend that you do not use a <tt class="docutils literal">ListView</tt> to display the set of possible
 answers. It is difficult to have buttons and text fields inside a
 <tt class="docutils literal">ListView</tt>.</p>
+<p class="last">If you do choose to use <tt class="docutils literal">ListView</tt>, you can take a look at a <a class="reference external" href="http://www.ace-art.fr/wordpress/2010/07/21/tutoriel-android-partie-6-les-listview/">first tutorial</a> and a <a class="reference external" href="http://www.vogella.com/articles/AndroidListView/article.html">second tutorial</a>, both suggested by one of your colleagues.</p>
 </div>
 <div class="admonition-grading admonition">
 <p class="first admonition-title">Grading</p>
@@ -574,7 +583,7 @@ you might find it useful to log <em>all</em> server responses, to help you in de
 <p>As it stands right now, your application consists of two distinct Activities:</p>
 <ul class="simple">
 <li>The <tt class="docutils literal">ShowQuestionsActivity</tt>, coded during the first homework, and</li>
-<li>The <tt class="docutils literal">EditQuestionsActivity</tt>, coded for this homework.</li>
+<li>The <tt class="docutils literal">EditQuestionActivity</tt>, coded for this homework.</li>
 </ul>
 <p>Your app would be much easier to use if the users could select, at startup, whether they want to answer a quiz question or they want to submit a new quiz question.
 That is why you are going to implement a third <tt class="docutils literal">Activity</tt> that provides users with this choice.</p>
@@ -583,7 +592,7 @@ list of actions available to the user as <tt class="docutils literal">Button</tt
 For the time being, there are only two:</p>
 <ul class="simple">
 <li>Show a random question. When users click on the button labeled &quot;Show a random question&quot;, the <tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> is started.</li>
-<li>Submit quiz question. When users click on the button labeled &quot;Submit quiz question&quot;, the <tt class="docutils literal">epfl.sweng.editquestions.EditQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> is started.</li>
+<li>Submit quiz question. When users click on the button labeled &quot;Submit quiz question&quot;, the <tt class="docutils literal">epfl.sweng.editquestions.EditQuestionActivity</tt> <tt class="docutils literal">Activity</tt> is started.</li>
 </ul>
 <p>The <tt class="docutils literal">MainActivity</tt> must be the <tt class="docutils literal">Activity</tt> that is started when the application is launched. This requires you to change the <tt class="docutils literal">AndroidManifest.xml</tt> file in the following way:</p>
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;activity</span>
@@ -609,7 +618,7 @@ For the time being, there are only two:</p>
 <p class="first admonition-title">Grading</p>
 <p>To recap, you must add a new class, named <tt class="docutils literal">epfl.sweng.entry.MainActivity</tt>, that will be displayed when the application is started and
 allows users to select between answering a question and submitting a new question.</p>
-<p class="last">For the automated grading to work, it is crucial that when clicking on the text &quot;Show a random question&quot;, the <tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> is started, and when clicking on the &quot;Submit quiz question&quot;, the <tt class="docutils literal">epfl.sweng.editquestions.EditQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> is started.
+<p class="last">For the automated grading to work, it is crucial that when clicking on the text &quot;Show a random question&quot;, the <tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> is started, and when clicking on the &quot;Submit quiz question&quot;, the <tt class="docutils literal">epfl.sweng.editquestions.EditQuestionActivity</tt> <tt class="docutils literal">Activity</tt> is started.
 If you have UI widgets with even the slightest text differences, we will not be able to automatically test this part of your homework, and you will lose points.</p>
 </div>
 </div>
