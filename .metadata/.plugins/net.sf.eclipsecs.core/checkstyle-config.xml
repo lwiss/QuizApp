@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<checkstyle-configurations file-format-version="5.0.0" default-check-configuration="SwEng code Conventions">
-  <check-configuration name="SwEng code Conventions" location="/home/wissem/sweng-checkstyle.xml" type="external" description="">
-    <additional-data name="protect-config-file" value="false"/>
-  </check-configuration>
-</checkstyle-configurations>

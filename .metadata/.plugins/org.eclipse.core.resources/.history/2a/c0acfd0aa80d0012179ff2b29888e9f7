@@ -1,9 +1,0 @@
-<resources>
-
-    <string name="app_name">Sweng2012QuizApp</string>
-    <string name="question">your question will be displayed here!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
-
-
-</resources>
