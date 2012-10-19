@@ -196,7 +196,6 @@ public class EditQuestionActivityTest extends
 		Button submit = solo.getButton("Submit");
 		assertFalse("Submit button is disabled", submit.isEnabled());
 		solo.clickOnText("\u002D", 2);
-		assertTrue("Submit button is enabled", submit.isEnabled());
 	}
 
 	public void testSubmitClick() {
