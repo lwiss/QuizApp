@@ -251,7 +251,7 @@ public class EditQuestionActivity extends Activity {
 			String[] tagsTab = tagsField.split("[^a-zA-Z0-9]");
 			tags.toArray(tagsTab);
 			quizzQuestion = new QuizQuestion(questionField, answers,
-					solutionIndex, tags, null, null);
+					solutionIndex, tags, -1, null);
 			ConnectivityManager conMan = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo netInfo = conMan.getActiveNetworkInfo();
 

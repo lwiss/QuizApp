@@ -20,7 +20,7 @@ public class QuizQuestion {
 	private List<String> answers;
 	private int solutionIndex;
 	private Set<String> tags;
-	private String id;
+	private int id;
 	private String owner;
 	private static final int MAX_QUESTION_LENGTH = 500;
 	private static final int MAX_ANSWER_LENGTH = 500;
@@ -64,7 +64,7 @@ public class QuizQuestion {
 			tags.add(tagsArray.getString(i));
 		}
 
-		id = jsonObject.getString("id");
+		id = jsonObject.getInt("id");
 
 		owner = jsonObject.getString("owner");
 	}
@@ -87,7 +87,7 @@ public class QuizQuestion {
 	 *            The owner of the question
 	 */
 	public QuizQuestion(String text, List<String> answersList, int solution,
-			Set<String> tagsSet, String questionId, String questionOwner) {
+			Set<String> tagsSet, int questionId, String questionOwner) {
 		question = text;
 		answers = answersList;
 		solutionIndex = solution;
@@ -208,8 +208,8 @@ public class QuizQuestion {
 		return true;
 	}
 
-	static public boolean idIsOK(String id) {
-		if (Integer.getInteger(id) > 0) {
+	static public boolean idIsOK(int id) {
+		if (id > 0) {
 			return true;
 		}
 		return false;
