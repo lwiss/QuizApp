@@ -17,7 +17,6 @@ import com.jayway.android.robotium.solo.Solo;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.Button;
 
 /**
  * 
@@ -41,10 +40,8 @@ public class MainActivityTest extends
 	}
 
 	protected void testAthentication() {
-		assertTrue("EditText for username",
-				solo.searchText("GASPAR Username"));
-		assertTrue("EditText for password",
-				solo.searchText("GASPAR Password"));
+		assertTrue("EditText for username", solo.searchText("GASPAR Username"));
+		assertTrue("EditText for password", solo.searchText("GASPAR Password"));
 		assertTrue("EditText for log inbutton",
 				solo.searchText("Log in using Tequila"));
 		solo.clickOnText("Log in using Tequila");
