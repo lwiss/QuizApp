@@ -7,6 +7,7 @@ import org.apache.http.HttpClientConnection;
 import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHttpResponse;
@@ -43,12 +44,12 @@ public class ShowQuestionsActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
+		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		SharedPreferences setting = getActivity().getSharedPreferences(
 				MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
 		SharedPreferences.Editor editor = setting.edit();
 		editor.putString("SESSION_ID", "test");
 		editor.commit();
-		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 		question = (String) ShowQuestionsActivity.getQuestion().getText();
@@ -123,13 +124,15 @@ public class ShowQuestionsActivityTest extends
 			final int statusOk = 200;
 			//final int statusFalse = 201;
 			HttpResponse response = new BasicHttpResponse(new BasicStatusLine(
-					null, statusOk, null));
+					HttpVersion.HTTP_1_1, statusOk, "OK"));
 			response.setEntity(new StringEntity("{"
 						+ " \"question\": \"What is the answer to life, the universe and everything?\","
 						+ " \"answers\": [ \"42\", \"24\" ],"
 						+ " \"solutionIndex\": 0,"
+						+ " \"id\": 4243,"
+						+ " \"owner\": \"anounymous\","
 						+ " \"tags\": [ \"h2g2\", \"trivia\" ]" + " }"));
-			response.setHeader("Content-type", "application/json");
+			response.setHeader("Content-type", "application/json;charset=utf-8");
 			return response;
 		}
 	}
