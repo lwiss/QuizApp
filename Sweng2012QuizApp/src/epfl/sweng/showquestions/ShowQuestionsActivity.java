@@ -9,6 +9,7 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.json.JSONException;
 
 import epfl.sweng.R;
+import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.net.ConnectivityManager;
@@ -17,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -99,6 +101,9 @@ public class ShowQuestionsActivity extends Activity {
 		private QuizQuestion downloadContent(String url) throws JSONException {
 
 			HttpGet httpget = new HttpGet(url);
+			SharedPreferences preference = getSharedPreferences(MainActivity.PREF_NAME, MODE_PRIVATE);
+			String sessionId = preference.getString("SESSION_ID", null);
+			httpget.setHeader("Authorization", "Tequila "+sessionId);
 			ResponseHandler<String> handler = new BasicResponseHandler();
 			String request = "";
 			try {
@@ -149,7 +154,6 @@ public class ShowQuestionsActivity extends Activity {
 			});
 			nextQuestionButton.setOnClickListener(new OnClickListener() {
 
-				@Override
 				public void onClick(View v) {
 					nextQuestion();
 					nextQuestionButton.setEnabled(false);

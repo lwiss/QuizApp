@@ -39,12 +39,11 @@ public class SwengHttpClientFactory {
 	}
 
 	final private static RedirectHandler REDIRECT_NO_FOLLOW = new RedirectHandler() {
-		@Override
+		
 		public boolean isRedirectRequested(HttpResponse response, HttpContext context) {
 			return false;
 		}
 
-		@Override
 		public URI getLocationURI(HttpResponse response, HttpContext context) throws org.apache.http.ProtocolException {
 			return null;
 		}

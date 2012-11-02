@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import epfl.sweng.R;
+import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -23,6 +24,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.Menu;
@@ -183,6 +185,9 @@ public class EditQuestionActivity extends Activity {
 			try {
 				post.setEntity(new StringEntity(json.toString()));
 				post.setHeader("Content-type", "application/json");
+				SharedPreferences preference = getSharedPreferences(MainActivity.PREF_NAME, MODE_PRIVATE);
+				String sessionId = preference.getString("SESSION_ID", null);
+				post.setHeader("Authorization", "Tequila "+sessionId);
 				ResponseHandler<String> handler = new BasicResponseHandler();
 				HttpClient client = epfl.sweng.servercomm.SwengHttpClientFactory
 						.getInstance();

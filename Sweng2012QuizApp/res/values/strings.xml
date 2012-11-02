@@ -14,7 +14,10 @@
     <string name="question_tags">Type in the question\'s tags</string>
     <string name="submit_button">Submit</string>
     <string name="title_activity_edit_question">EditQuestionActivity</string>
-    <string name="hello_world">Hello world!</string>
     <string name="title_activity_main">MainActivity</string>
-
+    <string name="title_activity_authentication">AuthenticationActivity</string>
+    <string name="username">GASPAR Username</string>
+    <string name="password">GASPAR Password</string>
+	<string name="login_button">Log in using Tequila</string>
+	<string name="logout_button">Log out</string>
 </resources>

@@ -23,7 +23,7 @@ public class TextEditWatcher implements TextWatcher {
 		this.view = viewEditQuestion;
 	}
 
-	@Override
+	
 	public void afterTextChanged(Editable s) {
 		String text = s.toString();
 		switch (view.getId()) {
@@ -57,14 +57,13 @@ public class TextEditWatcher implements TextWatcher {
 		}
 	}
 
-	@Override
+	
 	public void beforeTextChanged(CharSequence s, int start, int count,
 			int after) {
-		// TODO Auto-generated method stub
+	
 
 	}
 
-	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 	}
