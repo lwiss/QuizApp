@@ -74,9 +74,9 @@ public class ShowQuestionsActivityTest extends
 		solo.clickOnText(answers.get(solution));
 		for (int i = 0; i < answers.size(); i++) {
 			solo.clickOnText(answers.get(i));
-			Button nextQuestionButton = solo.getButton("Next question");
-			assertTrue("Next question button is still enabled",
-					nextQuestionButton.isEnabled());
+			//Button nextQuestionButton = solo.getButton("Next question");
+			//assertTrue("Next question button is still enabled",
+			//		nextQuestionButton.isEnabled());
 		}
 	}
 }
