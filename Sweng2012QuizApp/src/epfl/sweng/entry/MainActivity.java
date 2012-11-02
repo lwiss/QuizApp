@@ -27,6 +27,8 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+		setting.edit().clear();
+		setting.edit().commit();
 		if (setting.getString("SESSION_ID", null)==null) {
 			Log.d("In The IF", "Done");
 			Intent intent = new Intent(MainActivity.this,
