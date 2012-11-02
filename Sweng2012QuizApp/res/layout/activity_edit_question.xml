@@ -1,0 +1,46 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/questionBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/question_body" />
+
+        <LinearLayout
+            android:id="@+id/answersContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addAnswerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="addNewAnswerButton"
+            android:text="@string/add_new_answer" />
+
+        <EditText
+            android:id="@+id/questionTags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/question_tags" />
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="submitButton"
+            android:text="@string/submit_button" 
+            android:enabled="false"/>
+    </LinearLayout>
+
+</ScrollView>
