@@ -38,13 +38,13 @@ public class EditQuestionActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
+		solo = new Solo(getInstrumentation(), getActivity());
 		SharedPreferences setting = getActivity().getSharedPreferences(
 				MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
 		SharedPreferences.Editor editor = setting.edit();
 		editor.putString("SESSION_ID", "test");
 		editor.commit();
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
-		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 	}
 
