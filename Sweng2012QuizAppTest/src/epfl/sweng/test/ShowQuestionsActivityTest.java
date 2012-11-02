@@ -31,7 +31,8 @@ public class ShowQuestionsActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
-		SharedPreferences setting = getActivity().getSharedPreferences(MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
+		SharedPreferences setting = getActivity().getSharedPreferences(
+				MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
 		SharedPreferences.Editor editor = setting.edit();
 		editor.putString("SESSION_ID", "test");
 		editor.commit();
@@ -79,9 +80,9 @@ public class ShowQuestionsActivityTest extends
 		solo.clickOnText(answers.get(solution));
 		for (int i = 0; i < answers.size(); i++) {
 			solo.clickOnText(answers.get(i));
-			//Button nextQuestionButton = solo.getButton("Next question");
-			//assertTrue("Next question button is still enabled",
-			//		nextQuestionButton.isEnabled());
+			// Button nextQuestionButton = solo.getButton("Next question");
+			// assertTrue("Next question button is still enabled",
+			// nextQuestionButton.isEnabled());
 		}
 	}
 }

@@ -24,7 +24,8 @@ public class EditQuestionActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
-		SharedPreferences setting = getActivity().getSharedPreferences(MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
+		SharedPreferences setting = getActivity().getSharedPreferences(
+				MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
 		SharedPreferences.Editor editor = setting.edit();
 		editor.putString("SESSION_ID", "test");
 		editor.commit();
@@ -36,7 +37,7 @@ public class EditQuestionActivityTest extends
 		assertTrue("EditText for question available",
 				solo.searchText("Type in the question's text body"));
 		solo.clearEditText(0);
-		solo.enterText(0 , "    ");
+		solo.enterText(0, "    ");
 		assertTrue("First EditText for answers available",
 				solo.searchText("Type in the answer"));
 		solo.clearEditText(1);
