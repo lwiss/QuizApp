@@ -6,7 +6,9 @@ import org.json.JSONException;
 
 import com.jayway.android.robotium.solo.Solo;
 
+import epfl.sweng.entry.MainActivity;
 import epfl.sweng.showquestions.ShowQuestionsActivity;
+import android.content.SharedPreferences;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 
@@ -29,6 +31,10 @@ public class ShowQuestionsActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
+		SharedPreferences setting = getActivity().getSharedPreferences(MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
+		SharedPreferences.Editor editor = setting.edit();
+		editor.putString("SESSION_ID", "test");
+		editor.commit();
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 		question = (String) ShowQuestionsActivity.getQuestion().getText();
