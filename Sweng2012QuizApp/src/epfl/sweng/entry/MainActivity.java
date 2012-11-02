@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 /**
@@ -27,6 +28,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		SharedPreferences setting = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
 		if (setting.getString("SESSION_ID", null)==null) {
+			Log.d("In The IF", "Done");
 			Intent intent = new Intent(MainActivity.this,
 					AuthenticationActivity.class);
 			startActivity(intent);

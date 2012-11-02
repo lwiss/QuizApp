@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/login_button"
         android:id="@+id/loginButton"
-        android:onClick="loginMethod" />
+        android:onClick="loginMethod"
+        android:visibility="visible" />
 
 </LinearLayout>
