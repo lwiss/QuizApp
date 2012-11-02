@@ -34,7 +34,6 @@ public class ShowQuestionsActivityTest extends
 		question = (String) ShowQuestionsActivity.getQuestion().getText();
 		answers = ShowQuestionsActivity.getAnswers();
 		solution = ShowQuestionsActivity.getSolution();
-
 	}
 
 	public void testShowQuestion() throws JSONException {
