@@ -41,7 +41,10 @@
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
     <module name="MethodLength"/>
-    <module name="ParameterNumber"/>
+    <module name="ParameterNumber">
+      <property name="max" value="13"/>
+      <property name="tokens" value="METHOD_DEF"/>
+    </module>
     <module name="LineLength">
       <property name="max" value="120"/>
       <property name="tabWidth" value="4"/>
@@ -76,9 +79,11 @@
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
     <module name="MissingSwitchDefault"/>
-    <module name="RedundantThrows">
-      <property name="suppressLoadErrors" value="true"/>
-    </module>
+    <!-- <module name="RedundantThrows"> -->
+    <!--   <property name="suppressLoadErrors" value="true"/> -->
+    <!--   <property name="allowSubclasses" value="true"/> -->
+    <!--   <property name="logLoadErrors" value="false"/> -->
+    <!-- </module> -->
     <module name="SimplifyBooleanReturn"/>
     <module name="FinalClass"/>
     <module name="InterfaceIsType"/>
@@ -91,7 +96,9 @@
       <property name="separated" value="true"/>
     </module>
     <module name="GenericWhitespace"/>
-    <module name="IllegalCatch"/>
+    <module name="IllegalCatch">
+      <property name="illegalClassNames" value="java.lang.Exception, java.lang.Error, java.lang.AssertionError"/>
+    </module>
     <module name="IllegalThrows"/>
     <module name="JUnitTestCase"/>
     <module name="MultipleVariableDeclarations"/>
