@@ -59,5 +59,6 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(MainActivity.this,
 				AuthenticationActivity.class);
 		startActivity(intent);	
+		AuthenticationActivity.setToken(null);
 	}
 }

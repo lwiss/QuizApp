@@ -1,7 +1,6 @@
 package epfl.sweng.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.Button;
 
 import com.jayway.android.robotium.solo.Solo;
 
@@ -22,8 +21,7 @@ public class AuthenticationTest extends
 	public void testAuthentication() {
 		Solo solo = new Solo(getInstrumentation(), getActivity());
 		solo.clickOnText("GASPAR Username");
-		Button login = solo.getButton("Log in using Tequila");
-		assertTrue("Buton enabled", login.isEnabled());
+		solo.clickOnText("Log in using Tequila");
 	}
 
 }
