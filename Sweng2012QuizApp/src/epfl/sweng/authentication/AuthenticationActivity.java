@@ -156,9 +156,6 @@ public class AuthenticationActivity extends Activity {
 					Log.d("CONNECTION ERROR", "Error recieving the post server's response");
 				}
 			}
-			else {
-				
-			}
 				
 			return sessionId;
 			
