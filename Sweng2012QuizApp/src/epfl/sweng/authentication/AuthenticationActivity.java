@@ -130,7 +130,7 @@ public class AuthenticationActivity extends Activity {
 					HttpResponse response = SwengHttpClientFactory.getInstance().execute(swengPostRequest);
 					status = response.getStatusLine().getStatusCode();
 					Log.d("status line", response.getStatusLine().toString());
-					Log.e("SERVER3", "Replied with status code " +  status); //prints the response's status code 
+					Log.e("SERVER", "Replied with status code " +  status); //prints the response's status code 
 					if (status!=SERVER_UNSUCCESS_STATUS) {
 						//If the post request is successful (<==> the status code returned by the tequila server is 302)
 						//then we execute the step 6 : we extract the sessionId of the server's response.
@@ -184,7 +184,7 @@ public class AuthenticationActivity extends Activity {
 				Log.d("CONNECTION ERROR", "Error retrieving the token");
 				return aToken;
 			} finally {
-				Log.e("SERVER1", "Replied with status code " +  response.getStatusLine().getStatusCode());
+				Log.e("SERVER", "Replied with status code " +  response.getStatusLine().getStatusCode());
 			}
 			return aToken;
 			
@@ -217,7 +217,7 @@ public class AuthenticationActivity extends Activity {
 				Log.d("CONNECTION ERROR", "Error recieving the post server's response");
 				return statusCode;
 			} finally {
-				Log.e("SERVER2", "Replied with status code " + statusCode);
+				Log.e("SERVER", "Replied with status code " + statusCode);
 			}
 			
 			
