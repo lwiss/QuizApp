@@ -22,7 +22,7 @@ public class AuthenticationTest extends
 	public void testAuthentication() {
 		Solo solo = new Solo(getInstrumentation(), getActivity());
 		solo.clickOnText("GASPAR Username");
-		Button login = solo.getButton("Log in using");
+		Button login = solo.getButton("Log in using Tequila");
 		assertTrue("Buton enabled", login.isEnabled());
 	}
 
