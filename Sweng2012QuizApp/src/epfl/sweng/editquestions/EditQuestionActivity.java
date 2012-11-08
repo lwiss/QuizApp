@@ -168,34 +168,36 @@ public class EditQuestionActivity extends Activity {
 		}
 
 		public String submit(QuizQuestion question) {
-
-			JSONObject json = new JSONObject();
-			try {
-				json.put("question", question.getQuestion());
-				json.put("answers", new JSONArray(question.getAnswers()));
-				json.put("solutionIndex", question.getSolutionIndex());
-				json.put("tags", new JSONArray(question.getTags()));
-
-			} catch (JSONException e) {
-				System.err.println("Error while constructing JsonObject");
+			SharedPreferences preference = getSharedPreferences(MainActivity.PREF_NAME, MODE_PRIVATE);
+			String sessionId = preference.getString("SESSION_ID", null);
+			if (sessionId!=null) {
+				JSONObject json = new JSONObject();
+				try {
+					json.put("question", question.getQuestion());
+					json.put("answers", new JSONArray(question.getAnswers()));
+					json.put("solutionIndex", question.getSolutionIndex());
+					json.put("tags", new JSONArray(question.getTags()));
+	
+				} catch (JSONException e) {
+					System.err.println("Error while constructing JsonObject");
+				}
+	
+				HttpPost post = new HttpPost(SERVER_URL + "/quizquestions/");
+				String response = "";
+				try {
+					post.setEntity(new StringEntity(json.toString()));
+					post.setHeader("Content-type", "application/json");
+					post.setHeader("Authorization", "Tequila "+sessionId);
+					ResponseHandler<String> handler = new BasicResponseHandler();
+					HttpClient client = epfl.sweng.servercomm.SwengHttpClientFactory
+							.getInstance();
+					response = client.execute(post, handler);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return response;
 			}
-
-			HttpPost post = new HttpPost(SERVER_URL + "/quizquestions/");
-			String response = "";
-			try {
-				post.setEntity(new StringEntity(json.toString()));
-				post.setHeader("Content-type", "application/json");
-				SharedPreferences preference = getSharedPreferences(MainActivity.PREF_NAME, MODE_PRIVATE);
-				String sessionId = preference.getString("SESSION_ID", null);
-				post.setHeader("Authorization", "Tequila "+sessionId);
-				ResponseHandler<String> handler = new BasicResponseHandler();
-				HttpClient client = epfl.sweng.servercomm.SwengHttpClientFactory
-						.getInstance();
-				response = client.execute(post, handler);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return response;
+			return null;
 
 		}
 
