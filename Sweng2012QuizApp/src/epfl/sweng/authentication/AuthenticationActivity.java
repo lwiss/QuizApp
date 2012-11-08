@@ -86,8 +86,6 @@ public class AuthenticationActivity extends Activity {
 		}
     	
     }
-    
-	
 
 
 
@@ -157,6 +155,9 @@ public class AuthenticationActivity extends Activity {
 				} catch (IOException e) {
 					Log.d("CONNECTION ERROR", "Error recieving the post server's response");
 				}
+			}
+			else {
+				
 			}
 				
 			return sessionId;
@@ -234,9 +235,11 @@ public class AuthenticationActivity extends Activity {
 				editor.commit();
 				AuthenticationActivity.this.finish();
 			} else {
+				token= null; 
 				Toast.makeText(AuthenticationActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
 				AuthenticationActivity.this.setUsernameTF("");
 				AuthenticationActivity.this.setPasswordTF("");
+				
 				
 			}
 		}
