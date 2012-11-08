@@ -6,11 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.http.Header;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.message.BasicHeader;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -186,8 +188,10 @@ public class EditQuestionActivity extends Activity {
 				String response = "";
 				try {
 					post.setEntity(new StringEntity(json.toString()));
-					post.setHeader("Content-type", "application/json");
-					post.setHeader("Authorization", "Tequila "+sessionId);
+					Header[] headers = new Header[2];
+					headers[0]=new BasicHeader("Content-type", "application/json");
+					headers[1]=new BasicHeader("Authorization", "Tequila "+sessionId);
+					post.setHeaders(headers);
 					ResponseHandler<String> handler = new BasicResponseHandler();
 					HttpClient client = epfl.sweng.servercomm.SwengHttpClientFactory
 							.getInstance();
