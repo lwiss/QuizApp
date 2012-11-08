@@ -11,7 +11,6 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
@@ -124,10 +123,11 @@ public class AuthenticationActivity extends Activity {
 					StringEntity se = new StringEntity(postRequestBody.toString());
 					//this manipulation is necessary,
 						//because we have to notify the server that the post body is a json Object.
-					se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+					//se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
 					
 					//we set the request entity to the entity that we have already formed.
 					swengPostRequest.setEntity(se);
+					swengPostRequest.setHeader(HTTP.CONTENT_TYPE, "application/json");
 					//here we send the post request to the Sweng Server:
 					HttpResponse response = SwengHttpClientFactory.getInstance().execute(swengPostRequest);
 					status = response.getStatusLine().getStatusCode();
@@ -150,16 +150,12 @@ public class AuthenticationActivity extends Activity {
 					
 				} catch (UnsupportedEncodingException e) {
 					Log.d("ERROR", "Error while constructing the post body");
-					return sessionId;
 				} catch (JSONException e) {
 					Log.d("JSON ERROR", "Error due to the Json");
-					return sessionId; 
 				} catch (ClientProtocolException e) {
 					Log.d("CONNECTION ERROR", "Protocol error");
-					return sessionId;
 				} catch (IOException e) {
 					Log.d("CONNECTION ERROR", "Error recieving the post server's response");
-					return sessionId;
 				}
 			}
 				
