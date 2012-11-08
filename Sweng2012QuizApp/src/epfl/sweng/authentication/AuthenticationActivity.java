@@ -44,7 +44,7 @@ public class AuthenticationActivity extends Activity {
 	private EditText usernameTF;
 	private EditText passwordTF;
 	private static final int TEQUILA_SUCCESS_STATUS = 302;
-	private static final int SERVER_SUCCESS_STATUS = 200;
+	private static final int SERVER_UNSUCCESS_STATUS = 403;
 
     public void setUsernameTF(String username) {
 		this.usernameTF.setText(username);
@@ -133,7 +133,7 @@ public class AuthenticationActivity extends Activity {
 					status = response.getStatusLine().getStatusCode();
 					Log.d("status line", response.getStatusLine().toString());
 					Log.e("SERVER3", "Replied with status code " +  status); //prints the response's status code 
-					if (status==SERVER_SUCCESS_STATUS) {
+					if (status!=SERVER_UNSUCCESS_STATUS) {
 						//If the post request is successful (<==> the status code returned by the tequila server is 302)
 						//then we execute the step 6 : we extract the sessionId of the server's response.
 						String resBody = EntityUtils.toString(response.getEntity());
@@ -161,8 +161,6 @@ public class AuthenticationActivity extends Activity {
 					Log.d("CONNECTION ERROR", "Error recieving the post server's response");
 					return sessionId;
 				}
-			} else {
-				return sessionId;
 			}
 				
 			return sessionId;
