@@ -20,4 +20,9 @@
     <string name="password">GASPAR Password</string>
 	<string name="login_button">Log in using Tequila</string>
 	<string name="logout_button">Log out</string>
+	<string name="like">Like</string>
+	<string name="dislike">Dislike</string>
+	<string name="incorrect">Incorrect</string>
+	<string name="noRate">You have not rated this question</string>
+	
 </resources>

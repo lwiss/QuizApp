@@ -40,7 +40,28 @@ public class ShowQuestionsActivity extends Activity {
 	private static int solution;
 	private static List<String> answers;
 	private Button nextQuestionButton;
+	private final static String LIKE_TEXT = "You like the question";
+	private final static String DISLIKE_TEXT = "You dislike the question";
+	private final static String INCORRECR_QUESTION_TEXT = "You think the question is incorrect";
+	private final static String NORATING_TEXT = "You have not rated this question";
 	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
+
+	private void changeTextViewText(String text) {
+		TextView currentText = (TextView) findViewById(R.id.userCurrentRating);
+		currentText.setText(text);
+	}
+
+	public void like(View view) {
+		changeTextViewText(LIKE_TEXT);
+	}
+
+	public void dislike(View view) {
+		changeTextViewText(DISLIKE_TEXT);
+	}
+
+	public void incorrectAnswer(View view) {
+		changeTextViewText(INCORRECR_QUESTION_TEXT);
+	}
 
 	public static TextView getQuestion() {
 		return question;
@@ -55,9 +76,9 @@ public class ShowQuestionsActivity extends Activity {
 	}
 
 	private void nextQuestion() {
+		changeTextViewText(NORATING_TEXT);
 		new FetchQuestion().execute(URL);
 	}
-
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -101,9 +122,10 @@ public class ShowQuestionsActivity extends Activity {
 		private QuizQuestion downloadContent(String url) throws JSONException {
 
 			HttpGet httpget = new HttpGet(url);
-			SharedPreferences preference = getSharedPreferences(MainActivity.PREF_NAME, MODE_PRIVATE);
+			SharedPreferences preference = getSharedPreferences(
+					MainActivity.PREF_NAME, MODE_PRIVATE);
 			String sessionId = preference.getString("SESSION_ID", null);
-			httpget.setHeader("Authorization", "Tequila "+sessionId);
+			httpget.setHeader("Authorization", "Tequila " + sessionId);
 			ResponseHandler<String> handler = new BasicResponseHandler();
 			String request = "";
 			try {
@@ -119,17 +141,14 @@ public class ShowQuestionsActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(QuizQuestion quizquestion) {
-		
+
 			// ShowQuestionsActivity show = couple.getShowQuestionsActivity();
 			question = (TextView) findViewById(R.id.question);
 			String que = quizquestion.getQuestion();
 			solution = quizquestion.getSolutionIndex();
 			answers = quizquestion.getAnswers();
 			question.setText(que);
-			/**
-			 * answers = new String[answersArray.length()]; for (int i = 0; i <
-			 * answers.length; i++) { answers[i] = answersArray.getString(i); }
-			 */
+			
 
 			ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(
 					ShowQuestionsActivity.this, R.layout.answer, answers);
