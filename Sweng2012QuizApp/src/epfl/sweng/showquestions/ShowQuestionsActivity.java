@@ -12,6 +12,7 @@ import epfl.sweng.R;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
+import epfl.sweng.showquestionAsyncTask.GetRatings;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -35,20 +36,34 @@ import android.view.View;
  * 
  */
 public class ShowQuestionsActivity extends Activity {
-	private static TextView question;
+
 	private ListView answersList;
 	private static int solution;
 	private static List<String> answers;
 	private Button nextQuestionButton;
+	private static TextView question;
+	private QuizQuestion quizQuestion;
+	private static String sessionId;
 	private final static String LIKE_TEXT = "You like the question";
 	private final static String DISLIKE_TEXT = "You dislike the question";
 	private final static String INCORRECR_QUESTION_TEXT = "You think the question is incorrect";
-	private final static String NORATING_TEXT = "You have not rated this question";
 	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
 
 	private void changeTextViewText(String text) {
 		TextView currentText = (TextView) findViewById(R.id.userCurrentRating);
 		currentText.setText(text);
+	}
+
+	public QuizQuestion getQuizQuestion() {
+		return quizQuestion;
+	}
+
+	public static TextView getQuestion() {
+		return question;
+	}
+
+	public String getSessionId() {
+		return sessionId;
 	}
 
 	public void like(View view) {
@@ -63,10 +78,6 @@ public class ShowQuestionsActivity extends Activity {
 		changeTextViewText(INCORRECR_QUESTION_TEXT);
 	}
 
-	public static TextView getQuestion() {
-		return question;
-	}
-
 	public static int getSolution() {
 		return solution;
 	}
@@ -76,20 +87,22 @@ public class ShowQuestionsActivity extends Activity {
 	}
 
 	private void nextQuestion() {
-		changeTextViewText(NORATING_TEXT);
 		new FetchQuestion().execute(URL);
+		new GetRatings().execute(this);
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_show_questions);
+		question = (TextView) findViewById(R.id.question);
 
 		ConnectivityManager conMan = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = conMan.getActiveNetworkInfo();
 
 		if (netInfo != null && netInfo.isConnected()) {
 			new FetchQuestion().execute(URL);
+			new GetRatings().execute(this);
 		}
 	}
 
@@ -120,11 +133,10 @@ public class ShowQuestionsActivity extends Activity {
 		}
 
 		private QuizQuestion downloadContent(String url) throws JSONException {
-
 			HttpGet httpget = new HttpGet(url);
 			SharedPreferences preference = getSharedPreferences(
 					MainActivity.PREF_NAME, MODE_PRIVATE);
-			String sessionId = preference.getString("SESSION_ID", null);
+			sessionId = preference.getString("SESSION_ID", null);
 			httpget.setHeader("Authorization", "Tequila " + sessionId);
 			ResponseHandler<String> handler = new BasicResponseHandler();
 			String request = "";
@@ -134,7 +146,7 @@ public class ShowQuestionsActivity extends Activity {
 			} catch (IOException e) {
 				question.setText("There was an error retrieving the question");
 			}
-			QuizQuestion quizQuestion = new QuizQuestion(request);
+			quizQuestion = new QuizQuestion(request);
 
 			return quizQuestion;
 		}
@@ -143,12 +155,10 @@ public class ShowQuestionsActivity extends Activity {
 		protected void onPostExecute(QuizQuestion quizquestion) {
 
 			// ShowQuestionsActivity show = couple.getShowQuestionsActivity();
-			question = (TextView) findViewById(R.id.question);
 			String que = quizquestion.getQuestion();
 			solution = quizquestion.getSolutionIndex();
 			answers = quizquestion.getAnswers();
 			question.setText(que);
-			
 
 			ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(
 					ShowQuestionsActivity.this, R.layout.answer, answers);

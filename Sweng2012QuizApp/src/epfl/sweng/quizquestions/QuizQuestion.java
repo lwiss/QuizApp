@@ -32,6 +32,10 @@ public class QuizQuestion {
 	public String getQuestion() {
 		return question;
 	}
+	public int getId() {
+		return id;
+	}
+
 
 	public List<String> getAnswers() {
 		return answers;
