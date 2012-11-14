@@ -7,7 +7,6 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.json.JSONException;
-
 import epfl.sweng.R;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
@@ -21,6 +20,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -45,7 +45,7 @@ public class ShowQuestionsActivity extends Activity {
 	private static TextView question;
 	private QuizQuestion quizQuestion;
 	private static String sessionId;
-	private final static String LIKE_TEXT = "You like the question";
+	//private final static String LIKE_TEXT = "You like the question";
 	private final static String DISLIKE_TEXT = "You dislike the question";
 	private final static String INCORRECR_QUESTION_TEXT = "You think the question is incorrect";
 	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
@@ -103,6 +103,7 @@ public class ShowQuestionsActivity extends Activity {
 
 		ConnectivityManager conMan = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = conMan.getActiveNetworkInfo();
+		Log.e("on create sessionid", sessionId);
 
 		if (netInfo != null && netInfo.isConnected()) {
 			new FetchQuestion().execute(URL);
