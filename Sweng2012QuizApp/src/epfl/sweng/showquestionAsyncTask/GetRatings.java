@@ -61,12 +61,6 @@ public class GetRatings extends
 		String response = "";
 		try {
 			response = EntityUtils.toString(httpResponse.getEntity());
-
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-		try {
 			Log.d("response", response);
 			JSONObject json = new JSONObject(response);
 			likeCount = json.getInt("likeCount");
@@ -75,6 +69,8 @@ public class GetRatings extends
 
 		} catch (JSONException e) {
 			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
 
 	}
