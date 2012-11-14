@@ -244,4 +244,3 @@ public class AuthenticationActivity extends Activity {
     	
     }
 }
-/**il manque encore l'etape 8 : le logout**/

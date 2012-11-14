@@ -1,12 +1,19 @@
 package epfl.sweng.showquestions;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import epfl.sweng.R;
 import epfl.sweng.entry.MainActivity;
@@ -19,6 +26,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -41,6 +49,7 @@ public class ShowQuestionsActivity extends Activity {
 	private static List<String> answers;
 	private Button nextQuestionButton;
 	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
+	private static final String RATING_URL = "https://sweng-quiz.appspot.com/quizquestions/";
 
 	public static TextView getQuestion() {
 		return question;
@@ -163,6 +172,65 @@ public class ShowQuestionsActivity extends Activity {
 
 		}
 
+	}
+	/**
+	 * 
+	 * @author wissem
+	 *
+	 */
+	
+	private class RateQuestion extends AsyncTask<String, String, Object> {
+
+		@Override
+		protected Object doInBackground(String... rate) {
+			final int  sCreated=200;
+			final int  sUpdated=201;
+			final int sNotFound=404;
+			final int sUnAuthorized=401;
+			
+			String url= RATING_URL+ rate[1]+"/rating";
+			JSONObject postEntity= new JSONObject();
+			try {
+				postEntity.put("verdict", rate[0]); // rate[0] is the user's rating
+				StringEntity se = new StringEntity(postEntity.toString());
+				HttpPost request = new HttpPost(url); 
+				request.setEntity(se);
+				request.setHeader(HTTP.CONTENT_TYPE, "application/json");
+				HttpResponse response = SwengHttpClientFactory.getInstance().execute(request);
+				int status= response.getStatusLine().getStatusCode();
+				switch (status) {
+					case sCreated :
+						break;
+					case sUpdated :
+						break;
+					case sNotFound : 
+						break;
+					case sUnAuthorized :
+						break;
+	
+					default:
+						break;
+				}
+			} catch (JSONException e) {
+				Log.e("JSON ERROR", "Error due to the json");
+			} catch (UnsupportedEncodingException e) {
+				Log.d("ERROR", "Error while constructing the post body");
+			} catch (ClientProtocolException e) {
+				Log.d("CONNECTION ERROR", "Protocol error");
+			} catch (IOException e) {
+				Log.d("CONNECTION ERROR", "Error recieving the post server's response");
+			}
+			
+			
+			return null;
+		}
+		
+		protected void onPostExecute(Object obj) {
+			
+		}
+		
+		
+		
 	}
 
 }
