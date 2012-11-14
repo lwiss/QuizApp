@@ -13,6 +13,7 @@ import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.showquestionAsyncTask.GetRatings;
+import epfl.sweng.showquestionAsyncTask.PostRating;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -67,7 +68,7 @@ public class ShowQuestionsActivity extends Activity {
 	}
 
 	public void like(View view) {
-		changeTextViewText(LIKE_TEXT);
+		new PostRating().execute(this, "like");
 	}
 
 	public void dislike(View view) {
@@ -95,6 +96,9 @@ public class ShowQuestionsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_show_questions);
+		SharedPreferences preference = getSharedPreferences(
+				MainActivity.PREF_NAME, MODE_PRIVATE);
+		sessionId = preference.getString("SESSION_ID", null);
 		question = (TextView) findViewById(R.id.question);
 
 		ConnectivityManager conMan = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -134,9 +138,6 @@ public class ShowQuestionsActivity extends Activity {
 
 		private QuizQuestion downloadContent(String url) throws JSONException {
 			HttpGet httpget = new HttpGet(url);
-			SharedPreferences preference = getSharedPreferences(
-					MainActivity.PREF_NAME, MODE_PRIVATE);
-			sessionId = preference.getString("SESSION_ID", null);
 			httpget.setHeader("Authorization", "Tequila " + sessionId);
 			ResponseHandler<String> handler = new BasicResponseHandler();
 			String request = "";

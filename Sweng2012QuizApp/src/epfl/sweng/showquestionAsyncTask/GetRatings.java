@@ -3,22 +3,13 @@ package epfl.sweng.showquestionAsyncTask;
 import java.io.IOException;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import epfl.sweng.R;
-import epfl.sweng.entry.MainActivity;
-import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.showquestions.ShowQuestionsActivity;
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Button;
@@ -48,6 +39,8 @@ public class GetRatings extends
 	private HttpResponse getRequest(String url) {
 		HttpGet httpGet = new HttpGet(url);
 		HttpResponse httpResponse = null;
+		String sessionId = activity.getSessionId();
+		httpGet.setHeader("Authorization", "Tequila " + sessionId);
 		try {
 			httpResponse = SwengHttpClientFactory.getInstance()
 					.execute(httpGet);
@@ -106,7 +99,7 @@ public class GetRatings extends
 				JSONObject json = new JSONObject(response);
 				verdict = json.getString("verdict");
 			} else if (statusCode == NO_CONTENT_STATUS) {
-				verdict = "";
+				verdict = "You have not rated this question";
 			} else if (statusCode == NOT_FOUND_STATUS
 					|| statusCode == UNAUTHORIZED_STATUS) {
 				JSONObject json = new JSONObject(response);
