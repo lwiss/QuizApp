@@ -83,6 +83,21 @@ public class ShowQuestionsActivityTest extends
 		assertTrue("Next question button is still enabled", nextQuestionButton.isEnabled());
 	}
 	
+	public void testClickButton() {
+		solo.clickOnText("42");
+		solo.clickOnText("Next question");
+		assertTrue(
+				"Question is displayed",
+				solo.searchText("What is the answer to life, the universe and everything?"));
+		assertTrue("Correct answer is displayed", solo.searchText("42"));
+		assertTrue("Incorrect answer is displayed",
+				solo.searchText("24"));
+
+		Button nextQuestionButton = solo.getButton("Next question");
+		assertFalse("Next question button is disabled",
+				nextQuestionButton.isEnabled());
+	}
+	
 	/**
 	 * To use this, call SwengHttpClientFactory.setInstance(new
 	 * MockHttpClient()) in your testing code. Remember that the app always has
@@ -108,8 +123,7 @@ public class ShowQuestionsActivityTest extends
 			final int statusOk = 200;
 			HttpResponse response = new BasicHttpResponse(new BasicStatusLine(
 					HttpVersion.HTTP_1_1, statusOk, "OK"));
-			response.setEntity(new StringEntity(
-					"{"
+			response.setEntity(new StringEntity("{"
 							+ " \"question\": \"What is the answer to life, the universe and everything?\","
 							+ " \"answers\": [ \"42\", \"24\" ],"
 							+ " \"solutionIndex\": 0," + " \"id\": 4243,"
