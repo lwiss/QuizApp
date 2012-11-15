@@ -1,0 +1,92 @@
+package epfl.sweng.showquestions;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.json.JSONException;
+
+import epfl.sweng.R;
+import epfl.sweng.quizquestions.QuizQuestion;
+import epfl.sweng.servercomm.SwengHttpClientFactory;
+import android.os.AsyncTask;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
+/**
+ * 
+ * @author crazybhy
+ *
+ */
+public class FetchQuestionAsyncTask extends
+		AsyncTask<ShowQuestionsActivity, String, QuizQuestion> {
+	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
+	private ShowQuestionsActivity activity;
+
+	@Override
+	protected QuizQuestion doInBackground(ShowQuestionsActivity... params) {
+		activity = params[0];
+		HttpGet httpget = new HttpGet(URL);
+		ResponseHandler<String> handler = new BasicResponseHandler();
+		String response = "";
+		try {
+			response = SwengHttpClientFactory.getInstance().execute(httpget,
+					handler);
+		} catch (IOException e) {
+			activity.getQuestionView().setText("There was an error retrieving the question");
+		}
+		QuizQuestion quizQuestion = null;
+		try {
+			quizQuestion = new QuizQuestion(response);
+		} catch (JSONException e) {
+			activity.getQuestionView().setText("There was an error retrieving the question");
+		}
+		return quizQuestion;
+	}
+	
+	@Override
+	protected void onPostExecute(QuizQuestion quizQuestion) {
+		final TextView questionView = activity.getQuestionView();
+		final ListView answersView = activity.getAnswersView();
+		final Button nextQuestionButton = activity.getNextQuestionButton();
+		final String question = quizQuestion.getQuestion();
+		final List<String> answers = quizQuestion.getAnswers();
+		final int solutionIndex = quizQuestion.getSolutionIndex();
+		questionView.setText(question);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+				activity, R.layout.answer, answers);
+		answersView.setAdapter(adapter);
+		answersView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				TextView textView = (TextView) view;
+				if (position == solutionIndex) {
+					textView.setText(textView.getText() + " \u2714");
+					nextQuestionButton.setEnabled(true);
+					answersView.setEnabled(false);
+				} else {
+					if (textView.isEnabled()) {
+						textView.setText(textView.getText() + " \u2718");
+						textView.setEnabled(false);
+					}
+				}
+			}
+		});
+		nextQuestionButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				activity.inizialiseActivity();
+				nextQuestionButton.setEnabled(false);
+				answersView.setEnabled(true);
+			}
+		});
+	}
+
+}
