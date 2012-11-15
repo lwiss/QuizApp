@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
+<title>Homework #2</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7434 2012-05-11 21:06:27Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { /* line numbers */
+  color: grey;
+}
+
+.code {
+  background-color: #eeeeee
+}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="homework-2">
+<h1 class="title">Homework #2</h1>
+
+<div class="section" id="introduction">
+<h1>1. Introduction</h1>
+<p>In this homework, you will enable users of your app to submit questions.</p>
+<p>Please keep track of how many hours it takes you to solve each exercise, as we
+will ask you to provide us with this information in a text file named
+<tt class="docutils literal">homework_2_time_spent.txt</tt> that resides in the <tt class="docutils literal">${REPO}</tt> folder (as in
+Homework #1).</p>
+<p>Please abide by the <a class="reference external" href="http://sweng.epfl.ch/collaboration">Collaboration Policy</a>. If you have any questions
+regarding the assignment requirements, ask on <a class="reference external" href="https://piazza.com/epfl.ch/fall2012/cs305/home">Piazza</a>. If you have any doubts
+about whether it is appropriate to ask something, mark the question private. You
+are allowed to use Web search to find answers to questions.</p>
+<p>The deadline for this homework is <strong>Friday, October 19, 2012</strong>, at <strong>19:00</strong>.
+Any assignments (or parts thereof) handed in late will not be graded.</p>
+<div class="section" id="preparation">
+<h2>Preparation</h2>
+<p>As for Homework #1, you should regularly commit your work, push it to your
+repository, and build it on the <a class="reference external" href="http://jenkins.epfl.ch/">Jenkins</a> server.</p>
+<p><a class="reference external" href="http://jenkins.epfl.ch/">Jenkins</a> will send a notification to you if the source code that you
+committed does not compile or is improperly formatted.  The system will
+automatically give 0 points to submissions that do not compile or
+violate the <a class="reference external" href="http://sweng.epfl.ch/tutorials/checkstyle">SwEng coding style</a>. We strongly recommend that you commit
+regularly before the deadline to make sure everything works as expected.</p>
+</div>
+<div class="section" id="basic-track-vs-full-track">
+<h2>Basic track vs. Full track</h2>
+<p>This homework has two parts:</p>
+<ul class="simple">
+<li>The basic track implements the question submission functionality, and</li>
+<li>The full track additionally adds tests to ensure the reliability of the features implemented in the basic track.</li>
+</ul>
+<p>The total number of points for this homework is 100. Completely and correctly solving the basic track will earn you 70 points,
+while completely and correctly solving the full track will earn you 30 additional points, for a maximum of 100.</p>
+</div>
+</div>
+<div class="section" id="basic-track-adding-a-quiz-question-70-points">
+<h1>2. [Basic Track] Adding a quiz question (70 points)</h1>
+<p>In this part of the homework, you will enable users to submit questions to the
+Sweng2012QuizApp server that will make the questions available to all the users
+of the app.</p>
+<p>A submitted question is composed of a text body, a list of possible answers with an index
+identifying the correct answer, and a set of tags. After a user has entered all
+this information into your app, the app submits the question to the Sweng2012QuizApp server to make the question
+accessible to other users.</p>
+<div class="section" id="the-quizquestion-class-30-points">
+<h2>2.1. The <tt class="docutils literal">QuizQuestion</tt> class (30 points)</h2>
+<p>You have to implement a class representing a quiz question.</p>
+<p>A question is composed of a text body, a list of possible answers with an index identifying the correct answer, a set of tags,
+an id that uniquely identifies a question, and an owner.
+Name the class <tt class="docutils literal">QuizQuestion</tt> and place it in the <tt class="docutils literal">epfl.sweng.quizquestions</tt> package.
+The <tt class="docutils literal">QuizQuestion</tt> class must have at least the following two constructors:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/** The constructor for quiz questions received as JSON strings from the Sweng2012QuizApp server, as in homework #1</span>
+<span style="color: #408080; font-style: italic">* @param json The JSON string received from the Sweng2012QuizApp server, as in homework #1</span>
+<span style="color: #408080; font-style: italic">*/</span>
+<span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">QuizQuestion</span><span style="color: #666666">(</span>String json<span style="color: #666666">)</span> <span style="color: #008000; font-weight: bold">throws</span> JSONException <span style="color: #666666">{</span>
+    <span style="color: #666666">...</span>
+<span style="color: #666666">}</span>
+
+<span style="color: #408080; font-style: italic">/** The constructor for quiz questions defined by the user</span>
+<span style="color: #408080; font-style: italic">* @param text The body of the question, as input by the user</span>
+<span style="color: #408080; font-style: italic">* @param answers The list of possible answers of the question, as input by the user</span>
+<span style="color: #408080; font-style: italic">* @param solutionIndex The index identifying the correct answer, as input by the user</span>
+<span style="color: #408080; font-style: italic">* @param tags The set of tags of the question, as input by the user</span>
+<span style="color: #408080; font-style: italic">* @param id The id of the question</span>
+<span style="color: #408080; font-style: italic">* @param owner The owner of the question</span>
+<span style="color: #408080; font-style: italic">*/</span>
+<span style="color: #008000; font-weight: bold">public</span> <span style="color: #0000FF">QuizQuestion</span><span style="color: #666666">(</span>String text<span style="color: #666666">,</span> List<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> answers<span style="color: #666666">,</span> <span style="color: #B00040">int</span> solutionIndex<span style="color: #666666">,</span> Set<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> tags<span style="color: #666666">,</span> <span style="color: #B00040">int</span> id<span style="color: #666666">,</span> String owner<span style="color: #666666">)</span> <span style="color: #666666">{</span>
+    <span style="color: #666666">...</span>
+<span style="color: #666666">}</span>
+</pre></div>
+<p>These constructors can use only the information provided to them through their parameters. Any fields that are missing must be replaced with default values, i.e., <tt class="docutils literal">null</tt> for objects and -1 for integers.</p>
+<p>One must be able to create objects of type <tt class="docutils literal">QuizQuestion</tt> in a simple <tt class="docutils literal">junit.framework.TestCase</tt> unit test. Your <tt class="docutils literal">QuizQuestion</tt> class must pass the following test:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">QuizQuestionTest</span> <span style="color: #008000; font-weight: bold">extends</span> TestCase <span style="color: #666666">{</span>
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #008000; font-weight: bold">static</span> <span style="color: #008000; font-weight: bold">final</span> String VALID_QUESTION_JSON <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;{&quot;</span>
+            <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;question: &#39;What is the answer to life, the universe and everything?&#39;, &quot;</span>
+            <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;answers: [&#39;42&#39;, &#39;27&#39;],&quot;</span>
+            <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;solutionIndex: 0,&quot;</span>
+            <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;tags : [&#39;h2g2&#39;, &#39;trivia&#39;],&quot;</span>
+            <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;owner : &#39;anonymous&#39;,&quot;</span>
+            <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;id : &#39;123&#39;&quot;</span>
+            <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;}&quot;</span><span style="color: #666666">;</span>
+
+    <span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">void</span> <span style="color: #0000FF">testQuestionOK</span><span style="color: #666666">()</span> <span style="color: #008000; font-weight: bold">throws</span> JSONException <span style="color: #666666">{</span>
+        String json <span style="color: #666666">=</span> VALID_QUESTION_JSON<span style="color: #666666">;</span>
+        assertNotNull<span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">new</span> QuizQuestion<span style="color: #666666">(</span>json<span style="color: #666666">));</span>
+    <span style="color: #666666">}</span>
+<span style="color: #666666">}</span>
+</pre></div>
+<p>A valid question is defined by the following properties:</p>
+<ul class="simple">
+<li>All strings must be no longer than 500 characters.</li>
+<li>No string can be blank, i.e., empty or consisting only of whitespace (as defined
+by the <tt class="docutils literal">isWhitespace</tt> method of the <tt class="docutils literal">Character</tt> class).</li>
+<li>A question has at least two answers and no more than ten answers.</li>
+<li><tt class="docutils literal">solutionIndex</tt> is a valid 0-based index into the <tt class="docutils literal">answers</tt> array.</li>
+<li><tt class="docutils literal">tags</tt> is a set of zero or more strings. Each string must be no longer than
+20 alphanumeric characters (<tt class="docutils literal">Character.isLetterOrDigit()</tt>).</li>
+<li><tt class="docutils literal">owner</tt> is a string no longer than 20 alphanumeric characters.</li>
+<li><tt class="docutils literal">id</tt> is an <tt class="docutils literal">Integer</tt> greater than 0.</li>
+<li>All the fields, i.e., <tt class="docutils literal">question</tt>, <tt class="docutils literal">answers</tt>, <tt class="docutils literal">solutionIndex</tt>, <tt class="docutils literal">tags</tt>, <tt class="docutils literal">owner</tt>, and <tt class="docutils literal">id</tt> are present.</li>
+</ul>
+<p>Now, you have to write an audit method that checks how many of the question requirements defined above are <em>not</em> respected.
+Your <tt class="docutils literal">QuizQuestion</tt> class must implement the following method:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/** Returns the number of rep invariant violations*/</span>
+<span style="color: #008000; font-weight: bold">public</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">auditErrors</span><span style="color: #666666">(</span><span style="color: #B00040">int</span> depth<span style="color: #666666">){</span>
+  <span style="color: #666666">...</span>
+<span style="color: #666666">}</span>
+</pre></div>
+<p>Each property violation should increment the number of errors returned by the
+audit method. The <tt class="docutils literal">depth</tt> argument is currently unused, but might become
+useful later on.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>To recap, you must add a quiz question class with the full name <tt class="docutils literal">epfl.sweng.quizquestions.QuizQuestion</tt> that has the following constructors and method:</p>
+<ul class="last simple">
+<li><tt class="docutils literal">public QuizQuestion(String json) throws JSONException</tt></li>
+<li><tt class="docutils literal">public QuizQuestion(String text, List&lt;String&gt; answers, int solutionIndex, Set&lt;String&gt; tags, int id, String owner)</tt></li>
+<li><tt class="docutils literal">public int auditErrors(int depth)</tt></li>
+</ul>
+</div>
+</div>
+<div class="section" id="graphical-user-interface-for-submitting-questions-30-points">
+<h2>2.2. Graphical user interface for submitting questions (30 points)</h2>
+<p>You will now enable your app's users to submit questions by providing them with a graphical user interface for question editing.
+You have to create an <tt class="docutils literal">Activity</tt> called <tt class="docutils literal">EditQuestionActivity</tt> and place it
+in the <tt class="docutils literal">epfl.sweng.editquestions</tt> package.</p>
+<p>The <tt class="docutils literal">EditQuestionActivity</tt> must have the following UI widgets:</p>
+<ul>
+<li><p class="first">An <tt class="docutils literal">EditText</tt> widget where the user can enter the question text. It must
+have its hint set to &quot;Type in the question's text body&quot;.</p>
+</li>
+<li><p class="first">A container (e.g., a <tt class="docutils literal">LinearLayout</tt>) that displays the available answers.
+When the <tt class="docutils literal">Activity</tt> starts, the container should contain one empty answer.
+Each possible answer should consist of the following elements (e.g., inside a <tt class="docutils literal">LinearLayout</tt>):</p>
+<blockquote>
+<ul class="simple">
+<li>An <tt class="docutils literal">EditText</tt> widget where the user can enter the text of the answer. It
+must have its hint set to &quot;Type in the answer&quot;.</li>
+<li>A <tt class="docutils literal">Button</tt> widget that the user can click to mark this answer as the
+correct answer. It must contain the text &quot;✘&quot; (<tt class="docutils literal">2718 HEAVY BALLOT X</tt>) initially,
+when a blank answer line is added.</li>
+<li>A <tt class="docutils literal">Button</tt> widget that, when clicked, removes the corresponding answer.
+It must contain the text &quot;-&quot; (<tt class="docutils literal">002D <span class="pre">HYPHEN-MINUS</span></tt>).</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">A <tt class="docutils literal">Button</tt> that adds a new possible answer and contains the text &quot;+&quot; (<tt class="docutils literal">002B PLUS SIGN</tt>).
+The new possible answer must be below the previous answers.
+That is, the <tt class="docutils literal">n</tt><sup>th</sup> <tt class="docutils literal">EditText</tt> UI widget (from top to bottom) with the hint &quot;Type in the answer&quot;
+corresponds to the <tt class="docutils literal">n</tt><sup>th</sup> possible answer's text.
+The same requirement applies for the two button accompanying the possible answer text.</p>
+</li>
+<li><p class="first">An <tt class="docutils literal">EditText</tt> widget that contains the set of tags for the current
+question. It must have its hint set to &quot;Type in the question's tags&quot;.</p>
+</li>
+<li><p class="first">A <tt class="docutils literal">Button</tt> widget that submits the question and contains the text &quot;Submit&quot;.</p>
+</li>
+</ul>
+<div class="hint">
+<p class="first admonition-title">Hint</p>
+<p>We recommend that you do not use a <tt class="docutils literal">ListView</tt> to display the set of possible
+answers. It is difficult to have buttons and text fields inside a
+<tt class="docutils literal">ListView</tt>.</p>
+<p class="last">If you do choose to use <tt class="docutils literal">ListView</tt>, you can take a look at a <a class="reference external" href="http://www.ace-art.fr/wordpress/2010/07/21/tutoriel-android-partie-6-les-listview/">first tutorial</a> and a <a class="reference external" href="http://www.vogella.com/articles/AndroidListView/article.html">second tutorial</a>, both suggested by one of your colleagues.</p>
+</div>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p class="last">For grading, it is crucial that you use the hints and button labels exactly
+as specified above. Otherwise, our tests will not find the widgets, and you
+will lose points.</p>
+</div>
+<p>When clicking on the button with the text &quot;+&quot;, a new possible answer must
+appear. The initial text of the answer is empty, and the answer is marked as not
+being correct.</p>
+<p>When clicking on the button with the text &quot;-&quot;, the corresponding answer must be
+removed. This should not change the other answers.</p>
+<p>Whenever an answer is marked as correct, all other answers must be marked as
+incorrect. A correct answer must have the <tt class="docutils literal">text</tt> property of the correct
+answer button set to &quot;✔&quot; (<tt class="docutils literal">2714 HEAVY CHECK MARK</tt>), while an incorrect answer must have this property set
+to &quot;✘&quot;. Of course, you may also color the answers in green and red, or vibrate
+the phone, or use your own imagination.</p>
+<p>Any non-alphanumeric characters in the tags' text entered by the user serve as delimiters.</p>
+<p>The quiz question creation request that the app submits to the server must reflect the current state of the
+GUI, i.e., all fields of the request must contain all the information
+displayed by the GUI.</p>
+<p>A user must not be allowed to submit a question that is not valid according to the rules defined
+above. In this case, your app must deactivate the &quot;Submit&quot; button.</p>
+<p>After a question is submitted, <tt class="docutils literal">EditQuestionActivity</tt> must be brought to a clean state.
+The <tt class="docutils literal">Activity</tt> must contain only one empty answer, like when the user freshly started it.</p>
+</div>
+<div class="section" id="server-communication">
+<h2>2.2.1. Server communication</h2>
+<p>To submit a question, your Sweng2012QuizApp application must perform a
+<tt class="docutils literal">POST</tt> request to the question submission functionality of the Sweng2012QuizApp
+server available at the URL <a class="reference external" href="https://sweng-quiz.appspot.com/quizquestions">https://sweng-quiz.appspot.com/quizquestions</a>.
+The <tt class="docutils literal">POST</tt> data must be a JSON object containing the question.
+Here is an example of how the submission request can be implemented:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">HttpPost post <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> HttpPost<span style="color: #666666">(</span>SERVER_URL <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;/quizquestions/&quot;</span><span style="color: #666666">);</span>
+post<span style="color: #666666">.</span><span style="color: #7D9029">setEntity</span><span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">new</span> StringEntity<span style="color: #666666">(</span><span style="color: #BA2121">&quot;{&quot;</span> <span style="color: #666666">+</span>
+    <span style="color: #BA2121">&quot; \&quot;question\&quot;: \&quot;What is the answer to life, the universe and everything?\&quot;,&quot;</span> <span style="color: #666666">+</span>
+    <span style="color: #BA2121">&quot; \&quot;answers\&quot;: [ \&quot;42\&quot;, \&quot;24\&quot; ],&quot;</span> <span style="color: #666666">+</span>
+    <span style="color: #BA2121">&quot; \&quot;solutionIndex\&quot;: 0,&quot;</span> <span style="color: #666666">+</span>
+    <span style="color: #BA2121">&quot; \&quot;tags\&quot;: [ \&quot;h2g2\&quot;, \&quot;trivia\&quot; ]&quot;</span> <span style="color: #666666">+</span>
+    <span style="color: #BA2121">&quot; }&quot;</span><span style="color: #666666">));</span>
+post<span style="color: #666666">.</span><span style="color: #7D9029">setHeader</span><span style="color: #666666">(</span><span style="color: #BA2121">&quot;Content-type&quot;</span><span style="color: #666666">,</span> <span style="color: #BA2121">&quot;application/json&quot;</span><span style="color: #666666">);</span>
+ResponseHandler<span style="color: #666666">&lt;</span>String<span style="color: #666666">&gt;</span> handler <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> BasicResponseHandler<span style="color: #666666">();</span>
+String response <span style="color: #666666">=</span> SwengHttpClientFactory<span style="color: #666666">.</span><span style="color: #7D9029">getInstance</span><span style="color: #666666">().</span><span style="color: #7D9029">execute</span><span style="color: #666666">(</span>post<span style="color: #666666">,</span> handler<span style="color: #666666">);</span>
+</pre></div>
+<p>You submit questions in the same format as they are served by the quiz server.
+The fields have the following meaning:</p>
+<ul class="simple">
+<li><tt class="docutils literal">question</tt> contains the text body of the question, as entered in the app by the user.</li>
+<li><tt class="docutils literal">answers</tt>  is a list of strings containing possible answers. The <em>order</em> of
+the answers does matter. This list is constructed from the possible answers entered by the user.</li>
+<li><tt class="docutils literal">solutionIndex</tt> indicates the correct answer by its position in the
+<tt class="docutils literal">answers</tt> list. Counting starts from zero (i.e., the first element has index 0). Practically, it is the index of the button whose text reads &quot;✔&quot;.</li>
+<li><tt class="docutils literal">tags</tt> is a set of question tags. Tags consist only of alphanumeric characters and represent the topics of the question.
+Any non-alphanumeric characters in the tags' text entered by the user serve as delimiters.</li>
+</ul>
+<p>The JSON object does not have an <tt class="docutils literal">id</tt> or <tt class="docutils literal">owner</tt> field, since these
+are assigned by the Sweng2012QuizApp server.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p class="last">Remember that whenever you want to communicate with the Sweng2012QuizApp
+server, you must do so by using the
+<tt class="docutils literal"><span class="pre">SwengHttpClientFactory.getInstance().execute()</span></tt> method.  If you use any
+other communication methods, we will not be able to automatically test that
+part of your homework, and you will lose points.</p>
+</div>
+<p>Questions submitted without authentication belong to user <tt class="docutils literal">anonymous</tt>.
+In the next homework, you will learn how to authenticate with Tequila and create
+questions belonging to your own account.</p>
+<p>If submission is successful, the Sweng2012QuizApp server replies with the HTTP status
+code <tt class="docutils literal">201</tt>.  The body of the response contains the complete question, as
+follows:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+    <span style="color: #BA2121">&quot;id&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;123&quot;</span>,
+    <span style="color: #BA2121">&quot;owner&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;anonymous&quot;</span>,
+    <span style="color: #BA2121">&quot;question&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;What is the answer to life, the universe and everything?&quot;</span>,
+    <span style="color: #BA2121">&quot;answers&quot;</span><span style="color: #666666">:</span> [ <span style="color: #BA2121">&quot;42&quot;</span>, <span style="color: #BA2121">&quot;24&quot;</span> ],
+    <span style="color: #BA2121">&quot;solutionIndex&quot;</span><span style="color: #666666">:</span> <span style="color: #666666">0</span>,
+    <span style="color: #BA2121">&quot;tags&quot;</span><span style="color: #666666">:</span> [ <span style="color: #BA2121">&quot;h2g2&quot;</span>, <span style="color: #BA2121">&quot;trivia&quot;</span> ]
+}
+</pre></div>
+<p>Note that the server assigned an <tt class="docutils literal">id</tt> to the question and filled in
+the <tt class="docutils literal">owner</tt> field, which identifies the submitter.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p class="last">The server is strict about the criteria applying to the <tt class="docutils literal">question</tt>, <tt class="docutils literal">answers</tt>, <tt class="docutils literal">solutionIndex</tt>, and <tt class="docutils literal">tags</tt> fields as described in Section 2.1,
+and will refuse questions that do not satisfy them. Therefore, do always check the response code of the
+server, and log anything suspicious (i.e., non-201 response codes). In fact,
+you might find it useful to log <em>all</em> server responses, to help you in debugging.</p>
+</div>
+</div>
+<div class="section" id="a-new-application-entry-point-10-points">
+<h2>2.3. A new application entry point (10 points)</h2>
+<p>As it stands right now, your application consists of two distinct Activities:</p>
+<ul class="simple">
+<li>The <tt class="docutils literal">ShowQuestionsActivity</tt>, coded during the first homework, and</li>
+<li>The <tt class="docutils literal">EditQuestionActivity</tt>, coded for this homework.</li>
+</ul>
+<p>Your app would be much easier to use if the users could select, at startup, whether they want to answer a quiz question or they want to submit a new quiz question.
+That is why you are going to implement a third <tt class="docutils literal">Activity</tt> that provides users with this choice.</p>
+<p>You will have to create a new <tt class="docutils literal">Activity</tt> named <tt class="docutils literal">MainActivity</tt> in the  <tt class="docutils literal">epfl.sweng.entry</tt> package that will display a
+list of actions available to the user as <tt class="docutils literal">Button</tt> UI widgets.
+For the time being, there are only two:</p>
+<ul class="simple">
+<li>Show a random question. When users click on the button labeled &quot;Show a random question&quot;, the <tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> is started.</li>
+<li>Submit quiz question. When users click on the button labeled &quot;Submit quiz question&quot;, the <tt class="docutils literal">epfl.sweng.editquestions.EditQuestionActivity</tt> <tt class="docutils literal">Activity</tt> is started.</li>
+</ul>
+<p>The <tt class="docutils literal">MainActivity</tt> must be the <tt class="docutils literal">Activity</tt> that is started when the application is launched. This requires you to change the <tt class="docutils literal">AndroidManifest.xml</tt> file in the following way:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">&lt;activity</span>
+    <span style="color: #7D9029">android:name=</span><span style="color: #BA2121">&quot;.entry.MainActivity&quot;</span>
+    <span style="color: #7D9029">android:label=</span><span style="color: #BA2121">&quot;@string/app_name&quot;</span> <span style="color: #008000; font-weight: bold">&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;intent-filter&gt;</span>
+        <span style="color: #008000; font-weight: bold">&lt;action</span> <span style="color: #7D9029">android:name=</span><span style="color: #BA2121">&quot;android.intent.action.MAIN&quot;</span> <span style="color: #008000; font-weight: bold">/&gt;</span>
+        <span style="color: #008000; font-weight: bold">&lt;category</span> <span style="color: #7D9029">android:name=</span><span style="color: #BA2121">&quot;android.intent.category.LAUNCHER&quot;</span> <span style="color: #008000; font-weight: bold">/&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;/intent-filter&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/activity&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;activity</span>
+    <span style="color: #7D9029">android:name=</span><span style="color: #BA2121">&quot;.showquestions.ShowQuestionsActivity&quot;</span>
+    <span style="color: #7D9029">android:label=</span><span style="color: #BA2121">&quot;@string/app_name&quot;</span> <span style="color: #008000; font-weight: bold">&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/activity&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;activity</span>
+    <span style="color: #7D9029">android:name=</span><span style="color: #BA2121">&quot;.editquestions.EditQuestionActivity&quot;</span>
+    <span style="color: #7D9029">android:label=</span><span style="color: #BA2121">&quot;@string/app_name&quot;</span> <span style="color: #008000; font-weight: bold">&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/activity&gt;</span>
+</pre></div>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>To recap, you must add a new class, named <tt class="docutils literal">epfl.sweng.entry.MainActivity</tt>, that will be displayed when the application is started and
+allows users to select between answering a question and submitting a new question.</p>
+<p class="last">For the automated grading to work, it is crucial that when clicking on the text &quot;Show a random question&quot;, the <tt class="docutils literal">epfl.sweng.showquestions.ShowQuestionsActivity</tt> <tt class="docutils literal">Activity</tt> is started, and when clicking on the &quot;Submit quiz question&quot;, the <tt class="docutils literal">epfl.sweng.editquestions.EditQuestionActivity</tt> <tt class="docutils literal">Activity</tt> is started.
+If you have UI widgets with even the slightest text differences, we will not be able to automatically test this part of your homework, and you will lose points.</p>
+</div>
+</div>
+<div class="section" id="debugging">
+<h2>2.4. Debugging</h2>
+<p>To help you debug your application, you can open the url
+<a class="reference external" href="http://sweng-quiz.appspot.com/quizquestions/ownedby/anonymous">http://sweng-quiz.appspot.com/quizquestions/ownedby/anonymous</a> in your browser.
+You should see your question among the displayed questions.</p>
+<p>If you want to delete a question, you can issue a <tt class="docutils literal">DELETE</tt> request to
+<a class="reference external" href="http://sweng-quiz.appspot.com/quizquestions/123">http://sweng-quiz.appspot.com/quizquestions/123</a> (replace 123 with the ID of the
+questions that you created). For the purpose of this homework, please avoid deleting questions that
+you did not create. In the next homework, you will see how to enforce permissions.</p>
+</div>
+</div>
+<div class="section" id="full-track-code-coverage-30-points">
+<h1>3. [Full Track] Code Coverage (30 points)</h1>
+<p>Now that you have implemented the basic track for this homework,
+it is time to make sure that your code is reliable. You will achieve
+this by writing unit tests for your application. The goal for the
+tests you write is to achieve high code coverage for the code
+you wrote so far for <strong>homework #1 and homework #2</strong>.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>Your tests may only use the default testing features provided by the
+Android SDK or Robotium 3.4.1. See Homework 1 for the details.</p>
+<p>The number of points will be computed using the same rules as in homework 1, i.e.,
+with the following formula:</p>
+<blockquote>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">30 * min<span style="color: #666666">(</span>1, <span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">CODE_COVERAGE</span><span style="color: #008000; font-weight: bold">}</span>/80<span style="color: #666666">)</span>^2<span style="color: #666666">)</span>
+</pre></div>
+</blockquote>
+<p class="last">In other words, your tests must achieve 80% line coverage for the entire code
+base of your application to get the full points for this part of the homework.</p>
+</div>
+</div>
+<div class="section" id="final-checklist">
+<h1>4. Final Checklist</h1>
+<p>Grading for this homework will be completely automated. This means that your
+homework's project structure, code, package names, button labels, <tt class="docutils literal">Activity</tt>
+names, etc., must conform to the following rules. Otherwise, our servers will not be able to
+automatically grade your homework, and you will lose points.</p>
+<p>Here is a recap of the most important rules your homework must obey:</p>
+<ul>
+<li><p class="first">Rules set in homework 1 regarding the project structure still apply.</p>
+</li>
+<li><p class="first">Your <tt class="docutils literal">${REPO}</tt> must have the following folder structure:</p>
+<pre class="literal-block">
+${REPO}
+├── Sweng2012Sweng2012QuizApp
+|&nbsp;&nbsp; ├── assets
+|&nbsp;&nbsp; ├── libs
+|&nbsp;&nbsp; ├── res
+|&nbsp;&nbsp; └── src
+| &nbsp;     └── epfl
+|&nbsp;&nbsp;         └── sweng
+|               ├── editquestions
+|               |   └── EditQuestionActivity.java
+|               ├── entry
+|               |   └── MainActivity.java
+|               ├── quizquestions
+|               |   └── QuizQuestion.java
+|               └── showquestions
+|                   └── ShowQuestionsActivity.java
+└── Sweng2012Sweng2012QuizAppTest
+ &nbsp;&nbsp; ├── assets
+ &nbsp;&nbsp; ├── libs
+ &nbsp;&nbsp; ├── res
+ &nbsp;&nbsp; └── src
+ &nbsp;&nbsp;     └── epfl
+ &nbsp;&nbsp;         └── sweng
+                └── test
+</pre>
+</li>
+<li><p class="first">You can have additional classes in the <tt class="docutils literal">epfl.sweng</tt> package.</p>
+</li>
+<li><p class="first">The following command must fully compile and install your app in an emulator:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012Sweng2012QuizApp
+<span style="color: #19177C">$ </span>ant clean debug install
+</pre></div>
+</li>
+<li><p class="first">The following command must run your installed app on an emulator:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.entry.MainActivity
+</pre></div>
+</li>
+<li><p class="first">The following command must compile and run all your tests:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+</pre></div>
+</li>
+<li><p class="first">Rules in homework 1 for accessing the network still apply.</p>
+</li>
+<li><p class="first">Your code must be committed to the <tt class="docutils literal"><span class="pre">https://github.com/dslab-epfl/&lt;reponame&gt;.git</span></tt>
+git repository, where <tt class="docutils literal">&lt;reponame&gt;</tt> is the name of your team's repository.</p>
+</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

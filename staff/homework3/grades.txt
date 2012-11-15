@@ -1,0 +1,7 @@
+UserCredentialsTest (correct 4 / 4) = 10.00000000000000000000
+ApplicationStateTest (correct 2 / 2) = 10.00000000000000000000
+AuthenticationProcessTest (correct 10 / 14) = 21.42857142857142857130
+MainActivityTest (correct 2 / 2) = 5.00000000000000000000
+AuthenticationActivityGUITest (correct 4 / 4) = 5.00000000000000000000
+AuthenticatedRequestsTest (correct 1 / 2) = 5.00000000000000000000
+Total: 56.42857142857142857130
