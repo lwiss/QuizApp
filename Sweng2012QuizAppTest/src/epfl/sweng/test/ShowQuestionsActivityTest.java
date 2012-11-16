@@ -38,7 +38,6 @@ public class ShowQuestionsActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
-		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 	}
@@ -55,7 +54,7 @@ public class ShowQuestionsActivityTest extends
 		assertFalse("Next question button is disabled",
 				nextQuestionButton.isEnabled());
 	}
-	/*
+	
 	public void testFalseResponses() {
 		solo.clickOnText("24");
 		assertTrue("False answer showen as so",
@@ -96,7 +95,7 @@ public class ShowQuestionsActivityTest extends
 		Button nextQuestionButton = solo.getButton("Next question");
 		assertFalse("Next question button is disabled",
 				nextQuestionButton.isEnabled());
-	}*/
+	}
 	
 	/**
 	 * To use this, call SwengHttpClientFactory.setInstance(new
