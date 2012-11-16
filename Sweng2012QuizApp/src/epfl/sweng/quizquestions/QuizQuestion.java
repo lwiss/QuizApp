@@ -22,6 +22,10 @@ public class QuizQuestion {
 	private Set<String> tags;
 	private int id;
 	private String owner;
+	public String getOwner() {
+		return owner;
+	}
+
 	private static final int MAX_QUESTION_LENGTH = 500;
 	private static final int MAX_ANSWER_LENGTH = 500;
 	private static final int MAX_TAG_LENGTH = 20;
@@ -48,6 +52,8 @@ public class QuizQuestion {
 	public Set<String> getTags() {
 		return tags;
 	}
+	
+
 
 	public QuizQuestion(String json) throws JSONException {
 		JSONObject jsonObject = new JSONObject(json);
