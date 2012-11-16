@@ -17,6 +17,7 @@ import org.json.JSONException;
 
 import com.jayway.android.robotium.solo.Solo;
 
+import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.showquestions.ShowQuestionsActivity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
@@ -38,6 +39,7 @@ public class ShowQuestionsActivityTest extends
 	@Override
 	protected void setUp() throws Exception {
 		solo = new Solo(getInstrumentation(), getActivity());
+		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		Thread.sleep(TIME);
 	}
 
