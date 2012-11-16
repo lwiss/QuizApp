@@ -17,7 +17,6 @@ import org.json.JSONException;
 
 import com.jayway.android.robotium.solo.Solo;
 
-import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.showquestions.ShowQuestionsActivity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
