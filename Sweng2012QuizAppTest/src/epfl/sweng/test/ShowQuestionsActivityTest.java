@@ -88,8 +88,7 @@ public class ShowQuestionsActivityTest extends
 
 		assertTrue("Dislike button exists", solo.searchButton("Dislike"));
 		assertTrue("Incorrect button exists", solo.searchButton("Incorrect"));
-		assertTrue("Like button is clickable", solo.getButton("Incorrect")
-				.isClickable());
+		
 	}
 
 	public void testUncorrectAllRatingsResponse() throws Exception {
