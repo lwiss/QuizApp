@@ -14,6 +14,7 @@ import epfl.sweng.R;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -43,13 +44,12 @@ public class FetchQuestionAsyncTask extends
 		try {
 			response = SwengHttpClientFactory.getInstance().execute(httpGet,
 					handler);
+			Log.d("Response", response);
+			quizQuestion = new QuizQuestion(response);
 		} catch (IOException e) {
 			quizQuestion = new QuizQuestion(
 					"There was an error retrieving the question",
 					new ArrayList<String>(), -1, new HashSet<String>(), -1, null);
-		}
-		try {
-			quizQuestion = new QuizQuestion(response);
 		} catch (JSONException e) {
 			quizQuestion = new QuizQuestion(
 					"There was an error retrieving the question",
