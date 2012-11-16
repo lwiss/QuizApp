@@ -1,6 +1,8 @@
 package epfl.sweng.showquestions;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.http.client.ResponseHandler;
@@ -34,20 +36,24 @@ public class FetchQuestionAsyncTask extends
 	@Override
 	protected QuizQuestion doInBackground(ShowQuestionsActivity... params) {
 		activity = params[0];
-		HttpGet httpget = new HttpGet(URL);
+		HttpGet httpGet = new HttpGet(URL);
 		ResponseHandler<String> handler = new BasicResponseHandler();
 		String response = "";
+		QuizQuestion quizQuestion = null;
 		try {
-			response = SwengHttpClientFactory.getInstance().execute(httpget,
+			response = SwengHttpClientFactory.getInstance().execute(httpGet,
 					handler);
 		} catch (IOException e) {
-			activity.getQuestionView().setText("There was an error retrieving the question");
+			quizQuestion = new QuizQuestion(
+					"There was an error retrieving the question",
+					new ArrayList<String>(), -1, new HashSet<String>(), -1, null);
 		}
-		QuizQuestion quizQuestion = null;
 		try {
 			quizQuestion = new QuizQuestion(response);
 		} catch (JSONException e) {
-			activity.getQuestionView().setText("There was an error retrieving the question");
+			quizQuestion = new QuizQuestion(
+					"There was an error retrieving the question",
+					new ArrayList<String>(), -1, new HashSet<String>(), -1, null);
 		}
 		return quizQuestion;
 	}
@@ -62,7 +68,7 @@ public class FetchQuestionAsyncTask extends
 		final int solutionIndex = quizQuestion.getSolutionIndex();
 		questionView.setText(question);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-				activity, R.layout.answer, answers);
+				activity, R.layout.answer_show, answers);
 		answersView.setAdapter(adapter);
 		answersView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -82,7 +88,7 @@ public class FetchQuestionAsyncTask extends
 		});
 		nextQuestionButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				activity.inizialiseActivity();
+				activity.initializeActivity();
 				nextQuestionButton.setEnabled(false);
 				answersView.setEnabled(true);
 			}

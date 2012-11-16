@@ -24,13 +24,13 @@ public class SwengHttpClientFactory {
 	private static AbstractHttpClient httpClient;
 	private static final int HTTP_PORT = 80;
 	private final static int HTTPS_PORT = 443;
-	
-	
+
+
 	public static synchronized AbstractHttpClient getInstance() {
 		if (httpClient == null) {
 			httpClient = create();
 		}
-		
+
 		return httpClient;
 	}
 
@@ -39,7 +39,6 @@ public class SwengHttpClientFactory {
 	}
 
 	final private static RedirectHandler REDIRECT_NO_FOLLOW = new RedirectHandler() {
-		
 		public boolean isRedirectRequested(HttpResponse response, HttpContext context) {
 			return false;
 		}

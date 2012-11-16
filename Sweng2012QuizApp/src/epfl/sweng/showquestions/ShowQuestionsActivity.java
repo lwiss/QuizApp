@@ -35,7 +35,6 @@ public class ShowQuestionsActivity extends Activity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-		
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_questions);
         
@@ -46,7 +45,7 @@ public class ShowQuestionsActivity extends Activity {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-        	inizialiseActivity();
+        	initializeActivity();
         }
     }
 
@@ -56,7 +55,7 @@ public class ShowQuestionsActivity extends Activity {
         return true;
     }
     
-    public void inizialiseActivity() {
+    public void initializeActivity() {
     	new FetchQuestionAsyncTask().execute(this);
     }
 }
