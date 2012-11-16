@@ -6,59 +6,66 @@ import epfl.sweng.R;
 import epfl.sweng.quizquestions.QuizQuestion;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
 /**
  * 
- * @author crazybhy
- *
+ * @author MohamedBenArbia
+ * 
  */
 public class TextEditWatcher implements TextWatcher {
 	private View view;
-	private EditQuestionActivity activity;
+	private static final String TAG = "TextWatcher";
 
-	public TextEditWatcher(EditQuestionActivity activityEditQuestion, View viewEditQuestion) {
-		activity = activityEditQuestion;
-		view = viewEditQuestion;
+	public TextEditWatcher(View viewEditQuestion) {
+		this.view = viewEditQuestion;
 	}
+
+	
 	public void afterTextChanged(Editable s) {
 		String text = s.toString();
 		switch (view.getId()) {
-			case R.id.question:
-				activity.setQuestionState(QuizQuestion.questionIsOK(text));
+			case R.id.questionBody:
+				EditQuestionActivity.setQuestionState(QuizQuestion
+						.questionIsOK(text));
+				Log.d(TAG, "question modified");
 				break;
-			case R.id.tags:
-				activity.setTagState(QuizQuestion.tagsAreOK(text));
+			case R.id.questionTags:
+				EditQuestionActivity.setTagState(QuizQuestion.tagsAreOK(text));
+				Log.d(TAG, "tags modified");
 				break;
 			case R.id.response:
-				List<Boolean> list = activity.getAnswersState();
-				LinearLayout answers = (LinearLayout) view.getParent().getParent();
-				list.set(answers.indexOfChild((LinearLayout) view.getParent()),
+				List<Boolean> list = EditQuestionActivity.getAnswersState();
+				LinearLayout l = (LinearLayout) view.getParent().getParent();
+				list.set(l.indexOfChild((LinearLayout) view.getParent()),
 						QuizQuestion.answerIsOK(text));
-				activity.setAnswersState(list);
+				EditQuestionActivity.setAnswersState(list);
+				Log.d(TAG, "response modified");
 				break;
+	
 			default:
 				break;
 		}
-		if (activity.getQuestionState()
-				&& activity.getTagState()
-				&& activity.getFinalAnswersState()) {
-			activity.getSubmitButton().setEnabled(true);
+		if (EditQuestionActivity.getQuestionState()
+				&& EditQuestionActivity.getTagState()
+				&& EditQuestionActivity.getFinalAnswersState()) {
+			EditQuestionActivity.getSubmit().setEnabled(true);
 		} else {
-			activity.getSubmitButton().setEnabled(false);
+			EditQuestionActivity.getSubmit().setEnabled(false);
 		}
 	}
 
+	
 	public void beforeTextChanged(CharSequence s, int start, int count,
 			int after) {
-		// TODO Auto-generated method stub
-		
+	
+
 	}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }

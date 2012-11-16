@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 /**
  * 
- * @author crazybhy
+ * @author Eagles
  * 
  */
 public class QuizQuestion {
@@ -22,45 +22,20 @@ public class QuizQuestion {
 	private Set<String> tags;
 	private int id;
 	private String owner;
-	
 	private static final int MAX_QUESTION_LENGTH = 500;
 	private static final int MAX_ANSWER_LENGTH = 500;
 	private static final int MAX_TAG_LENGTH = 20;
 	private static final int MAX_OWNER_LENGTH = 20;
 	private static final int MAX_ANSWERS_NUMBER = 10;
 	private static final int MIN_ANSWERS_NUMBER = 2;
-	
-	public QuizQuestion(String json) throws JSONException {
-		JSONObject jsonObject = new JSONObject(json);
-		question = jsonObject.getString("question");
-		answers = new ArrayList<String>();
-		JSONArray answersArray = jsonObject.getJSONArray("answers");
-		for (int i = 0; i < answersArray.length(); i++) {
-			answers.add(answersArray.getString(i));
-		}
-		solutionIndex = jsonObject.getInt("solutionIndex");
-		tags = new HashSet<String>();
-		JSONArray tagsArray = jsonObject.getJSONArray("tags");
-		for (int i = 0; i < tagsArray.length(); i++) {
-			tags.add(tagsArray.getString(i));
-		}
-		id = jsonObject.getInt("id");
-		owner = jsonObject.getString("owner");
-	}
-
-	public QuizQuestion(String text, List<String> answersList, int solution,
-			Set<String> tagsSet, int questionId, String questionOwner) {
-		question = text;
-		answers = answersList;
-		solutionIndex = solution;
-		tags = tagsSet;
-		id = questionId;
-		owner = questionOwner;
-	}
 
 	public String getQuestion() {
 		return question;
 	}
+	public int getId() {
+		return id;
+	}
+
 
 	public List<String> getAnswers() {
 		return answers;
@@ -74,14 +49,57 @@ public class QuizQuestion {
 		return tags;
 	}
 
-	public int getId() {
-		return id;
+	public QuizQuestion(String json) throws JSONException {
+		JSONObject jsonObject = new JSONObject(json);
+
+		question = jsonObject.getString("question");
+
+		JSONArray answersArray = jsonObject.getJSONArray("answers");
+		answers = new ArrayList<String>();
+		for (int i = 0; i < answersArray.length(); i++) {
+			answers.add(answersArray.getString(i));
+		}
+
+		solutionIndex = jsonObject.getInt("solutionIndex");
+
+		JSONArray tagsArray = jsonObject.getJSONArray("tags");
+		tags = new HashSet<String>();
+		for (int i = 0; i < tagsArray.length(); i++) {
+			tags.add(tagsArray.getString(i));
+		}
+
+		id = jsonObject.getInt("id");
+
+		owner = jsonObject.getString("owner");
 	}
 
-	public String getOwner() {
-		return owner;
+	/**
+	 * The constructor for quiz questions defined by the user
+	 * 
+	 * @param text
+	 *            The body of the question, as input by the user
+	 * @param answersList
+	 *            The list of possible answers of the question, as input by the
+	 *            user
+	 * @param solution
+	 *            The index identifying the correct answer, as input by the user
+	 * @param tagsSet
+	 *            The set of tags of the question, as input by the user
+	 * @param questionId
+	 *            The id of the question
+	 * @param questionOwner
+	 *            The owner of the question
+	 */
+	public QuizQuestion(String text, List<String> answersList, int solution,
+			Set<String> tagsSet, int questionId, String questionOwner) {
+		question = text;
+		answers = answersList;
+		solutionIndex = solution;
+		tags = tagsSet;
+		id = questionId;
+		owner = questionOwner;
 	}
-	
+
 	public int auditErrors(int depth) {
 		int errors = 0;
 		if (depth < 0) {
@@ -200,5 +218,4 @@ public class QuizQuestion {
 		}
 		return false;
 	}
-	
 }

@@ -1,18 +1,7 @@
 package epfl.sweng.test;
 
-import java.io.IOException;
+import java.util.List;
 
-import org.apache.http.HttpClientConnection;
-import org.apache.http.HttpException;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpVersion;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHttpResponse;
-import org.apache.http.message.BasicStatusLine;
-import org.apache.http.protocol.HttpContext;
-import org.apache.http.protocol.HttpRequestExecutor;
 import org.json.JSONException;
 
 import com.jayway.android.robotium.solo.Solo;
@@ -24,13 +13,16 @@ import android.widget.Button;
 
 /**
  * 
- * @author crazybhy
+ * @author Eagles
  * 
  */
 public class ShowQuestionsActivityTest extends
 		ActivityInstrumentationTestCase2<ShowQuestionsActivity> {
 	private Solo solo;
-	private static final int TIME = 1000;
+	private String question;
+	private List<String> answers;
+	private int solution;
+	private static final int TIME = 5000;
 
 	public ShowQuestionsActivityTest() {
 		super(ShowQuestionsActivity.class);
@@ -38,101 +30,102 @@ public class ShowQuestionsActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
+		SwengHttpClientFactory.setInstance(new MockHttpClientCR());
 		solo = new Solo(getInstrumentation(), getActivity());
-		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		Thread.sleep(TIME);
+		question = (String) ShowQuestionsActivity.getQuestion().getText();
+		answers = ShowQuestionsActivity.getAnswers();
+		solution = ShowQuestionsActivity.getSolution();
 	}
 
 	public void testShowQuestion() throws JSONException {
-		assertTrue(
-				"Question is displayed",
-				solo.searchText("What is the answer to life, the universe and everything?"));
-		assertTrue("Correct answer is displayed", solo.searchText("42"));
-		assertTrue("Incorrect answer is displayed",
-				solo.searchText("24"));
-
+		assertTrue("Question is displayed", solo.searchText(question));
+		for (int i = 0; i < answers.size(); i++) {
+			assertTrue("Answer " + i + " is displayed",
+					solo.searchText(answers.get(i)));
+		}
 		Button nextQuestionButton = solo.getButton("Next question");
 		assertFalse("Next question button is disabled",
 				nextQuestionButton.isEnabled());
 	}
-	
+
 	public void testFalseResponses() {
-		solo.clickOnText("24");
-		assertTrue("False answer showen as so",
-				solo.searchText("24 \u2718"));
-		Button nextQuestionButton = solo.getButton("Next question");
-		assertFalse("Next question button is disabled",
-				nextQuestionButton.isEnabled());
+		for (int i = 0; i < answers.size(); i++) {
+			if (i != solution) {
+				solo.clickOnText(answers.get(i));
+				assertTrue("False answer " + i + " showen as so",
+						solo.searchText(answers.get(i) + " \u2718"));
+				Button nextQuestionButton = solo.getButton("Next question");
+				assertFalse("Next question button is disabled",
+						nextQuestionButton.isEnabled());
+			}
+		}
 	}
 
 	public void testTrueResponse() {
-		solo.clickOnText("42");
-		assertTrue("True answer showen as so",
-				solo.searchText("42 \u2714"));
+		solo.clickOnText(answers.get(solution));
+		assertTrue("True answer " + solution + " showen as so",
+				solo.searchText(answers.get(solution) + " \u2714"));
 		Button nextQuestionButton = solo.getButton("Next question");
 		assertTrue("Next question button is enabled",
 				nextQuestionButton.isEnabled());
 	}
 
 	public void testNoMoreEffects() {
-		solo.clickOnText("42");
-		solo.clickOnText("24");
-		assertFalse("No effect showing false response",
-				solo.searchText("\u2718"));
-		Button nextQuestionButton = solo.getButton("Next question");
-		assertTrue("Next question button is still enabled", nextQuestionButton.isEnabled());
+		solo.clickOnText(answers.get(solution));
+		for (int i = 0; i < answers.size(); i++) {
+			solo.clickOnText(answers.get(i));
+		}
 	}
-	
-	public void testClickButton() {
-		solo.clickOnText("42");
+
+	/**
+	 * This test asserts that the Like, Dislike and Incorrect buttons are are
+	 * existing and are clickable
+	 */
+
+	public void testUIElements() {
+		assertTrue("Like button exists", solo.searchButton("Like"));
+
+		assertTrue("Dislike button exists", solo.searchButton("Dislike"));
+		assertTrue("Incorrect button exists", solo.searchButton("Incorrect"));
+		assertTrue("Like button is clickable", solo.getButton("Incorrect")
+				.isClickable());
+	}
+
+	public void testUncorrectAllRatingsResponse() throws Exception {
+		SwengHttpClientFactory.setInstance(new MockHttpClientUncR());
+		solo.clickOnText(answers.get(solution));
 		solo.clickOnText("Next question");
-		assertTrue(
-				"Question is displayed",
-				solo.searchText("What is the answer to life, the universe and everything?"));
-		assertTrue("Correct answer is displayed", solo.searchText("42"));
-		assertTrue("Incorrect answer is displayed",
-				solo.searchText("24"));
+		assertTrue("uncorrect data",
+				solo.waitForText("There was an error retrieving the ratings"));
+		assertTrue("user did not rated the question yet",
+				solo.searchText("You have not rated this question"));
 
-		Button nextQuestionButton = solo.getButton("Next question");
-		assertFalse("Next question button is disabled",
-				nextQuestionButton.isEnabled());
-	}
-	
-	/**
-	 * To use this, call SwengHttpClientFactory.setInstance(new
-	 * MockHttpClient()) in your testing code. Remember that the app always has
-	 * to use SwengHttpClientFactory.getInstance() if it needs an HttpClient.
-	 */
-	public class MockHttpClient extends DefaultHttpClient {
-		@Override
-		protected HttpRequestExecutor createRequestExecutor() {
-			return new MockHttpRequestExecutor();
-		}
 	}
 
-	/**
-	 * 
-	 * @author crazybhy
-	 * 
-	 */
-	public class MockHttpRequestExecutor extends HttpRequestExecutor {
-		@Override
-		public HttpResponse execute(final HttpRequest request,
-			final HttpClientConnection conn, final HttpContext context)
-			throws IOException, HttpException {
-			final int statusOk = 200;
-			HttpResponse response = new BasicHttpResponse(new BasicStatusLine(
-					HttpVersion.HTTP_1_1, statusOk, "OK"));
-			response.setEntity(new StringEntity("{"
-							+ " \"question\": \"What is the answer to life, the universe and everything?\","
-							+ " \"answers\": [ \"42\", \"24\" ],"
-							+ " \"solutionIndex\": 0," + " \"id\": 4243,"
-							+ " \"owner\": \"anounymous\","
-							+ " \"tags\": [ \"h2g2\", \"trivia\" ]" + " }"));
-			response.setHeader("Content-type", "application/json;charset=utf-8");
-			return response;
-		}
+	public void testCorrectRatingsResponse() throws Exception {
+		assertTrue("correct number of Like ", solo.searchText("Like (10"));
+		assertTrue("correct number of Dislike", solo.searchText("Dislike (3"));
+		assertTrue("correct number of Incorrect ",
+				solo.searchText("Incorrect (2"));
+		assertTrue("correct verdict recieved",
+				solo.searchText("You like the question"));
+		assertFalse("thee is no uncorrect verdict recieved ",
+				solo.searchText("You dislike the question"));
+		assertFalse("thee is no uncorrect verdict recieved ",
+				solo.searchText("You think the question is incorrect"));
+		assertFalse("thee is no uncorrect verdict recieved ",
+				solo.searchText("You have not rated this question"));
 	}
-	
+
+	public void testUncorrectPersonalRatingResponse() throws Exception {
+		SwengHttpClientFactory
+				.setInstance(new MockHttpClientUncorrectRatingRes());
+		solo.clickOnText(answers.get(solution));
+		solo.clickOnText("Next question");
+		assertTrue("uncorrect data",
+				solo.waitForText("There was an error retrieving the ratings"));
+
+	}
+
 }
-

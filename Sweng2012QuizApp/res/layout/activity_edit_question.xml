@@ -9,37 +9,37 @@
         android:orientation="vertical" >
 
         <EditText
-            android:id="@+id/question"
+            android:id="@+id/questionBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/question" />
+            android:hint="@string/question_body" />
 
         <LinearLayout
-            android:id="@+id/answers"
+            android:id="@+id/answersContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
         </LinearLayout>
 
         <Button
-            android:id="@+id/addAnswer"
+            android:id="@+id/addAnswerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="addAnswer"
-            android:text="@string/add_answer" />
+            android:onClick="addNewAnswerButton"
+            android:text="@string/add_new_answer" />
 
         <EditText
-            android:id="@+id/tags"
+            android:id="@+id/questionTags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/tags" />
+            android:hint="@string/question_tags" />
 
         <Button
-            android:id="@+id/submit"
+            android:id="@+id/submitButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="submit"
-            android:text="@string/submit" 
+            android:onClick="submitButton"
+            android:text="@string/submit_button" 
             android:enabled="false"/>
     </LinearLayout>
 

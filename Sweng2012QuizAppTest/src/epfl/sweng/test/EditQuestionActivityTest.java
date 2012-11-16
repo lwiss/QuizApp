@@ -1,16 +1,31 @@
 package epfl.sweng.test;
 
+import java.io.IOException;
+
+import org.apache.http.HttpClientConnection;
+import org.apache.http.HttpException;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.message.BasicStatusLine;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.protocol.HttpRequestExecutor;
+
 import com.jayway.android.robotium.solo.Solo;
 
 import epfl.sweng.editquestions.EditQuestionActivity;
-
+import epfl.sweng.entry.MainActivity;
+import epfl.sweng.servercomm.SwengHttpClientFactory;
+import android.content.SharedPreferences;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 
 /**
  * 
- * @author crazybhy
- *
+ * @author Eagles
+ * 
  */
 public class EditQuestionActivityTest extends
 		ActivityInstrumentationTestCase2<EditQuestionActivity> {
@@ -20,13 +35,19 @@ public class EditQuestionActivityTest extends
 	public EditQuestionActivityTest() {
 		super(EditQuestionActivity.class);
 	}
-	
+
 	@Override
 	protected void setUp() throws Exception {
 		solo = new Solo(getInstrumentation(), getActivity());
+		SharedPreferences setting = getActivity().getSharedPreferences(
+				MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
+		SharedPreferences.Editor editor = setting.edit();
+		editor.putString("SESSION_ID", "test");
+		editor.commit();
+		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		Thread.sleep(TIME);
 	}
-	
+
 	public void testInvalidQuestion() {
 		assertTrue("EditText for question available",
 				solo.searchText("Type in the question's text body"));
@@ -133,7 +154,6 @@ public class EditQuestionActivityTest extends
 		solo.scrollDown();
 		Button submit = solo.getButton("Submit");
 		assertTrue("Submit button is enabled", submit.isEnabled());
-		solo.clickOnText("Submit");
 	}
 
 	public void testManipulationAnswers() {
@@ -158,9 +178,6 @@ public class EditQuestionActivityTest extends
 		final int tagNumber = 4;
 		solo.clearEditText(tagNumber);
 		solo.enterText(tagNumber, "history-geography countries");
-		solo.clickOnText("\u2718");
-		solo.clickOnText("\u2714");
-		assertFalse("No answer is setted as true", solo.searchText("\u2714"));
 		solo.clickOnText("\u2718");
 		solo.clickOnText("\u2718");
 		assertFalse("Only one answer is setted as true",
@@ -212,5 +229,44 @@ public class EditQuestionActivityTest extends
 		solo.scrollDown();
 		Button submit = solo.getButton("Submit");
 		assertFalse("Submit button is disabled", submit.isEnabled());
+	}
+
+	/**
+	 * To use this, call SwengHttpClientFactory.setInstance(new
+	 * MockHttpClient()) in your testing code. Remember that the app always has
+	 * to use SwengHttpClientFactory.getInstance() if it needs an HttpClient.
+	 */
+	public class MockHttpClient extends DefaultHttpClient {
+		@Override
+		protected HttpRequestExecutor createRequestExecutor() {
+			return new MockHttpRequestExecutor();
+		}
+	}
+
+	/**
+	 * 
+	 * @author crazybhy
+	 * 
+	 */
+	public class MockHttpRequestExecutor extends HttpRequestExecutor {
+		@Override
+		public HttpResponse execute(final HttpRequest request,
+				final HttpClientConnection conn, final HttpContext context)
+			throws IOException, HttpException {
+			final int statusOk = 201;
+			//final int statusFalse = 201;
+			HttpResponse response = new BasicHttpResponse(new BasicStatusLine(
+					null, statusOk, null));
+			response.setEntity(new StringEntity("{"
+		            + "question: 'What is the answer to life, the universe and everything?', "
+		            + "answers: ['42', '27'],"
+		            + "solutionIndex: 0,"
+		            + "tags : ['h2g2', 'trivia'],"
+		            + "owner : 'anonymous',"
+		            + "id : '123'"
+		            + "}"));
+			response.setHeader("Content-type", "application/json");
+			return response;
+		}
 	}
 }
