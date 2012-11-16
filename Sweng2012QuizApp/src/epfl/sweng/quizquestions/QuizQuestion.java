@@ -22,6 +22,7 @@ public class QuizQuestion {
 	private Set<String> tags;
 	private int id;
 	private String owner;
+
 	public String getOwner() {
 		return owner;
 	}
@@ -36,10 +37,10 @@ public class QuizQuestion {
 	public String getQuestion() {
 		return question;
 	}
+
 	public int getId() {
 		return id;
 	}
-
 
 	public List<String> getAnswers() {
 		return answers;
@@ -52,8 +53,6 @@ public class QuizQuestion {
 	public Set<String> getTags() {
 		return tags;
 	}
-	
-
 
 	public QuizQuestion(String json) throws JSONException {
 		JSONObject jsonObject = new JSONObject(json);

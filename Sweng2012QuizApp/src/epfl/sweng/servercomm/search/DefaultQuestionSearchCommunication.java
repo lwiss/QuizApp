@@ -79,7 +79,6 @@ public class DefaultQuestionSearchCommunication implements
 		return aQuestion;
 	}
 	
-	@Override
 	public List<QuizQuestion> getQuestionsByOwner(String owner)
 		throws CommunicationException {
 		validArgument(owner);
@@ -112,7 +111,7 @@ public class DefaultQuestionSearchCommunication implements
 		return result;
 	}
 
-	@Override
+	
 	public List<QuizQuestion> getQuestionsByTag(String tag)
 		throws CommunicationException {
 		validArgument(tag);
