@@ -155,6 +155,7 @@ public class EditQuestionActivity extends Activity {
 	}
 
 	public int auditErrors() {
+		/*
 		int errors = 0;
 		LinearLayout layout = (LinearLayout) findViewById(R.id.answersContainer);
 		EditText question = (EditText) findViewById(R.id.questionBody);
@@ -205,7 +206,8 @@ public class EditQuestionActivity extends Activity {
 
 		}
 		return errors;
-
+*/
+		return 0;
 	}
 
 	public boolean verifyOneCorrectAnswers(LinearLayout layout) {
