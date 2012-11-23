@@ -325,8 +325,33 @@ ul.auto-toc {
 <div class="document" id="homework-5">
 <h1 class="title">Homework #5</h1>
 
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#introduction" id="id1">1&nbsp;&nbsp;&nbsp;Introduction</a><ul class="auto-toc">
+<li><a class="reference internal" href="#preparation" id="id2">1.1&nbsp;&nbsp;&nbsp;Preparation</a></li>
+<li><a class="reference internal" href="#basic-track-vs-full-track" id="id3">1.2&nbsp;&nbsp;&nbsp;Basic Track vs. Full track</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-track-implementing-quiz-taking-70-points" id="id4">2&nbsp;&nbsp;&nbsp;[Basic Track] Implementing Quiz Taking (70 points)</a><ul class="auto-toc">
+<li><a class="reference internal" href="#server-communication" id="id5">2.1&nbsp;&nbsp;&nbsp;Server Communication</a><ul class="auto-toc">
+<li><a class="reference internal" href="#to-list-all-available-quizzes" id="id6">2.1.1&nbsp;&nbsp;&nbsp;To list all available quizzes</a></li>
+<li><a class="reference internal" href="#to-get-the-questions-of-a-quiz" id="id7">2.1.2&nbsp;&nbsp;&nbsp;To get the questions of a quiz</a></li>
+<li><a class="reference internal" href="#to-hand-in-the-answers-for-a-quiz" id="id8">2.1.3&nbsp;&nbsp;&nbsp;To hand in the answers for a quiz</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extending-the-main-activity-5-points" id="id9">2.2&nbsp;&nbsp;&nbsp;Extending the Main Activity (5 points)</a></li>
+<li><a class="reference internal" href="#showing-the-list-of-available-quizzes-15-points" id="id10">2.3&nbsp;&nbsp;&nbsp;Showing the List of Available Quizzes (15 points)</a></li>
+<li><a class="reference internal" href="#taking-a-quiz-40-points" id="id11">2.4&nbsp;&nbsp;&nbsp;Taking a Quiz (40 points)</a></li>
+<li><a class="reference internal" href="#handing-in-quiz-answers-10-points" id="id12">2.5&nbsp;&nbsp;&nbsp;Handing in Quiz Answers (10 points)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#full-track-code-coverage-30-points" id="id13">3&nbsp;&nbsp;&nbsp;[Full Track] Code Coverage (30 points)</a></li>
+<li><a class="reference internal" href="#final-checklist" id="id14">4&nbsp;&nbsp;&nbsp;Final Checklist</a></li>
+</ul>
+</div>
 <div class="section" id="introduction">
-<h1>1. Introduction</h1>
+<h1><a class="toc-backref" href="#id1">1&nbsp;&nbsp;&nbsp;Introduction</a></h1>
 <p>In this homework, you will implement a quiz taking feature in your
 quiz app.  A quiz is a collection of quiz questions that the user can
 answer and receive a score on.  The user can choose to take a quiz
@@ -344,7 +369,7 @@ doubts about whether it is appropriate to ask something, mark the
 question private. You are allowed to use Web search to find answers to
 questions.</p>
 <div class="section" id="preparation">
-<h2>Preparation</h2>
+<h2><a class="toc-backref" href="#id2">1.1&nbsp;&nbsp;&nbsp;Preparation</a></h2>
 <p>As for all previous and future homework assignments, you should
 regularly commit your work, push it to your repository, and build it
 on the <a class="reference external" href="http://jenkins.epfl.ch/">Jenkins</a> server.</p>
@@ -359,7 +384,7 @@ deadline to make sure everything works as expected.</p>
 be graded.</p>
 </div>
 <div class="section" id="basic-track-vs-full-track">
-<h2>Basic Track vs. Full track</h2>
+<h2><a class="toc-backref" href="#id3">1.2&nbsp;&nbsp;&nbsp;Basic Track vs. Full track</a></h2>
 <p>This homework has two parts:</p>
 <ul class="simple">
 <li>The basic track implements the app's functionality: the GUI and the
@@ -377,13 +402,14 @@ test-driven development.</p>
 </div>
 </div>
 <div class="section" id="basic-track-implementing-quiz-taking-70-points">
-<h1>2. [Basic Track] Implementing Quiz Taking (70 points)</h1>
+<h1><a class="toc-backref" href="#id4">2&nbsp;&nbsp;&nbsp;[Basic Track] Implementing Quiz Taking (70 points)</a></h1>
 <div class="section" id="server-communication">
-<h2>2.0. Server Communication</h2>
+<h2><a class="toc-backref" href="#id5">2.1&nbsp;&nbsp;&nbsp;Server Communication</a></h2>
 <p>This section describes the server protocol used to list, retrieve, and
 hand in quizzes.  You will use this information to implement the quiz
 taking functionality in subsections 2.1. - 2.4.</p>
-<p><strong>To list all available quizzes</strong></p>
+<div class="section" id="to-list-all-available-quizzes">
+<h3><a class="toc-backref" href="#id6">2.1.1&nbsp;&nbsp;&nbsp;To list all available quizzes</a></h3>
 <p><em>Request:</em></p>
 <p>The following query returns a list of all quizzes available to an
 authenticated user.</p>
@@ -419,7 +445,9 @@ error message describing the error in more detail:</p>
   <span style="color: #BA2121">&quot;message&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;error message&quot;</span>
 }
 </pre></div>
-<p><strong>To get the questions of a quiz</strong></p>
+</div>
+<div class="section" id="to-get-the-questions-of-a-quiz">
+<h3><a class="toc-backref" href="#id7">2.1.2&nbsp;&nbsp;&nbsp;To get the questions of a quiz</a></h3>
 <p><em>Request:</em></p>
 <p>To obtain a particular quiz on the server, the user must send the
 following request to the server:</p>
@@ -474,7 +502,9 @@ The body of the response explains the error in more detail:</p>
   <span style="color: #BA2121">&quot;message&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;error message&quot;</span>
 }
 </pre></div>
-<p><strong>To hand in the answers for a quiz</strong></p>
+</div>
+<div class="section" id="to-hand-in-the-answers-for-a-quiz">
+<h3><a class="toc-backref" href="#id8">2.1.3&nbsp;&nbsp;&nbsp;To hand in the answers for a quiz</a></h3>
 <p><em>Request:</em></p>
 <p>When the user submits the answers to the quiz questions, the following
 request is sent to the server:</p>
@@ -533,8 +563,9 @@ The body explains the error in more detail:</p>
 }
 </pre></div>
 </div>
+</div>
 <div class="section" id="extending-the-main-activity-5-points">
-<h2>2.1. Extending the Main Activity (5 points)</h2>
+<h2><a class="toc-backref" href="#id9">2.2&nbsp;&nbsp;&nbsp;Extending the Main Activity (5 points)</a></h2>
 <p>Add a button called &quot;Take a Quiz&quot; to the <tt class="docutils literal">MainActivity</tt> activity.</p>
 <div class="admonition-grading admonition">
 <p class="first admonition-title">Grading</p>
@@ -545,12 +576,13 @@ points. This rule applies to all other texts in the homework.</p>
 </div>
 </div>
 <div class="section" id="showing-the-list-of-available-quizzes-15-points">
-<h2>2.2. Showing the List of Available Quizzes (15 points)</h2>
+<h2><a class="toc-backref" href="#id10">2.3&nbsp;&nbsp;&nbsp;Showing the List of Available Quizzes (15 points)</a></h2>
 <p>When pressed, the &quot;Take a Quiz&quot; button opens up an activity called
-<tt class="docutils literal">ShowAvailableQuizzesActivity</tt>.  This <tt class="docutils literal">Activity</tt> should be in a package named
-<tt class="docutils literal">epfl.sweng.quizzes</tt>.  This activity queries the server for all quizzes
-available to the user.  For each quiz, a widget containing its title is
-displayed.</p>
+<tt class="docutils literal">ShowAvailableQuizzesActivity</tt>.  This <tt class="docutils literal">Activity</tt> should be in a
+package named <tt class="docutils literal">epfl.sweng.quizzes</tt>.  This activity queries the
+server for all quizzes available to the user, as explained in the <a class="reference internal" href="#to-list-all-available-quizzes">To
+list all available quizzes</a> section.  For each quiz, a widget
+containing its title is displayed.</p>
 <p>We suggest you have a look at the documentation for the <a class="reference external" href="http://developer.android.com/reference/android/app/ListActivity.html">ListActivity</a> class.</p>
 <p>If there are no quizzes available, the activity should show the text &quot;There are
 no quizzes available at the moment.&quot; Nothing should happen when the user taps
@@ -561,9 +593,10 @@ may show a more detailed error message to the user, but ensure that you include
 the text &quot;An error occurred while fetching quizzes.&quot; for grading purposes.</p>
 </div>
 <div class="section" id="taking-a-quiz-40-points">
-<h2>2.3. Taking a Quiz (40 points)</h2>
+<h2><a class="toc-backref" href="#id11">2.4&nbsp;&nbsp;&nbsp;Taking a Quiz (40 points)</a></h2>
 <p>When the user taps on the name of a quiz, the corresponding quiz is
-retrieved from the server and is displayed in a new activity called
+retrieved from the server as explained in the <a class="reference internal" href="#to-get-the-questions-of-a-quiz">To get the questions of
+a quiz</a> section, and is displayed in a new activity called
 <tt class="docutils literal">ShowQuizActivity</tt>.  This activity must be in the package
 <tt class="docutils literal">epfl.sweng.quizzes</tt>.</p>
 <p>The general look and operation of the quiz is described below:</p>
@@ -574,29 +607,32 @@ list returned by the server <strong>(5 points)</strong>.</p>
 </li>
 <li><p class="first">Your app should display the question text.</p>
 </li>
-<li><p class="first">Your activity should display a list of possible answers.
-Here is how an answer is structured <strong>(15 points)</strong>:</p>
+<li><p class="first">Your activity should display a list of possible answers.  Here is
+how an answer is structured <strong>(15 points)</strong>:</p>
 <blockquote>
 <ul class="simple">
-<li>Your app should display the answer text in a <tt class="docutils literal">TextView</tt> element.</li>
-<li>The user can tap on the answer that (s)he thinks is the correct one.
-In that case, an asterisk symbol (✤ , U+2724 HEAVY FOUR BALLOON-SPOKED ASTERISK)
-must be displayed
-next to that answer. You may either append the asterisk to the answer text,
-or put it in another <tt class="docutils literal">TextView</tt> close by.</li>
-<li>When the user chooses one answer, an asterisk must be removed from all other
-answers; there can be at most one answer with an asterisk at a time.</li>
-<li>If the user taps on the answer with the asterisk, your app must remove the asterisk.
-This enables the users to change their mind and leave a question
-unanswered.</li>
+<li>Your app should display the answer text in a <tt class="docutils literal">TextView</tt>
+element.</li>
+<li>The user can tap on the answer that (s)he thinks is the
+correct one.  In that case, an asterisk symbol (✤ , U+2724
+HEAVY FOUR BALLOON-SPOKED ASTERISK) must be displayed next to
+that answer. You may either append the asterisk to the answer
+text, or put it in another <tt class="docutils literal">TextView</tt> close by.</li>
+<li>When the user chooses one answer, an asterisk must be removed
+from all other answers; there can be at most one answer with
+an asterisk at a time.</li>
+<li>If the user taps on the answer with the asterisk, your app
+must remove the asterisk.  This enables the users to change
+their mind and leave a question unanswered.</li>
 <li>Initially, no questions are marked with an asterisk.</li>
 </ul>
 </blockquote>
 </li>
 <li><p class="first">Finally, you should have 3 buttons with the following labels:
-&quot;Next question&quot;, &quot;Previous question&quot;, and &quot;Hand in quiz&quot;.
-These buttons can be displayed in any form, but their text must be
-exactly &quot;Next question&quot;, &quot;Previous question&quot;, and &quot;Hand in quiz&quot; <strong>(5 points)</strong>.</p>
+&quot;Next question&quot;, &quot;Previous question&quot;, and &quot;Hand in quiz&quot;.  These
+buttons can be displayed in any form, but their text must be
+exactly &quot;Next question&quot;, &quot;Previous question&quot;, and &quot;Hand in quiz&quot;
+<strong>(5 points)</strong>.</p>
 </li>
 </ul>
 </blockquote>
@@ -613,10 +649,11 @@ may do other fancy things in this case, e.g., disable buttons or show
 additional messages <strong>(5 points)</strong>.</p>
 </div>
 <div class="section" id="handing-in-quiz-answers-10-points">
-<h2>2.4. Handing in Quiz Answers (10 points)</h2>
+<h2><a class="toc-backref" href="#id12">2.5&nbsp;&nbsp;&nbsp;Handing in Quiz Answers (10 points)</a></h2>
 <p>When the &quot;Hand in Quiz&quot; <tt class="docutils literal">Button</tt> is tapped, your app should send the
 answers marked with an asterisk for the questions to the server for
-grading.  When the server replies, the UI displays an <a class="reference external" href="http://developer.android.com/reference/android/app/AlertDialog.html">AlertDialog</a>.</p>
+grading, as explained in the <a class="reference internal" href="#to-hand-in-the-answers-for-a-quiz">To hand in the answers for a quiz</a>
+section.  When the server replies, the UI displays an <a class="reference external" href="http://developer.android.com/reference/android/app/AlertDialog.html">AlertDialog</a>.</p>
 <p>The text in the <tt class="docutils literal">AlertDialog</tt> must be: &quot;Your score is &lt;score&gt;&quot; (e.g., Your
 score is 4.00).  You must display the score with two digits after the decimal
 point. You may include additional text if you want (e.g., the maximum number of
@@ -631,7 +668,7 @@ instead of the normal text.</p>
 </div>
 </div>
 <div class="section" id="full-track-code-coverage-30-points">
-<h1>3. [Full Track] Code Coverage (30 points)</h1>
+<h1><a class="toc-backref" href="#id13">3&nbsp;&nbsp;&nbsp;[Full Track] Code Coverage (30 points)</a></h1>
 <p>Now that you have implemented the basic track for this homework, it is
 time to verify that your code performs as expected. Check this by
 writing unit tests for your application. The goal for the tests you
@@ -655,7 +692,7 @@ full points for this part of the homework.</p>
 </div>
 </div>
 <div class="section" id="final-checklist">
-<h1>4. Final Checklist</h1>
+<h1><a class="toc-backref" href="#id14">4&nbsp;&nbsp;&nbsp;Final Checklist</a></h1>
 <p>Grading for this homework will be completely automated. This means that your
 homework's project structure, code, package names, button labels, <tt class="docutils literal">Activity</tt>
 names, etc., must conform to the rules below. Otherwise, our servers will not be able to
@@ -720,8 +757,8 @@ git repository, where <tt class="docutils literal">&lt;reponame&gt;</tt> is the 
 </li>
 </ul>
 <p>Good luck and have fun!</p>
-<!-- 5. Post Scriptum
-================ -->
+<!-- Post Scriptum
+============= -->
 <!-- Oh... a student that looks at the source code of an assignment.
 Interesting... -->
 <!-- Just wanted to tell you that it's too bad that the server does not
