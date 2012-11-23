@@ -580,15 +580,16 @@ Here is how an answer is structured <strong>(15 points)</strong>:</p>
 <ul class="simple">
 <li>Your app should display the answer text in a <tt class="docutils literal">TextView</tt> element.</li>
 <li>The user can tap on the answer that (s)he thinks is the correct one.
-In that case, a flag symbol (⚑, U+2691 BLACK FLAG) must be displayed
-next to that answer. You may either append the flag to the answer text,
+In that case, an asterisk symbol (✤ , U+2724 HEAVY FOUR BALLOON-SPOKED ASTERISK)
+must be displayed
+next to that answer. You may either append the asterisk to the answer text,
 or put it in another <tt class="docutils literal">TextView</tt> close by.</li>
-<li>When the user flags one answer, a flag must be removed from all other
-answers; there can be at most one flagged answer at a time.</li>
-<li>If the user taps on the flagged answer, your app must unflag it.
+<li>When the user chooses one answer, an asterisk must be removed from all other
+answers; there can be at most one answer with an asterisk at a time.</li>
+<li>If the user taps on the answer with the asterisk, your app must remove the asterisk.
 This enables the users to change their mind and leave a question
 unanswered.</li>
-<li>Initially, no questions are flagged.</li>
+<li>Initially, no questions are marked with an asterisk.</li>
 </ul>
 </blockquote>
 </li>
@@ -613,9 +614,9 @@ additional messages <strong>(5 points)</strong>.</p>
 </div>
 <div class="section" id="handing-in-quiz-answers-10-points">
 <h2>2.4. Handing in Quiz Answers (10 points)</h2>
-<p>When the &quot;Hand in Quiz&quot; <tt class="docutils literal">Button</tt> is tapped, your app should send the flagged
-answers for the questions to the server for grading.  When the server replies,
-the UI displays an <a class="reference external" href="http://developer.android.com/reference/android/app/AlertDialog.html">AlertDialog</a>.</p>
+<p>When the &quot;Hand in Quiz&quot; <tt class="docutils literal">Button</tt> is tapped, your app should send the
+answers marked with an asterisk for the questions to the server for
+grading.  When the server replies, the UI displays an <a class="reference external" href="http://developer.android.com/reference/android/app/AlertDialog.html">AlertDialog</a>.</p>
 <p>The text in the <tt class="docutils literal">AlertDialog</tt> must be: &quot;Your score is &lt;score&gt;&quot; (e.g., Your
 score is 4.00).  You must display the score with two digits after the decimal
 point. You may include additional text if you want (e.g., the maximum number of
@@ -624,7 +625,6 @@ points).</p>
 button use the <a class="reference external" href="http://developer.android.com/reference/android/app/AlertDialog.Builder.html#setPositiveButton(int,android.content.DialogInterface.OnClickListener)">setPositiveButton</a> method of the <tt class="docutils literal">AlertDialog.Builder</tt>
 class. When the user taps the button, the user should be able to change the
 answers and resubmit until (s)he is satisfied with the score.</p>
-<!--  -->
 <p>If anything goes wrong while handing in quiz answers, you should display the
 text &quot;An error occurred while handing in your answers&quot; in the <tt class="docutils literal">AlertDialog</tt>
 instead of the normal text.</p>
@@ -658,8 +658,67 @@ full points for this part of the homework.</p>
 <h1>4. Final Checklist</h1>
 <p>Grading for this homework will be completely automated. This means that your
 homework's project structure, code, package names, button labels, <tt class="docutils literal">Activity</tt>
-names, etc., must conform to the rules above. Otherwise, our servers will not be able to
+names, etc., must conform to the rules below. Otherwise, our servers will not be able to
 automatically grade your homework, and you will lose points.</p>
+<p>Here is a recap of the rules your homework must obey:</p>
+<ul>
+<li><p class="first">Rules set in the previous homeworks regarding the project structure still apply</p>
+</li>
+<li><p class="first">Your <tt class="docutils literal">${REPO}</tt> must have the following folder structure:</p>
+<pre class="literal-block">
+${REPO}
+├── Sweng2012QuizApp
+|   ├── assets
+|   ├── libs
+|   ├── res
+|   └── src
+|       └── epfl
+|           └── sweng
+|               ├── authentication
+|               |   └── AuthenticationActivity.java
+|               ├── editquestions
+|               |   └── EditQuestionActivity.java
+|               ├── entry
+|               |   └── MainActivity.java
+|               ├── quizquestions
+|               |   └── QuizQuestion.java
+|               ├── quizzes
+|               |   ├── ShowAvailableQuizzesActivity.java
+|               |   └── ShowQuizActivity.java
+|               └── showquestions
+|                   └── ShowQuestionsActivity.java
+└── Sweng2012QuizAppTest
+ &nbsp;&nbsp; ├── assets
+ &nbsp;&nbsp; ├── libs
+ &nbsp;&nbsp; ├── res
+ &nbsp;&nbsp; └── src
+ &nbsp;&nbsp;     └── epfl
+ &nbsp;&nbsp;         └── sweng
+                └── test
+</pre>
+</li>
+<li><p class="first">You can have additional classes in the <tt class="docutils literal">epfl.sweng</tt> package</p>
+</li>
+<li><p class="first">The following command must fully compile and install your app in an emulator:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizApp
+<span style="color: #19177C">$ </span>ant clean debug install
+</pre></div>
+</li>
+<li><p class="first">The following command must run your installed app on an emulator:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.entry.MainActivity
+</pre></div>
+</li>
+<li><p class="first">The following command must compile and run all your tests:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+</pre></div>
+</li>
+<li><p class="first">The rules defined in Homework #1 for accessing the network still apply</p>
+</li>
+<li><p class="first">Your code must be committed to the <tt class="docutils literal"><span class="pre">https://github.com/dslab-epfl/&lt;reponame&gt;.git</span></tt>
+git repository, where <tt class="docutils literal">&lt;reponame&gt;</tt> is the name of your team's repository</p>
+</li>
+</ul>
 <p>Good luck and have fun!</p>
 <!-- 5. Post Scriptum
 ================ -->
