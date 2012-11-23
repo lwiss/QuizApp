@@ -23,6 +23,7 @@
 	<string name="like">Like</string>
 	<string name="dislike">Dislike</string>
 	<string name="incorrect">Incorrect</string>
+	<string name="take_quiz">Take a Quiz</string>
 	<string name="noRate">You have not rated this question</string>
 	
 </resources>
