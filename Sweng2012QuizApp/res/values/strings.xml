@@ -16,5 +16,10 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="submit_question">Submit quiz question</string>
     <string name="show_question">Show a random question</string>
+    <string name="title_activity_authentication">AuthenticationActivity</string>
+    <string name="username">GASPAR Username</string>
+    <string name="password">GASPAR Password</string>
+	<string name="login">Log in using Tequila</string>
+	<string name="logout">Log out</string>
 
 </resources>

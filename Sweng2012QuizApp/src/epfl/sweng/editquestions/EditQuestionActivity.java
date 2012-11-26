@@ -181,7 +181,7 @@ public class EditQuestionActivity extends Activity {
 			ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 			if (networkInfo != null && networkInfo.isConnected()) {
-				new SubmitQuestionAsyncTask().execute(quizQuestion);
+				new SubmitQuestionAsyncTask().execute(quizQuestion, this);
 				initializeActivity();
 			}
 		}

@@ -11,10 +11,12 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.json.JSONException;
 
 import epfl.sweng.R;
+import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -38,13 +40,15 @@ public class FetchQuestionAsyncTask extends
 	protected QuizQuestion doInBackground(ShowQuestionsActivity... params) {
 		activity = params[0];
 		HttpGet httpGet = new HttpGet(URL);
+		SharedPreferences preference = activity.getSharedPreferences(MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
+		String sessionId = preference.getString("SESSION_ID", null);
+		httpGet.setHeader("Authorization", "Tequila "+sessionId);
 		ResponseHandler<String> handler = new BasicResponseHandler();
 		String response = "";
 		QuizQuestion quizQuestion = null;
 		try {
 			response = SwengHttpClientFactory.getInstance().execute(httpGet,
 					handler);
-			Log.d("Response", response);
 			quizQuestion = new QuizQuestion(response);
 		} catch (IOException e) {
 			quizQuestion = new QuizQuestion(
