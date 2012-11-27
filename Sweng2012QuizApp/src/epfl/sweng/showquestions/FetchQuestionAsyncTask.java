@@ -35,13 +35,14 @@ public class FetchQuestionAsyncTask extends
 		AsyncTask<ShowQuestionsActivity, String, QuizQuestion> {
 	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
 	private ShowQuestionsActivity activity;
+	private String sessionId;
 
 	@Override
 	protected QuizQuestion doInBackground(ShowQuestionsActivity... params) {
 		activity = params[0];
 		HttpGet httpGet = new HttpGet(URL);
 		SharedPreferences preference = activity.getSharedPreferences(MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
-		String sessionId = preference.getString("SESSION_ID", null);
+		sessionId = preference.getString("SESSION_ID", null);
 		httpGet.setHeader("Authorization", "Tequila "+sessionId);
 		ResponseHandler<String> handler = new BasicResponseHandler();
 		String response = "";

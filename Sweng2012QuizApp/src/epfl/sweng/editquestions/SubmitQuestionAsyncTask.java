@@ -18,7 +18,6 @@ import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.util.Log;
 
 /**
  * 
@@ -37,7 +36,6 @@ public class SubmitQuestionAsyncTask extends
 		QuizQuestion question = (QuizQuestion) params[0];
 		SharedPreferences preference = activity.getSharedPreferences(MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
 		sessionId = preference.getString("SESSION_ID", null);
-		Log.d("Session ID", sessionId);
 		JSONObject json = new JSONObject();
 		try {
 			json.put("question", question.getQuestion());

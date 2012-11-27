@@ -1,8 +1,23 @@
 package epfl.sweng.test;
 
+import java.io.IOException;
+
+import org.apache.http.HttpClientConnection;
+import org.apache.http.HttpException;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.message.BasicStatusLine;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.protocol.HttpRequestExecutor;
+
 import com.jayway.android.robotium.solo.Solo;
 
 import epfl.sweng.editquestions.EditQuestionActivity;
+import epfl.sweng.servercomm.SwengHttpClientFactory;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
@@ -23,6 +38,7 @@ public class EditQuestionActivityTest extends
 	
 	@Override
 	protected void setUp() throws Exception {
+		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 	}
@@ -204,8 +220,28 @@ public class EditQuestionActivityTest extends
 		assertTrue("Submit button is enabled", submit.isEnabled());
 	}
 
-	public void testSubmitClick() {
-
+	public void testSubmitClickNoConnection() {
+		assertTrue("EditText for question available",
+				solo.searchText("Type in the question's text body"));
+		solo.clearEditText(0);
+		solo.enterText(0, "2+2=?");
+		assertTrue("First EditText for answers available",
+				solo.searchText("Type in the answer"));
+		solo.clearEditText(1);
+		solo.enterText(1, "3");
+		assertTrue("Second EditText for answers available",
+				solo.searchText("Type in the answer"));
+		solo.clearEditText(2);
+		solo.enterText(2, "4");
+		solo.clickOnText("\u2718", 2);
+		final int tagNumber = 3;
+		solo.clearEditText(tagNumber);
+		solo.enterText(tagNumber, "history-geography countries");
+		solo.scrollDown();
+		solo.scrollDown();
+		Button submit = solo.getButton("Submit");
+		assertTrue("Submit button is enabled", submit.isEnabled());
+		solo.clickOnText("Submit");
 	}
 
 	public void testSubmitEnabled() {
@@ -213,4 +249,36 @@ public class EditQuestionActivityTest extends
 		Button submit = solo.getButton("Submit");
 		assertFalse("Submit button is disabled", submit.isEnabled());
 	}
+	
+	/**
+	 * To use this, call SwengHttpClientFactory.setInstance(new
+	 * MockHttpClient()) in your testing code. Remember that the app always has
+	 * to use SwengHttpClientFactory.getInstance() if it needs an HttpClient.
+	 */
+	public class MockHttpClient extends DefaultHttpClient {
+		@Override
+		protected HttpRequestExecutor createRequestExecutor() {
+			return new MockHttpRequestExecutor();
+		}
+	}
+
+	/**
+	 * 
+	 * @author crazybhy
+	 * 
+	 */
+	public class MockHttpRequestExecutor extends HttpRequestExecutor {
+		@Override
+		public HttpResponse execute(final HttpRequest request,
+			final HttpClientConnection conn, final HttpContext context)
+			throws IOException, HttpException {
+			final int statusNoConnected = 401;
+			HttpResponse response = new BasicHttpResponse(new BasicStatusLine(
+					HttpVersion.HTTP_1_1, statusNoConnected, "OK"));
+			response.setEntity(new StringEntity("{"+ "\"message\": \"Please log in at /login\"" + " }"));
+			response.setHeader("Content-type", "application/json;charset=utf-8");
+			return response;
+		}
+	}
+	
 }
