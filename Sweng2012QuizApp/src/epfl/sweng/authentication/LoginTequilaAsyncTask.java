@@ -51,7 +51,7 @@ public class LoginTequilaAsyncTask extends AsyncTask<Object, String, String> {
 	}
 	
 	protected String step1and2() {
-		String token = "";
+		String token = null;
 		int status = -1;
 		try {
 			HttpGet httpGet = new HttpGet(SWENG_SERVER_URL);
@@ -91,7 +91,7 @@ public class LoginTequilaAsyncTask extends AsyncTask<Object, String, String> {
 	}
 	
 	protected String step5and6(String token) {
-		String session = "";
+		String session = null;
 		int status = -1;
 		try {
 			HttpPost httpPost = new HttpPost(SWENG_SERVER_URL);
