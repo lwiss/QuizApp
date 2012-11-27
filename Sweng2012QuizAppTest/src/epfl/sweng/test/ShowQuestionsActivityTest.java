@@ -38,8 +38,8 @@ public class ShowQuestionsActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
-		solo = new Solo(getInstrumentation(), getActivity());
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
+		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 	}
 

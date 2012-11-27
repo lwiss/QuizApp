@@ -22,8 +22,8 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences setting = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-		if (setting.getString("SESSION_ID", null)==null) {
+        SharedPreferences settings = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+		if (settings.getString("SESSION_ID", null)==null) {
 			Intent intent = new Intent(MainActivity.this, AuthenticationActivity.class);
 			startActivity(intent);
 		}

@@ -9,12 +9,11 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
@@ -57,17 +56,30 @@ public class LoginTequilaAsyncTask extends AsyncTask<Object, String, String> {
 	protected String step1and2() {
 		String token ="";
 		HttpGet httpGet = new HttpGet(SWENG_SERVER_URL);
-		ResponseHandler<String> handler = new BasicResponseHandler();
-		String response = "";
+		AbstractHttpClient httpClient = SwengHttpClientFactory.getInstance();
+		HttpResponse response = null;
 		try {
-			response = SwengHttpClientFactory.getInstance().execute(httpGet,
-					handler);
+			response = httpClient.execute(httpGet);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			Log.d("ERROR1", "ClientProtocolException");
 		} catch (IOException e) {
-			Log.d("CONNECTION ERROR", "Error retrieving the token");
+			// TODO Auto-generated catch block
+			Log.d("ERROR1", "IOException");
+		}
+		String responseString = null;
+		try {
+			responseString = EntityUtils.toString(response.getEntity());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			Log.d("ERROR2", "ParseException");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			Log.d("ERROR2", "IOException");
 		}
 		JSONObject jsonObject = null;
 		try {
-			jsonObject = new JSONObject(response);
+			jsonObject = new JSONObject(responseString);
 			token = jsonObject.getString("token");
 		} catch (JSONException e) {
 			Log.d("JSON ERROR", "Error due to the Json");

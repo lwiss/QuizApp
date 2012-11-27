@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:id="@+id/login"
-        android:onClick="login"
-        android:visibility="visible" />
+        android:onClick="login" />
 
 </LinearLayout>
