@@ -18,6 +18,7 @@ import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
 
 /**
  * 
@@ -27,12 +28,16 @@ import android.os.AsyncTask;
 public class SubmitQuestionAsyncTask extends
 		AsyncTask<Object, String, String> {
 	private EditQuestionActivity activity;
+	private String sessionId;
 	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/";
 
 	@Override
 	protected String doInBackground(Object... params) {
 		activity = (EditQuestionActivity) params[1];
 		QuizQuestion question = (QuizQuestion) params[0];
+		SharedPreferences preference = activity.getSharedPreferences(MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
+		sessionId = preference.getString("SESSION_ID", null);
+		Log.d("Session ID", sessionId);
 		JSONObject json = new JSONObject();
 		try {
 			json.put("question", question.getQuestion());
@@ -47,8 +52,6 @@ public class SubmitQuestionAsyncTask extends
 		try {
 			post.setEntity(new StringEntity(json.toString()));
 			post.setHeader(new BasicHeader("Content-type", "application/json"));
-			SharedPreferences preference = activity.getSharedPreferences(MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
-			String sessionId = preference.getString("SESSION_ID", null);
 			post.setHeader("Authorization", "Tequila "+sessionId);
 			ResponseHandler<String> handler = new BasicResponseHandler();
 			HttpClient client = SwengHttpClientFactory.getInstance();

@@ -39,6 +39,10 @@ public class MainActivityTest extends
 		solo.goBackToActivity("MainActivity");
 		solo.clickOnText("Show a random question");
 		solo.searchText("ShowQuestionsActivity");
+		solo.goBackToActivity("MainActivity");
+		solo.clickOnText("Log out");
+		solo.searchButton("Log in using Tequila");
+		solo.searchText("Log in using Tequila");
 	}
 
 }
