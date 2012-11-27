@@ -43,9 +43,11 @@ public class LoginTequilaAsyncTask extends AsyncTask<Object, String, String> {
 		activity = (AuthenticationActivity) arg0[2];
 		String session = null;
 		String token = step1and2();
-		int status = step3and4((String) arg0[0], (String) arg0[1], token);
-		if (status==TEQUILA_SUCCES_STATUS) {
-			session = step5and6(token);
+		if (token!=null) {
+			int status = step3and4((String) arg0[0], (String) arg0[1], token);
+			if (status==TEQUILA_SUCCES_STATUS) {
+				session = step5and6(token);
+			}	
 		}
 		return session;
 	}
