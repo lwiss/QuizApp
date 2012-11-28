@@ -21,5 +21,32 @@
         android:layout_height="wrap_content"
         android:enabled="false"
         android:text="@string/next_question" />
+    
+    <Button
+        android:id="@+id/like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="like"
+        android:text="@string/like" />
+
+    <Button
+        android:id="@+id/dislike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="dislike"
+        android:text="@string/dislike" />
+
+    <Button
+        android:id="@+id/incorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="incorrect"
+        android:text="@string/incorrect" />
+
+    <TextView
+        android:id="@+id/userRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/noRate" />
 
 </LinearLayout>
