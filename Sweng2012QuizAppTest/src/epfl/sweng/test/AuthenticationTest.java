@@ -59,7 +59,8 @@ public class AuthenticationTest extends
 		solo.enterText(0, "username");
 		solo.clearEditText(1);
 		solo.enterText(1, "password");
-		solo.clickOnText("Log in using Tequila");		
+		solo.clickOnText("Log in using Tequila");
+		assertFalse(solo.searchText("Authentication failed"));
 	}
 
 	/**
