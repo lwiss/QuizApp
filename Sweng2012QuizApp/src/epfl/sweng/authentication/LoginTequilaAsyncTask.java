@@ -63,9 +63,9 @@ public class LoginTequilaAsyncTask extends AsyncTask<Object, String, String> {
 			JSONObject jsonObject = new JSONObject(responseString);
 			token = jsonObject.getString("token");
 		} catch (JSONException e) {
-			return step1and2();
+			e.printStackTrace();
 		} catch (IOException e) {
-			return step1and2();
+			e.printStackTrace();
 		} finally {
 			Log.e("SERVER", "Replied with status code " +  status);
 		}
@@ -114,9 +114,9 @@ public class LoginTequilaAsyncTask extends AsyncTask<Object, String, String> {
 				}
 			}
 		} catch (JSONException e) {
-			return step5and6(token);
+			e.printStackTrace();
 		} catch (IOException e) {
-			return step5and6(token);
+			e.printStackTrace();
 		} finally {
 			Log.e("SERVER", "Replied with status code " + status);
 		}
