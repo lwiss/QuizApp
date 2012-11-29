@@ -35,6 +35,13 @@
             android:name=".authentication.AuthenticationActivity"
             android:label="@string/title_activity_authentication" >
         </activity>
+        <activity
+            android:name=".quizzes.ShowAvailableQuizzesActivity"
+            android:label="@string/title_activity_show_available_quizzes" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.app.ListActivity" />
+        </activity>
     </application>
 
 </manifest>

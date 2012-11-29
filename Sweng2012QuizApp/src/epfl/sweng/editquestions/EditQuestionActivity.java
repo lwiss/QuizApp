@@ -210,4 +210,182 @@ public class EditQuestionActivity extends Activity {
 			solutionIndex = -1;
 		}
 	}
+	
+	public int auditErrors() {
+		int nbErrors = 0;
+		/*
+		// Exercise 2:
+		if (!correctQuestionEditText()) {
+			nbErrors++;
+		}
+		if (!correctAnswersEditText()) {
+			nbErrors++;
+		}
+		if (!correctTagsEditText()) {
+			nbErrors++;
+		}
+		// Exercise 3:
+		if (!existAddButton()) {
+			nbErrors++;
+		}
+		if (!existSubmitButton()) {
+			nbErrors++;
+		}
+		if (!existRemoveAnswerButtons()) {
+			nbErrors++;
+		}
+		if (!existMarkAsAnswerButtons()) {
+			nbErrors++;
+		}
+		// Exercise 4:
+		if (!maxOneCorrectAnswers()) {
+			nbErrors++;
+		}
+		// Exercise 5:
+		if(!okSubmitButtonStatut())
+		{
+			nbErrors++;
+		}
+		*/
+		return nbErrors;
+	}
+	/*
+	// Priority 2.1:
+	public boolean correctQuestionEditText() {
+		EditText question = (EditText) findViewById(R.id.question);
+		if (question != null
+				&& question.getHint().equals("Type in the question's text body")
+				&& question.getVisibility() == EditText.VISIBLE) {
+			return true;
+		}
+		return false;
+	}
+
+	// Priority 2.2:
+	public boolean correctAnswersEditText() {
+		LinearLayout answersContainer = (LinearLayout) findViewById(R.id.answers);
+		if (answersContainer != null && answersContainer.getChildCount() > 0) {
+			for (int i = 0; i < answersContainer.getChildCount(); i++) {
+				LinearLayout answerLine = (LinearLayout) answersContainer
+						.getChildAt(i);
+				EditText answerText = (EditText) answerLine.getChildAt(0);
+				if (!answerText.getHint().equals("Type in the answer")
+						|| answerText.getVisibility() != EditText.VISIBLE) {
+					return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	// Priority 2.3:
+	public boolean correctTagsEditText() {
+		EditText tags = (EditText) findViewById(R.id.tags);
+		if (tags != null && tags.getHint().equals("Type in the question's tags")
+				&& tags.getVisibility() == EditText.VISIBLE) {
+			return true;
+		}
+		return false;
+	}
+
+	// Priority 3.1
+	public boolean existAddButton() {
+		Button addButton = (Button) findViewById(R.id.addAnswer);
+		if (addButton != null && addButton.getText().equals("\u002B")
+				&& addButton.getVisibility() == Button.VISIBLE) {
+			return true;
+		}
+		return false;
+	}
+
+	// Priority 3.2:
+	public boolean existSubmitButton() {
+		Button submitButton = (Button) findViewById(R.id.submit);
+		if (submitButton != null && submitButton.getText().equals("Submit")
+				&& submitButton.getVisibility() == Button.VISIBLE) {
+			return true;
+		}
+		return false;
+	}
+
+	// Priority 3.3
+	public boolean existRemoveAnswerButtons() {
+		LinearLayout answersContainer = (LinearLayout) findViewById(R.id.answers);
+		for (int i = 0; i < answersContainer.getChildCount(); i++) {
+			LinearLayout answerLine = (LinearLayout) answersContainer
+					.getChildAt(i);
+			Button removeAnswerButton = (Button) answerLine.getChildAt(2);
+			if (!removeAnswerButton.getText().equals("\u002D")
+					|| removeAnswerButton.getVisibility() != Button.VISIBLE) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// Priority 3.4
+	public boolean existMarkAsAnswerButtons() {
+		LinearLayout answersContainer = (LinearLayout) findViewById(R.id.answers);
+		for (int i = 0; i < answersContainer.getChildCount(); i++) {
+			LinearLayout answerLine = (LinearLayout) answersContainer
+					.getChildAt(i);
+			Button markAsAnswerButton = (Button) answerLine.getChildAt(1);
+			if ((!markAsAnswerButton.getText().equals(HEAVY_BALLOT) && !markAsAnswerButton
+					.getText().equals(HEAVY_CHECK_MARK))
+					|| markAsAnswerButton.getVisibility() != Button.VISIBLE) {
+				return false;
+			}
+		}
+		return true;
+	}
+	// Priority 4
+	public boolean maxOneCorrectAnswers() {
+		LinearLayout answersContainer = (LinearLayout) findViewById(R.id.answers);
+		int numberCorrectAnswers = 0;
+		for (int i = 0; i < answersContainer.getChildCount(); i++) {
+			LinearLayout answerLine = (LinearLayout) answersContainer
+					.getChildAt(i);
+			Button markAsAnswerButton = (Button) answerLine.getChildAt(1);
+			if (markAsAnswerButton.getText().equals(HEAVY_CHECK_MARK))
+				numberCorrectAnswers++;
+			}
+		if (numberCorrectAnswers<=1) {
+			return true;
+		}
+		return false;
+	}
+	// Priority 5
+	public boolean questionIsOK() {
+		EditText question = (EditText) findViewById(R.id.question);
+		if(!QuizQuestion.questionIsOK(question.getText().toString())) {
+			return false;
+		}
+		LinearLayout answersContainer = (LinearLayout) findViewById(R.id.answers);
+		if (answersContainer.getChildCount()<2 || answersContainer.getChildCount()>10)
+		{
+			return false;
+		}
+		for (int i = 0; i < answersContainer.getChildCount(); i++) {
+			LinearLayout answerLine = (LinearLayout) answersContainer
+					.getChildAt(i);
+			EditText answerText = (EditText) answerLine.getChildAt(0);
+			if (!QuizQuestion.answerIsOK(answerText.getText().toString())) {
+				return false;
+			}
+		}
+		if (solutionIndex==-1) {
+			return false;
+		}
+		EditText tags = (EditText) findViewById(R.id.question);
+		if (!QuizQuestion.tagsAreOK(tags.getText().toString())) {
+			return false;
+		}
+		return true;
+	}
+	public boolean okSubmitButtonStatut() {
+		Button submitButton = (Button) findViewById(R.id.submit);
+		return (questionIsOK()==submitButton.isEnabled());
+	}
+	*/
 }
