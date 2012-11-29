@@ -27,5 +27,9 @@
     <string name="login">Log in using Tequila</string>
     <string name="logout">Log out</string>
     <string name="title_activity_show_available_quizzes">ShowAvailableQuizzesActivity</string>
+    <string name="title_activity_show_quiz">ShowQuizActivity</string>
+    <string name="next">Next question</string>
+    <string name="previous">Previous question</string>
+    <string name="hand_in_quiz">Hand in quiz</string>
 
 </resources>

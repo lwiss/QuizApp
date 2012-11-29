@@ -193,6 +193,15 @@ public class QuizQuestion {
 		}
 		return true;
 	}
+	
+	public static boolean answersAreOk(ArrayList<String> answers) {
+		for (String ans : answers) {
+			if (!answerIsOK(ans)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	static public boolean idIsOK(int id) {
 		if (id > 0) {

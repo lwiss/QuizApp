@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/answersList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="next"
+        android:text="@string/next" />
+
+    <Button
+        android:id="@+id/previous"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="previous"
+        android:text="@string/previous" />
+
+    <Button
+        android:id="@+id/handIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="handInQuiz"
+        android:text="@string/hand_in_quiz" />
+
+</LinearLayout>
