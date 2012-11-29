@@ -8,7 +8,6 @@ import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
-import org.apache.http.client.HttpClient;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHttpResponse;
@@ -21,7 +20,6 @@ import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.servercomm.search.CommunicationException;
 import epfl.sweng.servercomm.search.QuestionSearchCommunication;
 import epfl.sweng.servercomm.search.QuestionSearchCommunicationFactory;
-import epfl.sweng.test.ShowQuestionsActivityTest.MockHttpRequestExecutor;
 import android.test.AndroidTestCase;
 /**
  * 
@@ -58,46 +56,38 @@ public class ServerCommunicationSanityTest extends AndroidTestCase {
 	}
 	
 	public void testSearchByInvalidOwner() throws CommunicationException {
-		List<QuizQuestion> questions;
 		try {
-			questions = 
-					questionSearch.getQuestionsByOwner("j o e");
+			questionSearch.getQuestionsByOwner("j o e");
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			assertTrue(e.getLocalizedMessage().equals("Invalid Characters"));
 		}
 		try {
-			questions = 
-					questionSearch.getQuestionsByOwner("");
+			questionSearch.getQuestionsByOwner("");
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getLocalizedMessage().equals("Too long or Empty"));
 		}
 		try {
-			questions = 
-					questionSearch.getQuestionsByOwner("abdcdefghijklmnopqrstuvwxyz");
+			questionSearch.getQuestionsByOwner("abdcdefghijklmnopqrstuvwxyz");
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getLocalizedMessage().equals("Too long or Empty"));
 		}
 	}
 	
 	public void testSearchByInvalidTag() throws CommunicationException {
-		List<QuizQuestion> questions;
 		try {
-			questions = 
-					questionSearch.getQuestionsByTag("t a g");
+			questionSearch.getQuestionsByTag("t a g");
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			assertTrue(e.getLocalizedMessage().equals("Invalid Characters"));
 		}
 		try {
-			questions = 
-					questionSearch.getQuestionsByOwner("");
+			questionSearch.getQuestionsByOwner("");
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getLocalizedMessage().equals("Too long or Empty"));
 		}
 		try {
-			questions = 
-					questionSearch.getQuestionsByOwner("abdcdefghijklmnopqrstuvwxyz");
+			questionSearch.getQuestionsByOwner("abdcdefghijklmnopqrstuvwxyz");
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getLocalizedMessage().equals("Too long or Empty"));
 		}
@@ -126,8 +116,6 @@ public class ServerCommunicationSanityTest extends AndroidTestCase {
 				final HttpClientConnection conn, final HttpContext context)
 			throws IOException, HttpException {
 			final int statusOk = 200;
-			final int statusNotFound = 404;
-			final int statusError = 303;
 			HttpResponse response = new BasicHttpResponse(new BasicStatusLine(
 					HttpVersion.HTTP_1_1, statusOk, "OK"));
 			response.setHeader("Content-type", "application/json;charset=utf-8");
