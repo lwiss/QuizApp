@@ -75,8 +75,8 @@ public class ShowQuizActivity extends Activity {
 						R.layout.answer, null);
 				((TextView) ans.getChildAt(0)).setText(q.getAnswers().get(i));
 				if (i == userAns) {
-					((TextView) ans.getChildAt(1)).setText(String
-							.valueOf(HEAVY_FOUR_BALLOON_SPOKED_ASTERISK));
+					String a = ((TextView) ans.getChildAt(0)).getText().toString();
+					((TextView) ans.getChildAt(0)).setText(a+" "+HEAVY_FOUR_BALLOON_SPOKED_ASTERISK);
 				}
 				ansList.addView(ans);
 			}

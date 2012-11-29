@@ -14,9 +14,13 @@ import org.json.JSONObject;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemClickListener;
 /**
  * 
  * @author crazybhy
@@ -85,6 +89,7 @@ public class ListAvailableQuizzesAsyncTask extends
 			int id = jsonObject.getInt("id");
 			if (auditErrors(id, title) == 0) {
 				quizzesTitle.add(title);
+				ShowAvailableQuizzesActivity.getQuizzesIds().add(id);
 			}
 
 		}
@@ -126,6 +131,15 @@ public class ListAvailableQuizzesAsyncTask extends
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity,
 					android.R.layout.simple_list_item_1, quizzesTitle);
 			activity.getList().setAdapter(adapter);
+			activity.getList().setOnItemClickListener(new OnItemClickListener() {
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					ShowAvailableQuizzesActivity.setChosenQuizId(position);
+					Intent intent = new Intent(activity,
+							ShowQuizActivity.class);
+					activity.startActivity(intent);
+				}
+			});
 
 		}
 	}
