@@ -46,8 +46,8 @@ public class ShowAvailableQuizzesActivity extends Activity {
 		new ListAvailableQuizzesAsyncTask().execute(this);
 	}
 
-	public static void setChosenQuizId(int chosenQuizId) {
-		ShowAvailableQuizzesActivity.chosenQuizId = chosenQuizId;
+	public static void setChosenQuizId(int chosenQuizID) {
+		ShowAvailableQuizzesActivity.chosenQuizId = chosenQuizID;
 	}
 
 }
