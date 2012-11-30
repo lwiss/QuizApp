@@ -168,39 +168,7 @@ public class MockTakeUnavailableQuizz extends DefaultHttpClient {
 				}
 
 			}
-			if (request.getRequestLine().getMethod().equals("POST")) {
-				Log.d("Post", "In post Mock method");
-				i = random.nextInt(CASE_3);
-				try {
-					switch (i) {
-
-						case 0:
-							response = new BasicHttpResponse(new BasicStatusLine(
-									HttpVersion.HTTP_1_1, NOT_FOUND_STATUS_CODE,
-									"NOT_FOUND"));
-							response.setEntity(new StringEntity(EROOR_MESSAGE));
-							break;
-						case 1:
-							response = new BasicHttpResponse(new BasicStatusLine(
-									HttpVersion.HTTP_1_1, UNAUTHORIZED_STATUS_CODE,
-									"UNAUTHORIZED"));
-							response.setEntity(new StringEntity(EROOR_MESSAGE));
-							break;
-						case 2:
-							response = new BasicHttpResponse(new BasicStatusLine(
-									HttpVersion.HTTP_1_1, OK_STATUS_CODE, "OK"));
-							JSONObject jsonQuestion = new JSONObject();
-							jsonQuestion.put("idasda", "asdasdasd");
-							response.setEntity(new StringEntity(jsonQuestion
-									.toString()));
-							break;
-						default:
-							break;
-					}
-				} catch (JSONException e) {
-
-				}
-			}
+		
 
 			return response;
 		}

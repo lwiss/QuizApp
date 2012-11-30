@@ -1,8 +1,9 @@
-package epfl.sweng.test.takingQuizz;
+package epfl.sweng.test.handingQuizzAnswer;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.http.HttpClientConnection;
 import org.apache.http.HttpException;
@@ -22,17 +23,18 @@ import org.json.JSONObject;
 import android.util.Log;
 
 /**
- * This class is responsable to give quizz title and quizz questions to the
- * client
  * 
  * @author MohamedBenArbia
  * 
  */
-public class MockTakeQuizAvailable extends DefaultHttpClient {
+public class MockTakeUnavailableHandIn extends DefaultHttpClient {
 
 	private static final String GET_LIST_QUIZZES_URI = "/quizzes";
 	private static final String GET_QUIZZ_QUESTION_URI = "/quizzes/2";
-	private static final double SCORE = 1.25;
+	private final static String EROOR_MESSAGE = "ERROR";
+	private final static int NOT_FOUND_STATUS_CODE = 404;
+	private final static int CASE_3 = 3;
+	private final static int UNAUTHORIZED_STATUS_CODE = 401;
 	private final static int OK_STATUS_CODE = 200;
 	private final static int QUIZZ_ID = 2;
 
@@ -124,16 +126,40 @@ public class MockTakeQuizAvailable extends DefaultHttpClient {
 			}
 
 			if (request.getRequestLine().getMethod().equals("POST")) {
-				Log.d("Post", "method post");
-				response = new BasicHttpResponse(new BasicStatusLine(
-						HttpVersion.HTTP_1_1, OK_STATUS_CODE, "OK"));
-				JSONObject json = new JSONObject();
+
+				Log.d("Post", "In post Mock method");
+				Random random = new Random();
+				int i = random.nextInt(CASE_3);
 				try {
-					json.put("score", SCORE);
+					switch (i) {
+
+						case 0:
+							response = new BasicHttpResponse(new BasicStatusLine(
+									HttpVersion.HTTP_1_1, NOT_FOUND_STATUS_CODE,
+									"NOT_FOUND"));
+							response.setEntity(new StringEntity(EROOR_MESSAGE));
+							break;
+						case 1:
+							response = new BasicHttpResponse(new BasicStatusLine(
+									HttpVersion.HTTP_1_1, UNAUTHORIZED_STATUS_CODE,
+									"UNAUTHORIZED"));
+							response.setEntity(new StringEntity(EROOR_MESSAGE));
+							break;
+						case 2:
+							response = new BasicHttpResponse(new BasicStatusLine(
+									HttpVersion.HTTP_1_1, OK_STATUS_CODE, "OK"));
+							JSONObject jsonQuestion = new JSONObject();
+							jsonQuestion.put("idasda", "asdasdasd");
+							response.setEntity(new StringEntity(jsonQuestion
+									.toString()));
+							break;
+						default:
+							break;
+					}
 				} catch (JSONException e) {
 
 				}
-				response.setEntity(new StringEntity(json.toString()));
+
 			}
 
 			return response;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.jayway.android.robotium.solo.Solo;
 
+import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.quizzes.ShowQuizActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.test.ActivityInstrumentationTestCase2;
@@ -32,6 +33,9 @@ public class TakeQuizzTest extends
 	@Override
 	protected void setUp() throws Exception {
 		SwengHttpClientFactory.setInstance(new MockTakeQuizAvailable());
+		List<Integer> list = new ArrayList<Integer>();
+		list.add(2);
+		ShowAvailableQuizzesActivity.setQuizzesIds(list);
 		solo = new Solo(getInstrumentation(), getActivity());
 		response1.add("5, for very large values of 2");
 		response1.add("4, if you're out of inspiration");

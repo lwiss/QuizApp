@@ -8,29 +8,27 @@ import com.jayway.android.robotium.solo.Solo;
 import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.quizzes.ShowQuizActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
-import epfl.sweng.test.takingQuizz.MockTakeQuizAvailable;
 import android.test.ActivityInstrumentationTestCase2;
 
 /**
- * This class is responsible for the Hand In of the quizzes
  * 
  * @author MohamedBenArbia
  * 
  */
-public class HandingInQuizzTest extends
+public class HandingQuizzTestErrorMessage extends
 		ActivityInstrumentationTestCase2<ShowQuizActivity> {
 	private Solo solo;
+
+	public HandingQuizzTestErrorMessage() {
+		super(ShowQuizActivity.class);
+	}
 	private List<String> response1 = new ArrayList<String>();
 	private List<String> response2 = new ArrayList<String>();
 	private List<String> response3 = new ArrayList<String>();
 
-	public HandingInQuizzTest() {
-		super(ShowQuizActivity.class);
-	}
-
 	@Override
 	protected void setUp() throws Exception {
-		SwengHttpClientFactory.setInstance(new MockTakeQuizAvailable());
+		SwengHttpClientFactory.setInstance(new MockTakeUnavailableHandIn());
 		List<Integer> list = new ArrayList<Integer>();
 		list.add(2);
 		ShowAvailableQuizzesActivity.setQuizzesIds(list);
@@ -48,21 +46,15 @@ public class HandingInQuizzTest extends
 
 	}
 
-	public void testAlertDialog() {
+	public void testErrorCommunication() {
 		solo.clickOnText(response1.get(0));
 		solo.clickOnButton("Next question");
 		solo.clickOnText(response2.get(2));
 		solo.clickOnButton("Next question");
 		solo.clickOnText(response3.get(0));
 		solo.clickOnButton("Hand in quiz");
-		assertTrue(solo.searchText("Your score is 1.25"));
-		assertTrue(solo.searchButton("OK"));
-		solo.clickOnButton("OK");
-		assertTrue(!solo.searchText("Your score is 1.25"));
-		solo.assertCurrentActivity("Show quizz Activity",
-				ShowQuizActivity.class);
-		
+		assertTrue(solo
+				.searchText("An error occurred while handing in your answers"));
 
 	}
-
 }
