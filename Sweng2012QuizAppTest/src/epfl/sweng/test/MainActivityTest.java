@@ -58,7 +58,7 @@ public class MainActivityTest extends
 		solo.clearEditText(1);
 		solo.enterText(1, "password");
 		solo.clickOnText("Log in using Tequila");
-		assertTrue(solo.waitForActivity(MainActivity.class.getName()));
+		assertTrue(solo.waitForActivity("MainActivity"));
 	}
 	
 	public void testButton1() {
