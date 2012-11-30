@@ -19,12 +19,11 @@ import org.apache.http.protocol.HttpRequestExecutor;
 
 import com.jayway.android.robotium.solo.Solo;
 
-import epfl.sweng.editquestions.EditQuestionActivity;
+//import epfl.sweng.editquestions.EditQuestionActivity;
 import epfl.sweng.entry.MainActivity;
-import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
+//import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
-import epfl.sweng.showquestions.ShowQuestionsActivity;
-import android.content.SharedPreferences;
+//import epfl.sweng.showquestions.ShowQuestionsActivity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 
@@ -44,11 +43,6 @@ public class MainActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
-		SharedPreferences settings = getActivity().getSharedPreferences(
-				MainActivity.PREF_NAME, MainActivity.MODE_PRIVATE);
-		SharedPreferences.Editor editor = settings.edit();
-		editor.remove("SESSION_ID");
-		editor.commit();
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
@@ -64,9 +58,8 @@ public class MainActivityTest extends
 		solo.clearEditText(1);
 		solo.enterText(1, "password");
 		solo.clickOnText("Log in using Tequila");
-		solo.goBackToActivity("MainActivity");
 	}
-
+	/*
 	public void testButton1() {
 		assertTrue("Show question button exist", solo.searchText("Show a random question"));
 		solo.clickOnText("Show a random question");
@@ -96,7 +89,7 @@ public class MainActivityTest extends
 		solo.clickOnText("Log out");
 		assertTrue("Log in button exist", solo.searchText("Log in using Tequila"));
 	}
-	
+*/
 	/**
 	 * To use this, call SwengHttpClientFactory.setInstance(new
 	 * MockHttpClient()) in your testing code. Remember that the app always has
