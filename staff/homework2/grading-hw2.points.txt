@@ -1,0 +1,4 @@
+MainActivityTest (correct 2 / 2) = 10.00000000000000000000
+QuizQuestionTest (correct 1 / 33) = .90909090909090909090
+SubmitQuestionTest (correct 13 / 18) = 21.66666666666666666660
+Total: 32.57575757575757575750

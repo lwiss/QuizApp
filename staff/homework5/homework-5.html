@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
+<title>Homework #5</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 7434 2012-05-11 21:06:27Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { /* line numbers */
+  color: grey;
+}
+
+.code {
+  background-color: #eeeeee
+}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="homework-5">
+<h1 class="title">Homework #5</h1>
+
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="auto-toc simple">
+<li><a class="reference internal" href="#introduction" id="id1">1&nbsp;&nbsp;&nbsp;Introduction</a><ul class="auto-toc">
+<li><a class="reference internal" href="#preparation" id="id2">1.1&nbsp;&nbsp;&nbsp;Preparation</a></li>
+<li><a class="reference internal" href="#basic-track-vs-full-track" id="id3">1.2&nbsp;&nbsp;&nbsp;Basic Track vs. Full track</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-track-implementing-quiz-taking-70-points" id="id4">2&nbsp;&nbsp;&nbsp;[Basic Track] Implementing Quiz Taking (70 points)</a><ul class="auto-toc">
+<li><a class="reference internal" href="#server-communication" id="id5">2.1&nbsp;&nbsp;&nbsp;Server Communication</a><ul class="auto-toc">
+<li><a class="reference internal" href="#to-list-all-available-quizzes" id="id6">2.1.1&nbsp;&nbsp;&nbsp;To list all available quizzes</a></li>
+<li><a class="reference internal" href="#to-get-the-questions-of-a-quiz" id="id7">2.1.2&nbsp;&nbsp;&nbsp;To get the questions of a quiz</a></li>
+<li><a class="reference internal" href="#to-hand-in-the-answers-for-a-quiz" id="id8">2.1.3&nbsp;&nbsp;&nbsp;To hand in the answers for a quiz</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extending-the-main-activity-5-points" id="id9">2.2&nbsp;&nbsp;&nbsp;Extending the Main Activity (5 points)</a></li>
+<li><a class="reference internal" href="#showing-the-list-of-available-quizzes-15-points" id="id10">2.3&nbsp;&nbsp;&nbsp;Showing the List of Available Quizzes (15 points)</a></li>
+<li><a class="reference internal" href="#taking-a-quiz-40-points" id="id11">2.4&nbsp;&nbsp;&nbsp;Taking a Quiz (40 points)</a></li>
+<li><a class="reference internal" href="#handing-in-quiz-answers-10-points" id="id12">2.5&nbsp;&nbsp;&nbsp;Handing in Quiz Answers (10 points)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#full-track-code-coverage-30-points" id="id13">3&nbsp;&nbsp;&nbsp;[Full Track] Code Coverage (30 points)</a></li>
+<li><a class="reference internal" href="#final-checklist" id="id14">4&nbsp;&nbsp;&nbsp;Final Checklist</a></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h1><a class="toc-backref" href="#id1">1&nbsp;&nbsp;&nbsp;Introduction</a></h1>
+<p>In this homework, you will implement a quiz taking feature in your
+quiz app.  A quiz is a collection of quiz questions that the user can
+answer and receive a score on.  The user can choose to take a quiz
+among a set of available quizzes.  After a quiz is selected, the user
+provides answers to the questions and then hands in the quiz.  The
+application displays the user's score, which is computed by the server
+based on the correctness of the answers.</p>
+<p>Please keep track of how many hours it takes you to solve each
+exercise, as we will ask you to provide us with this information in a
+text file named <tt class="docutils literal">homework_5_time_spent.txt</tt> that resides in the
+<tt class="docutils literal">${REPO}</tt> folder.</p>
+<p>Please abide by the <a class="reference external" href="http://sweng.epfl.ch/collaboration">Collaboration Policy</a>. If you have any questions
+regarding the assignment requirements, ask on <a class="reference external" href="https://piazza.com/epfl.ch/fall2012/cs305/home">Piazza</a>. If you have any
+doubts about whether it is appropriate to ask something, mark the
+question private. You are allowed to use Web search to find answers to
+questions.</p>
+<div class="section" id="preparation">
+<h2><a class="toc-backref" href="#id2">1.1&nbsp;&nbsp;&nbsp;Preparation</a></h2>
+<p>As for all previous and future homework assignments, you should
+regularly commit your work, push it to your repository, and build it
+on the <a class="reference external" href="http://jenkins.epfl.ch/">Jenkins</a> server.</p>
+<p><a class="reference external" href="http://jenkins.epfl.ch/">Jenkins</a> will send a notification to you by e-mail if the source
+code that you committed does not compile or is improperly formatted.
+The system will automatically give 0 points to submissions that do not
+compile, violate the <a class="reference external" href="http://sweng.epfl.ch/tutorials/checkstyle">SwEng coding style</a> or do not pass the sanity
+checks. We strongly recommend that you commit regularly before the
+deadline to make sure everything works as expected.</p>
+<p>The deadline for this homework is <strong>Friday, November 30, 2012</strong>, at
+<strong>19:00</strong>. Any assignments (or parts thereof) handed in late will not
+be graded.</p>
+</div>
+<div class="section" id="basic-track-vs-full-track">
+<h2><a class="toc-backref" href="#id3">1.2&nbsp;&nbsp;&nbsp;Basic Track vs. Full track</a></h2>
+<p>This homework has two parts:</p>
+<ul class="simple">
+<li>The basic track implements the app's functionality: the GUI and the
+server communication for taking a quiz.</li>
+<li>The full track additionally adds quizzes to ensure the reliability of
+the features implemented in the basic track.</li>
+</ul>
+<p>The total number of points for this homework is 100. Completely and
+correctly solving the basic track will earn you 70 points, while
+completely and correctly solving the full track will earn you 30
+additional points, for a maximum of 100.</p>
+<p>We recommend that you read this homework in its entirety before starting
+to code. Consider starting with the full track, in the spirit of
+test-driven development.</p>
+</div>
+</div>
+<div class="section" id="basic-track-implementing-quiz-taking-70-points">
+<h1><a class="toc-backref" href="#id4">2&nbsp;&nbsp;&nbsp;[Basic Track] Implementing Quiz Taking (70 points)</a></h1>
+<div class="section" id="server-communication">
+<h2><a class="toc-backref" href="#id5">2.1&nbsp;&nbsp;&nbsp;Server Communication</a></h2>
+<p>This section describes the server protocol used to list, retrieve, and
+hand in quizzes.  You will use this information to implement the quiz
+taking functionality in subsections 2.1. - 2.4.</p>
+<div class="section" id="to-list-all-available-quizzes">
+<h3><a class="toc-backref" href="#id6">2.1.1&nbsp;&nbsp;&nbsp;To list all available quizzes</a></h3>
+<p><em>Request:</em></p>
+<p>The following query returns a list of all quizzes available to an
+authenticated user.</p>
+<pre class="literal-block">
+GET /quizzes
+</pre>
+<p><em>Reply:</em></p>
+<p>The server returns <tt class="docutils literal">200 OK</tt> with a body containing a (possibly
+empty) array of quiz descriptions available to the user, in the
+following format:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">[
+  {
+    <span style="color: #BA2121">&quot;id&quot;</span><span style="color: #666666">:</span> <span style="color: #666666">125</span>,
+    <span style="color: #BA2121">&quot;title&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;The hardest quiz ever&quot;</span>
+  },
+  {
+    <span style="color: #BA2121">&quot;id&quot;</span><span style="color: #666666">:</span> <span style="color: #666666">453</span>,
+    <span style="color: #BA2121">&quot;title&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;Piece of cake&quot;</span>
+  }
+]
+</pre></div>
+<p>Each entry is a JSON dictionary that contains two fields:</p>
+<ul class="simple">
+<li><tt class="docutils literal">&quot;id&quot;</tt> - a positive integer that uniquely identifies a quiz</li>
+<li><tt class="docutils literal">&quot;title&quot;</tt> - a string description of the quiz that can be displayed
+to the user</li>
+</ul>
+<p>When no quizzes are available for the user, the server returns an empty
+JSON array.  If the user is not authenticated, the server returns with
+status <tt class="docutils literal">401 Unauthorized</tt>.  The body of the response contains an
+error message describing the error in more detail:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+  <span style="color: #BA2121">&quot;message&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;error message&quot;</span>
+}
+</pre></div>
+</div>
+<div class="section" id="to-get-the-questions-of-a-quiz">
+<h3><a class="toc-backref" href="#id7">2.1.2&nbsp;&nbsp;&nbsp;To get the questions of a quiz</a></h3>
+<p><em>Request:</em></p>
+<p>To obtain a particular quiz on the server, the user must send the
+following request to the server:</p>
+<pre class="literal-block">
+GET /quizzes/&lt;quiz_id&gt;
+</pre>
+<p>The <tt class="docutils literal">&lt;quiz_id&gt;</tt> is the value of the <tt class="docutils literal">&quot;id&quot;</tt> field in one of the
+quiz descriptions returned after making the <tt class="docutils literal">GET /quizzes</tt> request.</p>
+<p>In case of success, the server replies with status <tt class="docutils literal">200 OK</tt> and the
+following JSON object in the body:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+  <span style="color: #BA2121">&quot;id&quot;</span><span style="color: #666666">:</span> <span style="color: #666666">125</span>,
+  <span style="color: #BA2121">&quot;title&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;The hardest quiz ever&quot;</span>,
+  <span style="color: #BA2121">&quot;questions&quot;</span><span style="color: #666666">:</span> [
+    {
+      <span style="color: #BA2121">&quot;question&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;How much is 2 + 2 ?&quot;</span>,
+      <span style="color: #BA2121">&quot;answers&quot;</span><span style="color: #666666">:</span> [
+        <span style="color: #BA2121">&quot;5, for very large values of 2&quot;</span>,
+        <span style="color: #BA2121">&quot;4, if you&#39;re out of inspiration&quot;</span>,
+        <span style="color: #BA2121">&quot;10, for some carefully chosen base&quot;</span>
+      ]
+    }, {
+      <span style="color: #BA2121">&quot;question&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;How much is 1 + 1 ?&quot;</span>,
+      <span style="color: #BA2121">&quot;answers&quot;</span><span style="color: #666666">:</span> [
+        <span style="color: #BA2121">&quot;2&quot;</span>,
+        <span style="color: #BA2121">&quot;10&quot;</span>,
+        <span style="color: #BA2121">&quot;11&quot;</span>,
+        <span style="color: #BA2121">&quot;It all depends on the semantics of the &#39;+&#39; operator&quot;</span>
+      ]
+    }
+  ]
+}
+</pre></div>
+<p>The <tt class="docutils literal">&quot;id&quot;</tt> and <tt class="docutils literal">&quot;title&quot;</tt> fields are the same as in the quiz
+description dictionary.  The <tt class="docutils literal">&quot;questions&quot;</tt> field contains a list of
+the quiz questions.  Each question is a JSON dictionary that contains
+two fields:</p>
+<ul class="simple">
+<li><tt class="docutils literal">&quot;question&quot;</tt> - the body of the question</li>
+<li><tt class="docutils literal">&quot;answers&quot;</tt> - a list of possible answers to the question</li>
+</ul>
+<p>Note that there is no <tt class="docutils literal">solutionIndex</tt> field, as in earlier
+homeworks, since the grading is done by the server and the user is not
+supposed to find out the question answers.  The questions also don't
+contain the <tt class="docutils literal">&quot;tag&quot;</tt> field.  In the rest, the same format
+restrictions as to the quiz questions from Homework #2 apply to quiz
+questions.</p>
+<p>If the quiz does not exist, or if the user is not authenticated, the
+server returns with status <tt class="docutils literal">404 Not Found</tt> or <tt class="docutils literal">401 Unauthorized</tt>.
+The body of the response explains the error in more detail:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+  <span style="color: #BA2121">&quot;message&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;error message&quot;</span>
+}
+</pre></div>
+</div>
+<div class="section" id="to-hand-in-the-answers-for-a-quiz">
+<h3><a class="toc-backref" href="#id8">2.1.3&nbsp;&nbsp;&nbsp;To hand in the answers for a quiz</a></h3>
+<p><em>Request:</em></p>
+<p>When the user submits the answers to the quiz questions, the following
+request is sent to the server:</p>
+<pre class="literal-block">
+POST /quizzes/&lt;quiz_id&gt;/submission
+</pre>
+<p><tt class="docutils literal">&lt;quiz_id&gt;</tt> is the ID of the quiz that was being taken by the user.
+The body of the request is in JSON format and has the following
+structure:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+  <span style="color: #BA2121">&quot;choices&quot;</span><span style="color: #666666">:</span> [ <span style="color: #666666">0</span>, <span style="color: #666666">2</span>, <span style="color: #666666">1</span>, <span style="color: #008000; font-weight: bold">null</span>, <span style="color: #666666">3</span> ]
+}
+</pre></div>
+<p>The <tt class="docutils literal">choices</tt> field contains a list of user answers.  The size of
+the list must match the number of questions in the quiz.  For each
+question in the quiz, an answer is either a valid 0-based index in the
+question answer list, or the special <tt class="docutils literal">null</tt> value.  <tt class="docutils literal">null</tt> denotes
+that no answer was provided by the user to the corresponding question.
+Note that <tt class="docutils literal">null</tt> is specified without surrounding quotes, so it is a
+special JSON value and not a string. Note also that the order of the
+answers is important and must correspond to the order in which the
+server sent the questions.</p>
+<p>For the example shown above, a valid answer submission would be:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+  <span style="color: #BA2121">&quot;choices&quot;</span><span style="color: #666666">:</span> [ <span style="color: #666666">1</span>, <span style="color: #666666">0</span> ]
+}
+</pre></div>
+<p>In order to create a <tt class="docutils literal">null</tt> value, you may use the special
+<a class="reference external" href="http://developer.android.com/reference/org/json/JSONObject.html#NULL">JSONObject::NULL</a> object.</p>
+<p><em>Reply:</em></p>
+<p>If the user answers were submitted correctly, the server responds with
+status code <tt class="docutils literal">200 OK</tt> and the following body:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+  <span style="color: #BA2121">&quot;score&quot;</span><span style="color: #666666">:</span> <span style="color: #666666">1.25</span>
+}
+</pre></div>
+<p>The <tt class="docutils literal">&quot;score&quot;</tt> field is a floating point number that is computed by
+the server, and it represents the aggregate score corresponding to the
+submitted answers.  This is how it is computed:</p>
+<ul class="simple">
+<li>For each question answered correctly, the user earns 1 point;</li>
+<li>For each question answered incorrectly, the user loses <tt class="docutils literal"><span class="pre">1/(n-1)</span></tt>
+points, where <tt class="docutils literal">n</tt> is the number of possible answers to the
+question;</li>
+<li>Each question left unanswered is ignored.</li>
+</ul>
+<!-- The server will round the score to two digits after the decimal point. -->
+<p>If the body of the POST request contains invalid JSON, has an invalid
+structure, has an incorrect number of answers, or the answers are
+invalid, the server returns with status <tt class="docutils literal">400 Bad Request</tt>.  If the
+quiz does not exist, or if the user is not authenticated, the
+server returns status <tt class="docutils literal">404 Not Found</tt> or <tt class="docutils literal">401 Unauthorized</tt>.
+The body explains the error in more detail:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">{
+  <span style="color: #BA2121">&quot;message&quot;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;error message&quot;</span>
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="extending-the-main-activity-5-points">
+<h2><a class="toc-backref" href="#id9">2.2&nbsp;&nbsp;&nbsp;Extending the Main Activity (5 points)</a></h2>
+<p>Add a button called &quot;Take a Quiz&quot; to the <tt class="docutils literal">MainActivity</tt> activity.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p class="last">This button can be displayed in any form, but its text must be
+exactly the words &quot;Take a Quiz&quot;.  Otherwise, we will not be able to
+automatically test this part of your homework, and you will lose
+points. This rule applies to all other texts in the homework.</p>
+</div>
+</div>
+<div class="section" id="showing-the-list-of-available-quizzes-15-points">
+<h2><a class="toc-backref" href="#id10">2.3&nbsp;&nbsp;&nbsp;Showing the List of Available Quizzes (15 points)</a></h2>
+<p>When pressed, the &quot;Take a Quiz&quot; button opens up an activity called
+<tt class="docutils literal">ShowAvailableQuizzesActivity</tt>.  This <tt class="docutils literal">Activity</tt> should be in a
+package named <tt class="docutils literal">epfl.sweng.quizzes</tt>.  This activity queries the
+server for all quizzes available to the user, as explained in the <a class="reference internal" href="#to-list-all-available-quizzes">To
+list all available quizzes</a> section.  For each quiz, a widget
+containing its title is displayed.</p>
+<p>We suggest you have a look at the documentation for the <a class="reference external" href="http://developer.android.com/reference/android/app/ListActivity.html">ListActivity</a> class.</p>
+<p>If there are no quizzes available, the activity should show the text &quot;There are
+no quizzes available at the moment.&quot; Nothing should happen when the user taps
+on this text; the user should only be able to go back using the back button.</p>
+<p>If an error happens during the communication, e.g., when the server is offline,
+you must instead show the text &quot;An error occurred while fetching quizzes.&quot; You
+may show a more detailed error message to the user, but ensure that you include
+the text &quot;An error occurred while fetching quizzes.&quot; for grading purposes.</p>
+</div>
+<div class="section" id="taking-a-quiz-40-points">
+<h2><a class="toc-backref" href="#id11">2.4&nbsp;&nbsp;&nbsp;Taking a Quiz (40 points)</a></h2>
+<p>When the user taps on the name of a quiz, the corresponding quiz is
+retrieved from the server as explained in the <a class="reference internal" href="#to-get-the-questions-of-a-quiz">To get the questions of
+a quiz</a> section, and is displayed in a new activity called
+<tt class="docutils literal">ShowQuizActivity</tt>.  This activity must be in the package
+<tt class="docutils literal">epfl.sweng.quizzes</tt>.</p>
+<p>The general look and operation of the quiz is described below:</p>
+<blockquote>
+<ul>
+<li><p class="first">Initially, the question displayed is the first question in the
+list returned by the server <strong>(5 points)</strong>.</p>
+</li>
+<li><p class="first">Your app should display the question text.</p>
+</li>
+<li><p class="first">Your activity should display a list of possible answers.  Here is
+how an answer is structured <strong>(15 points)</strong>:</p>
+<blockquote>
+<ul class="simple">
+<li>Your app should display the answer text in a <tt class="docutils literal">TextView</tt>
+element.</li>
+<li>The user can tap on the answer that (s)he thinks is the
+correct one.  In that case, an asterisk symbol (✤ , U+2724
+HEAVY FOUR BALLOON-SPOKED ASTERISK) must be displayed next to
+that answer. You may either append the asterisk to the answer
+text, or put it in another <tt class="docutils literal">TextView</tt> close by.</li>
+<li>When the user chooses one answer, an asterisk must be removed
+from all other answers; there can be at most one answer with
+an asterisk at a time.</li>
+<li>If the user taps on the answer with the asterisk, your app
+must remove the asterisk.  This enables the users to change
+their mind and leave a question unanswered.</li>
+<li>Initially, no questions are marked with an asterisk.</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Finally, you should have 3 buttons with the following labels:
+&quot;Next question&quot;, &quot;Previous question&quot;, and &quot;Hand in quiz&quot;.  These
+buttons can be displayed in any form, but their text must be
+exactly &quot;Next question&quot;, &quot;Previous question&quot;, and &quot;Hand in quiz&quot;
+<strong>(5 points)</strong>.</p>
+</li>
+</ul>
+</blockquote>
+<p>When the user presses on the &quot;Next question&quot; button, the application
+should show the next question, and when the &quot;Previous question&quot; is
+pressed, the application should show the previous question.  The question
+navigation should wrap around the next question after the last one in
+the list is the first question, and the question previous to the first
+question in the list is the last one. Your app must not re-order questions;
+instead, keep them in the order in which the server sent them <strong>(10 points)</strong>.</p>
+<p>If any error occurs while fetching the quiz, your app should display the text
+&quot;An error occurred while loading the quiz.&quot; instead of a question. Your app
+may do other fancy things in this case, e.g., disable buttons or show
+additional messages <strong>(5 points)</strong>.</p>
+</div>
+<div class="section" id="handing-in-quiz-answers-10-points">
+<h2><a class="toc-backref" href="#id12">2.5&nbsp;&nbsp;&nbsp;Handing in Quiz Answers (10 points)</a></h2>
+<p>When the &quot;Hand in Quiz&quot; <tt class="docutils literal">Button</tt> is tapped, your app should send the
+answers marked with an asterisk for the questions to the server for
+grading, as explained in the <a class="reference internal" href="#to-hand-in-the-answers-for-a-quiz">To hand in the answers for a quiz</a>
+section.  When the server replies, the UI displays an <a class="reference external" href="http://developer.android.com/reference/android/app/AlertDialog.html">AlertDialog</a>.</p>
+<p>The text in the <tt class="docutils literal">AlertDialog</tt> must be: &quot;Your score is &lt;score&gt;&quot; (e.g., Your
+score is 4.00).  You must display the score with two digits after the decimal
+point. You may include additional text if you want (e.g., the maximum number of
+points).</p>
+<p>The <tt class="docutils literal">AlertDialog</tt> must have a single button with text &quot;OK&quot;.  To create this
+button use the <a class="reference external" href="http://developer.android.com/reference/android/app/AlertDialog.Builder.html#setPositiveButton(int,android.content.DialogInterface.OnClickListener)">setPositiveButton</a> method of the <tt class="docutils literal">AlertDialog.Builder</tt>
+class. When the user taps the button, the user should be able to change the
+answers and resubmit until (s)he is satisfied with the score.</p>
+<p>If anything goes wrong while handing in quiz answers, you should display the
+text &quot;An error occurred while handing in your answers&quot; in the <tt class="docutils literal">AlertDialog</tt>
+instead of the normal text.</p>
+</div>
+</div>
+<div class="section" id="full-track-code-coverage-30-points">
+<h1><a class="toc-backref" href="#id13">3&nbsp;&nbsp;&nbsp;[Full Track] Code Coverage (30 points)</a></h1>
+<p>Now that you have implemented the basic track for this homework, it is
+time to verify that your code performs as expected. Check this by
+writing unit tests for your application. The goal for the tests you
+write is to achieve <strong>80%</strong> code coverage for the code you wrote so
+far for <strong>Homework #1, Homework #2, Homework #3, Homework #4, Exam #1,
+and Exam #2</strong>.</p>
+<p>Your tests should take less than 20 minutes to run to completion
+on the BC 07/08 machines. After the 20 minutes run out, Jenkins will
+stop running your tests.</p>
+<div class="admonition-grading admonition">
+<p class="first admonition-title">Grading</p>
+<p>The number of points will be computed using the same rules as in
+Homework #1, i.e., with the following formula:</p>
+<blockquote>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">30 * min<span style="color: #666666">(</span>1, <span style="color: #666666">(</span><span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">CODE_COVERAGE</span><span style="color: #008000; font-weight: bold">}</span>/80<span style="color: #666666">)</span>^2<span style="color: #666666">)</span>
+</pre></div>
+</blockquote>
+<p class="last">In other words, your tests must achieve 80% line coverage for the
+entire code base of your application in order for you to get the
+full points for this part of the homework.</p>
+</div>
+</div>
+<div class="section" id="final-checklist">
+<h1><a class="toc-backref" href="#id14">4&nbsp;&nbsp;&nbsp;Final Checklist</a></h1>
+<p>Grading for this homework will be completely automated. This means that your
+homework's project structure, code, package names, button labels, <tt class="docutils literal">Activity</tt>
+names, etc., must conform to the rules below. Otherwise, our servers will not be able to
+automatically grade your homework, and you will lose points.</p>
+<p>Here is a recap of the rules your homework must obey:</p>
+<ul>
+<li><p class="first">Rules set in the previous homeworks regarding the project structure still apply</p>
+</li>
+<li><p class="first">Your <tt class="docutils literal">${REPO}</tt> must have the following folder structure:</p>
+<pre class="literal-block">
+${REPO}
+├── Sweng2012QuizApp
+|   ├── assets
+|   ├── libs
+|   ├── res
+|   └── src
+|       └── epfl
+|           └── sweng
+|               ├── authentication
+|               |   └── AuthenticationActivity.java
+|               ├── editquestions
+|               |   └── EditQuestionActivity.java
+|               ├── entry
+|               |   └── MainActivity.java
+|               ├── quizquestions
+|               |   └── QuizQuestion.java
+|               ├── quizzes
+|               |   ├── ShowAvailableQuizzesActivity.java
+|               |   └── ShowQuizActivity.java
+|               └── showquestions
+|                   └── ShowQuestionsActivity.java
+└── Sweng2012QuizAppTest
+ &nbsp;&nbsp; ├── assets
+ &nbsp;&nbsp; ├── libs
+ &nbsp;&nbsp; ├── res
+ &nbsp;&nbsp; └── src
+ &nbsp;&nbsp;     └── epfl
+ &nbsp;&nbsp;         └── sweng
+                └── test
+</pre>
+</li>
+<li><p class="first">You can have additional classes in the <tt class="docutils literal">epfl.sweng</tt> package</p>
+</li>
+<li><p class="first">The following command must fully compile and install your app in an emulator:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizApp
+<span style="color: #19177C">$ </span>ant clean debug install
+</pre></div>
+</li>
+<li><p class="first">The following command must run your installed app on an emulator:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span>adb shell am start -a android.intent.action.MAIN -n epfl.sweng/.entry.MainActivity
+</pre></div>
+</li>
+<li><p class="first">The following command must compile and run all your tests:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #19177C">$ </span><span style="color: #008000">cd</span> <span style="color: #008000; font-weight: bold">${</span><span style="color: #19177C">REPO</span><span style="color: #008000; font-weight: bold">}</span>/Sweng2012QuizAppTest
+<span style="color: #19177C">$ </span>ant clean emma debug install <span style="color: #008000">test</span>
+</pre></div>
+</li>
+<li><p class="first">The rules defined in Homework #1 for accessing the network still apply</p>
+</li>
+<li><p class="first">Your code must be committed to the <tt class="docutils literal"><span class="pre">https://github.com/dslab-epfl/&lt;reponame&gt;.git</span></tt>
+git repository, where <tt class="docutils literal">&lt;reponame&gt;</tt> is the name of your team's repository</p>
+</li>
+</ul>
+<p>Good luck and have fun!</p>
+<!-- Post Scriptum
+============= -->
+<!-- Oh... a student that looks at the source code of an assignment.
+Interesting... -->
+<!-- Just wanted to tell you that it's too bad that the server does not
+send a ``solutionIndex`` along with the quiz questions. I guess that
+makes it absolutely impossible to cheat... -->
+</div>
+</div>
+</body>
+</html>
