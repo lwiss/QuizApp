@@ -29,6 +29,10 @@ public class ShowAvailableQuizzesActivity extends Activity {
 		return quizzesIds;
 	}
 
+	public static void setQuizzesIds(List<Integer> ids) {
+		quizzesIds = ids;
+	}
+
 	public ListView getList() {
 		return list;
 	}

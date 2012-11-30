@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.jayway.android.robotium.solo.Solo;
 
-import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.quizzes.ShowQuizActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.test.ActivityInstrumentationTestCase2;
@@ -16,7 +15,7 @@ import android.test.ActivityInstrumentationTestCase2;
  * 
  */
 public class TakeQuizzTest extends
-		ActivityInstrumentationTestCase2<ShowAvailableQuizzesActivity> {
+		ActivityInstrumentationTestCase2<ShowQuizActivity> {
 	private Solo solo;
 
 	private String question1 = "How much is 2 + 2 ?";
@@ -27,13 +26,13 @@ public class TakeQuizzTest extends
 	private List<String> response3 = new ArrayList<String>();
 
 	public TakeQuizzTest() {
-		super(ShowAvailableQuizzesActivity.class);
+		super(ShowQuizActivity.class);
 	}
 
 	@Override
 	protected void setUp() throws Exception {
-		solo = new Solo(getInstrumentation(), getActivity());
 		SwengHttpClientFactory.setInstance(new MockTakeQuizAvailable());
+		solo = new Solo(getInstrumentation(), getActivity());
 		response1.add("5, for very large values of 2");
 		response1.add("4, if you're out of inspiration");
 		response1.add("10, for some carefully chosen base");
@@ -47,27 +46,18 @@ public class TakeQuizzTest extends
 
 	}
 
-	public void testZerrorMessage() {
-		solo.clickOnText("easy quizz");
-		SwengHttpClientFactory.setInstance(new MockTakeUnavailableQuizz());
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
-		assertTrue(solo.searchText("An error occurred while loading the quiz."));
-		solo.goBack();
-	}
+	
 
 	public void testFirstQuestionDisplayed() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
 		assertTrue(
 				"Question displayed is the first question in the list returned by the server ",
 				solo.searchText(question1));
-		solo.goBack();
+		
 
 	}
 
 	public void testNoquestionMarkedWithAsterisk() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
+		
 
 		assertTrue(!solo.searchText(" \u2724"));
 		solo.clickOnButton("Next question");
@@ -75,24 +65,22 @@ public class TakeQuizzTest extends
 		solo.clickOnButton("Next question");
 		assertTrue(!solo.searchText(" \u2724"));
 
-		solo.goBack();
+		
 
 	}
 
 	public void testButtons() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
+		
 
 		solo.searchButton("Next question");
 		solo.searchButton("Hand in quiz");
 		solo.searchButton("Previous question");
-		solo.goBack();
+		
 
 	}
 
 	public void testOederOfQuestions() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
+		
 
 		assertTrue(solo.searchText(question1));
 		solo.clickOnButton("Next question");
@@ -104,14 +92,13 @@ public class TakeQuizzTest extends
 		solo.clickOnButton("Previous question");
 		assertTrue(solo.searchText(question3));
 
-		solo.goBack();
+		
 
 	}
 	
 
 	public void testListOfPossibleAnswers() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
+		
 		assertTrue("response 1 of question1  displayed on text View",
 				solo.searchText(response1.get(0)));
 		assertTrue("response 2 of question1 displayed on text View",
@@ -132,13 +119,12 @@ public class TakeQuizzTest extends
 				solo.searchText(response3.get(1)));
 		assertTrue("response 3 of question3 displayed on text View",
 				solo.searchText(response3.get(2)));
-		solo.goBack();
+		
 
 	}
 
 	public void testFindAsteriskSymbol() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
+		
 		solo.clickOnText(response1.get(0));
 		assertTrue(solo.searchText(response1.get(0) + " \u2724"));
 		solo.clickOnText(response1.get(1));
@@ -164,12 +150,11 @@ public class TakeQuizzTest extends
 		solo.clickOnText(response3.get(2));
 		assertTrue(solo.searchText(response3.get(2) + " \u2724"));
 
-		solo.goBack();
+		
 	}
 
 	public void testFindAtMostOneAsteriskSymbol() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
+		
 		solo.clickOnText(response1.get(0));
 		assertTrue(!solo.searchText(" \u2724", 2));
 		solo.clickOnText(response1.get(1));
@@ -195,13 +180,12 @@ public class TakeQuizzTest extends
 		solo.clickOnText(response3.get(2));
 		assertTrue(!solo.searchText(" \u2724", 2));
 
-		solo.goBack();
+		
 
 	}
 
 	public void testRemoveAsteriskSymbol() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("ShowQuizActivity", ShowQuizActivity.class);
+		
 
 		solo.clickOnText(response1.get(0));
 		solo.clickOnText(response1.get(0));
@@ -243,7 +227,7 @@ public class TakeQuizzTest extends
 		solo.clickOnText(response3.get(2));
 		assertTrue(!solo.searchText(" \u2724"));
 
-		solo.goBack();
+		
 
 	}
 

@@ -36,7 +36,7 @@ public class MockTakeUnavailableQuizz extends DefaultHttpClient {
 	private final static int CASE_3 = 3;
 	private final static int CASE_4 = 4;
 	private final static String EROOR_MESSAGE = "ERROR";
-	private final static int NUMBER_OF_TESTS = 4;
+	private final static int NUMBER_OF_TESTS = 5;
 	private final static int QUIZZ_ID = 2;
 
 	@Override
@@ -105,14 +105,15 @@ public class MockTakeUnavailableQuizz extends DefaultHttpClient {
 			HttpResponse response = null;
 			Random random = new Random();
 			int i = random.nextInt(NUMBER_OF_TESTS);
+			
 			/**
 			 * sends the questions of the easy quizz
 			 */
 			if (uri.equals(GET_QUIZZ_QUESTION_URI)) {
-
+                Log.d("Method", request.getRequestLine().getMethod());
 				try {
 					switch (i) {
-	
+
 						case 0:
 							response = new BasicHttpResponse(new BasicStatusLine(
 									HttpVersion.HTTP_1_1, OK_STATUS_CODE, "OK"));
@@ -168,6 +169,7 @@ public class MockTakeUnavailableQuizz extends DefaultHttpClient {
 
 			}
 			if (request.getRequestLine().getMethod().equals("POST")) {
+				Log.d("Post", "In post Mock method");
 				i = random.nextInt(CASE_3);
 				try {
 					switch (i) {
@@ -192,10 +194,8 @@ public class MockTakeUnavailableQuizz extends DefaultHttpClient {
 							response.setEntity(new StringEntity(jsonQuestion
 									.toString()));
 							break;
-	
 						default:
 							break;
-
 					}
 				} catch (JSONException e) {
 
