@@ -86,6 +86,7 @@ public class ShowQuizActivity extends Activity {
 				}
 				ansList.addView(ans);
 			}
+
 			questionText.setText(q.getQuestion());
 
 		} else {
