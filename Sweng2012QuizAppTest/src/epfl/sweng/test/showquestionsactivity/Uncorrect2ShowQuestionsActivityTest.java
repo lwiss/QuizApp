@@ -29,7 +29,6 @@ public class Uncorrect2ShowQuestionsActivityTest extends
 		SwengHttpClientFactory.setInstance(new MockHttpClientUncorrect2());
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
-		getActivity().getQuizQuestion().getQuestion();
 		answers = getActivity().getQuizQuestion().getAnswers();
 		solution = getActivity().getQuizQuestion().getSolutionIndex();
 	}
