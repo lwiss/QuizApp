@@ -21,11 +21,9 @@ import com.jayway.android.robotium.solo.Solo;
 
 import epfl.sweng.editquestions.EditQuestionActivity;
 import epfl.sweng.entry.MainActivity;
-import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
-import epfl.sweng.showquestions.ShowQuestionsActivity;
 import android.test.ActivityInstrumentationTestCase2;
-import android.util.Log;
+
 import android.widget.Button;
 
 /**
@@ -64,17 +62,16 @@ public class MainActivityTest extends
 	}
 
 	public void testButton1() {
-		Log.d("test buttons", "test");
+
 		solo.assertCurrentActivity("Main Activity", MainActivity.class);
 		assertTrue("Show question button exist",
 				solo.searchText("Show a random question"));
 		/*
-		solo.clickOnText("Show a random question");
-		solo.assertCurrentActivity("ShowQuestionsActivity",
-				ShowQuestionsActivity.class);
-		solo.goBackToActivity("MainActivity");
-		solo.assertCurrentActivity("MainActivity", MainActivity.class);
-		*/
+		 * solo.clickOnText("Show a random question");
+		 * solo.assertCurrentActivity("ShowQuestionsActivity",
+		 * ShowQuestionsActivity.class); solo.goBackToActivity("MainActivity");
+		 * solo.assertCurrentActivity("MainActivity", MainActivity.class);
+		 */
 	}
 
 	public void testButton2() {
@@ -90,12 +87,12 @@ public class MainActivityTest extends
 	public void testButton3() {
 		assertTrue("Take a quizz button exist", solo.searchText("Take a Quiz"));
 		/*
-		solo.clickOnText("Take a Quiz");
-		solo.assertCurrentActivity("ShowAvailableQuizzesActivity",
-				ShowAvailableQuizzesActivity.class);
-		solo.goBackToActivity("MainActivity");
-		solo.assertCurrentActivity("MainActivity", MainActivity.class);
-		*/
+		 * solo.clickOnText("Take a Quiz");
+		 * solo.assertCurrentActivity("ShowAvailableQuizzesActivity",
+		 * ShowAvailableQuizzesActivity.class);
+		 * solo.goBackToActivity("MainActivity");
+		 * solo.assertCurrentActivity("MainActivity", MainActivity.class);
+		 */
 	}
 
 	public void testZLogOut() {
@@ -119,7 +116,7 @@ public class MainActivityTest extends
 			}
 
 			public URI getLocationURI(HttpResponse response, HttpContext context)
-					throws org.apache.http.ProtocolException {
+				throws org.apache.http.ProtocolException {
 				return null;
 			}
 		};
@@ -144,7 +141,7 @@ public class MainActivityTest extends
 		@Override
 		public HttpResponse execute(final HttpRequest request,
 				final HttpClientConnection conn, final HttpContext context)
-				throws IOException, HttpException {
+			throws IOException, HttpException {
 			HttpResponse response = null;
 			final int statusTequileOK = 200;
 			final int statusSwengOK = 302;
