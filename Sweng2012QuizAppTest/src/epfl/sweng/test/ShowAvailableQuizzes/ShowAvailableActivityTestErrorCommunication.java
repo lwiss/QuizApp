@@ -6,30 +6,26 @@ import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.test.ActivityInstrumentationTestCase2;
 
-/**
- * This class will perform the test for the ShowAvailableQuizzesActivity
- * 
- * @author MohamedBenArbia
- * 
- */
-public class ShowAvailableQuizzesActivityTest extends
+public class ShowAvailableActivityTestErrorCommunication extends
 		ActivityInstrumentationTestCase2<ShowAvailableQuizzesActivity> {
 	private Solo solo;
+	private static final String ERROR_COMMUNICATION = "An error occurred while fetching quizzes.";
 
-	public ShowAvailableQuizzesActivityTest() {
+	public ShowAvailableActivityTestErrorCommunication() {
 		super(ShowAvailableQuizzesActivity.class);
 	}
 
 	@Override
 	protected void setUp() throws Exception {
-		SwengHttpClientFactory.setInstance(new MockValidQuizzesTitle());
+		SwengHttpClientFactory.setInstance(new MockErrorCommunication());
 		solo = new Solo(getInstrumentation(), getActivity());
 
 	}
 
-	public void testAllQuizzezTitlesAvailable() {
-		assertTrue(solo.searchText("easy quizz"));
-		assertTrue(solo.searchText("hard quizz"));
+	public void testErrorCommunicationMessage() throws Exception {
+		assertTrue("Search about Error Communication Text ",
+				solo.searchText(ERROR_COMMUNICATION));
+
 
 	}
 
