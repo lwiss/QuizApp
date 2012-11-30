@@ -17,10 +17,15 @@ import org.apache.http.message.BasicStatusLine;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.HttpRequestExecutor;
 
+import com.jayway.android.robotium.solo.Solo;
 
+import epfl.sweng.editquestions.EditQuestionActivity;
 import epfl.sweng.entry.MainActivity;
+import epfl.sweng.servercomm.SwengHttpClientFactory;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.test.ActivityInstrumentationTestCase2;
-
+import android.widget.Button;
 
 /**
  * 
@@ -29,21 +34,26 @@ import android.test.ActivityInstrumentationTestCase2;
  */
 public class MainActivityTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
-	//private Solo solo;
-	//private static final int TIME = 1000;
+	private Solo solo;
+	private static final int TIME = 1000;
 
 	public MainActivityTest() {
 		super(MainActivity.class);
 	}
-/*
+
 	@Override
 	protected void setUp() throws Exception {
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
+		SharedPreferences settings = getActivity().getSharedPreferences(MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString("SESSION_ID", "sessionId");
+		editor.commit();
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 	}
 
 	public void testALogIn() {
+		solo.clickOnText("Log out");
 		assertTrue("username exists", solo.searchText("GASPAR Username"));
 		assertTrue("password exists", solo.searchText("GASPAR Password"));
 		Button login = solo.getButton("Log in using Tequila");
@@ -59,7 +69,6 @@ public class MainActivityTest extends
 
 	public void testButton1() {
 
-		solo.assertCurrentActivity("Main Activity", MainActivity.class);
 		assertTrue("Show question button exist",
 				solo.searchText("Show a random question"));
 		/*
@@ -67,7 +76,7 @@ public class MainActivityTest extends
 		 * solo.assertCurrentActivity("ShowQuestionsActivity",
 		 * ShowQuestionsActivity.class); solo.goBackToActivity("MainActivity");
 		 * solo.assertCurrentActivity("MainActivity", MainActivity.class);
-		 
+		 */
 	}
 
 	public void testButton2() {
@@ -88,7 +97,7 @@ public class MainActivityTest extends
 		 * ShowAvailableQuizzesActivity.class);
 		 * solo.goBackToActivity("MainActivity");
 		 * solo.assertCurrentActivity("MainActivity", MainActivity.class);
-		 
+		 */
 	}
 
 	public void testZLogOut() {
@@ -97,7 +106,7 @@ public class MainActivityTest extends
 		assertTrue("Log in button exist",
 				solo.searchText("Log in using Tequila"));
 	}
-*/
+
 	/**
 	 * To use this, call SwengHttpClientFactory.setInstance(new
 	 * MockHttpClient()) in your testing code. Remember that the app always has
