@@ -26,6 +26,7 @@ public class CorrectShowQuestionsActivityTest extends
 	@Override
 	protected void setUp() throws Exception {
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
+		Thread.sleep(TIME);
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 	}

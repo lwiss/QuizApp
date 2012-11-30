@@ -27,6 +27,7 @@ public class Uncorrect1ShowQuestionsActivityTest extends
 	@Override
 	protected void setUp() throws Exception {
 		SwengHttpClientFactory.setInstance(new MockHttpClientUncorrect1());
+		Thread.sleep(TIME);
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 		answers = getActivity().getQuizQuestion().getAnswers();
