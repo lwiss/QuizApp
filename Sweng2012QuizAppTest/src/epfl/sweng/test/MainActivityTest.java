@@ -17,15 +17,15 @@ import org.apache.http.message.BasicStatusLine;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.HttpRequestExecutor;
 
-import com.jayway.android.robotium.solo.Solo;
+//import com.jayway.android.robotium.solo.Solo;
 
 //import epfl.sweng.editquestions.EditQuestionActivity;
 import epfl.sweng.entry.MainActivity;
 //import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
-import epfl.sweng.servercomm.SwengHttpClientFactory;
+//import epfl.sweng.servercomm.SwengHttpClientFactory;
 //import epfl.sweng.showquestions.ShowQuestionsActivity;
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.Button;
+//import android.widget.Button;
 
 /**
  * 
@@ -34,20 +34,20 @@ import android.widget.Button;
  */
 public class MainActivityTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
-	private Solo solo;
-	private static final int TIME = 1000;
+	//private Solo solo;
+	//private static final int TIME = 1000;
 
 	public MainActivityTest() {
 		super(MainActivity.class);
 	}
-
+	/*
 	@Override
 	protected void setUp() throws Exception {
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 	}
-	
+	/*
 	public void testALogIn() {
 		assertTrue("username exists", solo.searchText("GASPAR Username"));
 		assertTrue("password exists", solo.searchText("GASPAR Password"));
