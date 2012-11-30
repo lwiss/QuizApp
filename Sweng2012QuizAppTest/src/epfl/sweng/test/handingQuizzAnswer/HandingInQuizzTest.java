@@ -31,8 +31,8 @@ public class HandingInQuizzTest extends
 
 	@Override
 	protected void setUp() throws Exception {
-		solo = new Solo(getInstrumentation(), getActivity());
 		SwengHttpClientFactory.setInstance(new MockTakeQuizAvailable());
+		solo = new Solo(getInstrumentation(), getActivity());
 		response1.add("5, for very large values of 2");
 		response1.add("4, if you're out of inspiration");
 		response1.add("10, for some carefully chosen base");
@@ -43,16 +43,10 @@ public class HandingInQuizzTest extends
 		response3.add("Eagles");
 		response3.add("Basters");
 		response3.add("Cats");
-		solo.clickOnButton("Take a Quiz");
-		solo.assertCurrentActivity("ShowAvailableQuizzActivity",
-				ShowAvailableQuizzesActivity.class);
 
 	}
 
 	public void testAlertDialog() {
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("Show quizz Activity",
-				ShowQuizActivity.class);
 		solo.clickOnText(response1.get(0));
 		solo.clickOnButton("Next question");
 		solo.clickOnText(response2.get(2));
@@ -71,9 +65,6 @@ public class HandingInQuizzTest extends
 
 	public void testErrorCommunication() {
 		SwengHttpClientFactory.setInstance(new MockTakeUnavailableQuizz());
-		solo.clickOnText("easy quizz");
-		solo.assertCurrentActivity("Show quizz Activity",
-				ShowQuizActivity.class);
 		assertTrue(solo
 				.searchText("An error occurred while handing in your answers"));
 

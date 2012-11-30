@@ -2,6 +2,7 @@ package epfl.sweng.quizzes;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -33,7 +34,7 @@ public class HandInQuizzAsyncTask extends AsyncTask<Object, String, String> {
 	private static final String ERROR_MESSAGE = "An error occurred while handing in your answers";
 	private static final int OK_STATUS = 200;
 	private int quizId;
-	private int score;
+	private double score;
 	private int[] chosenAnswers;
 	private String sessionId;
 	private boolean communicationError = false;
@@ -61,7 +62,7 @@ public class HandInQuizzAsyncTask extends AsyncTask<Object, String, String> {
 						.toString(response.getEntity());
 				if (statusCode == OK_STATUS) {
 					JSONObject result = new JSONObject(responseBody);
-					score = result.getInt("score");
+					score = result.getDouble("score");
 				} else {
 					communicationError = true;
 				}
@@ -115,7 +116,8 @@ public class HandInQuizzAsyncTask extends AsyncTask<Object, String, String> {
 			}
 		});
 		if (!communicationError) {
-			builder.setMessage("Your score is " + score);
+			DecimalFormat df = new DecimalFormat("0.00");
+			builder.setMessage("Your score is " + df.format(score));
 		} else {
 			builder.setMessage(ERROR_MESSAGE);
 		}
