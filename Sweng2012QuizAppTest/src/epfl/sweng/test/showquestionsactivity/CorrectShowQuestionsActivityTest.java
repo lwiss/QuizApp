@@ -28,7 +28,6 @@ public class CorrectShowQuestionsActivityTest extends
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
-		getActivity().getQuizQuestion().getQuestion();
 	}
 
 	public void testShowQuestion() throws JSONException {
