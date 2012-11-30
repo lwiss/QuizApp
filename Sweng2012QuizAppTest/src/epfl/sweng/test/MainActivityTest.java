@@ -17,15 +17,16 @@ import org.apache.http.message.BasicStatusLine;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.HttpRequestExecutor;
 
-//import com.jayway.android.robotium.solo.Solo;
+import com.jayway.android.robotium.solo.Solo;
 
-//import epfl.sweng.editquestions.EditQuestionActivity;
+import epfl.sweng.editquestions.EditQuestionActivity;
 import epfl.sweng.entry.MainActivity;
-//import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
-//import epfl.sweng.servercomm.SwengHttpClientFactory;
-//import epfl.sweng.showquestions.ShowQuestionsActivity;
+import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
+import epfl.sweng.servercomm.SwengHttpClientFactory;
+import epfl.sweng.showquestions.ShowQuestionsActivity;
 import android.test.ActivityInstrumentationTestCase2;
-//import android.widget.Button;
+import android.util.Log;
+import android.widget.Button;
 
 /**
  * 
@@ -34,20 +35,20 @@ import android.test.ActivityInstrumentationTestCase2;
  */
 public class MainActivityTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
-	//private Solo solo;
-	//private static final int TIME = 1000;
+	private Solo solo;
+	private static final int TIME = 1000;
 
 	public MainActivityTest() {
 		super(MainActivity.class);
 	}
-	/*
+
 	@Override
 	protected void setUp() throws Exception {
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		solo = new Solo(getInstrumentation(), getActivity());
 		Thread.sleep(TIME);
 	}
-	/*
+
 	public void testALogIn() {
 		assertTrue("username exists", solo.searchText("GASPAR Username"));
 		assertTrue("password exists", solo.searchText("GASPAR Password"));
@@ -58,38 +59,52 @@ public class MainActivityTest extends
 		solo.clearEditText(1);
 		solo.enterText(1, "password");
 		solo.clickOnText("Log in using Tequila");
+		assertTrue(solo.waitForActivity("MainActivity"));
+
 	}
-	/*
+
 	public void testButton1() {
-		assertTrue("Show question button exist", solo.searchText("Show a random question"));
+		Log.d("test buttons", "test");
+		solo.assertCurrentActivity("Main Activity", MainActivity.class);
+		assertTrue("Show question button exist",
+				solo.searchText("Show a random question"));
+		/*
 		solo.clickOnText("Show a random question");
-		solo.assertCurrentActivity("ShowQuestionsActivity", ShowQuestionsActivity.class);
+		solo.assertCurrentActivity("ShowQuestionsActivity",
+				ShowQuestionsActivity.class);
 		solo.goBackToActivity("MainActivity");
 		solo.assertCurrentActivity("MainActivity", MainActivity.class);
+		*/
 	}
-	
+
 	public void testButton2() {
-		assertTrue("Submit quiz button exist", solo.searchText("Submit quiz question"));
+		assertTrue("Submit quiz button exist",
+				solo.searchText("Submit quiz question"));
 		solo.clickOnText("Submit quiz question");
-		solo.assertCurrentActivity("EditQuestionActivity", EditQuestionActivity.class);
+		solo.assertCurrentActivity("EditQuestionActivity",
+				EditQuestionActivity.class);
 		solo.goBackToActivity("MainActivity");
 		solo.assertCurrentActivity("MainActivity", MainActivity.class);
 	}
-	
+
 	public void testButton3() {
 		assertTrue("Take a quizz button exist", solo.searchText("Take a Quiz"));
+		/*
 		solo.clickOnText("Take a Quiz");
-		solo.assertCurrentActivity("ShowAvailableQuizzesActivity", ShowAvailableQuizzesActivity.class);
+		solo.assertCurrentActivity("ShowAvailableQuizzesActivity",
+				ShowAvailableQuizzesActivity.class);
 		solo.goBackToActivity("MainActivity");
-		solo.assertCurrentActivity("MainActivity", MainActivity.class);	
+		solo.assertCurrentActivity("MainActivity", MainActivity.class);
+		*/
 	}
-	
+
 	public void testZLogOut() {
 		assertTrue("Log out button exist", solo.searchText("Log out"));
 		solo.clickOnText("Log out");
-		assertTrue("Log in button exist", solo.searchText("Log in using Tequila"));
+		assertTrue("Log in button exist",
+				solo.searchText("Log in using Tequila"));
 	}
-*/
+
 	/**
 	 * To use this, call SwengHttpClientFactory.setInstance(new
 	 * MockHttpClient()) in your testing code. Remember that the app always has
@@ -104,7 +119,7 @@ public class MainActivityTest extends
 			}
 
 			public URI getLocationURI(HttpResponse response, HttpContext context)
-				throws org.apache.http.ProtocolException {
+					throws org.apache.http.ProtocolException {
 				return null;
 			}
 		};
@@ -129,7 +144,7 @@ public class MainActivityTest extends
 		@Override
 		public HttpResponse execute(final HttpRequest request,
 				final HttpClientConnection conn, final HttpContext context)
-			throws IOException, HttpException {
+				throws IOException, HttpException {
 			HttpResponse response = null;
 			final int statusTequileOK = 200;
 			final int statusSwengOK = 302;
@@ -156,13 +171,13 @@ public class MainActivityTest extends
 			} else if (method.equals("POST") && uri.equals("/login")) {
 				response = new BasicHttpResponse(new BasicStatusLine(
 						HttpVersion.HTTP_1_1, statusTequileOK, "OK"));
-				response.setEntity(new StringEntity("{"
+				response.setEntity(new StringEntity(
+						"{"
 								+ "\"session\": \"sessionId\","
 								+ "\"message\":"
 								+ "\"Here's your session id."
 								+ "Please include the following HTTP header in your subsequent requests:\n"
-								+ "Authorization: Tequila sessionId\""
-								+ " }"));
+								+ "Authorization: Tequila sessionId\"" + " }"));
 				response.setHeader("Content-type",
 						"application/json;charset=utf-8");
 			}
