@@ -8,6 +8,7 @@ import epfl.sweng.quizquestions.QuizQuestion;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -35,7 +36,9 @@ public class ShowQuizActivity extends Activity {
 	private LinearLayout ansList;
 	private TextView questionText;
 	/**
-	 * 
+	 * an array with length the number of questions in a given quiz it stores
+	 * the index of the user's answer for each question and -1 for the question
+	 * that has not been answered
 	 */
 	private int[] chosenAns;
 	private static final char HEAVY_FOUR_BALLOON_SPOKED_ASTERISK = '\u2724';
@@ -61,7 +64,7 @@ public class ShowQuizActivity extends Activity {
 	}
 
 	/**
-	 * shows the question at position index from the list quizQuestionsList
+	 * shows the question at position index in the list quizQuestionsList
 	 * 
 	 * @param int index the index of the question to show
 	 */
@@ -73,12 +76,13 @@ public class ShowQuizActivity extends Activity {
 			for (int i = 0; i < q.getAnswers().size(); i++) {
 				LinearLayout ans = (LinearLayout) LinearLayout.inflate(this,
 						R.layout.answer, null);
-				((TextView) ans.getChildAt(0)).setText(q.getAnswers().get(i));
 				if (i == userAns) {
-					String a = ((TextView) ans.getChildAt(0)).getText()
-							.toString();
+					String a = q.getAnswers().get(i);
 					((TextView) ans.getChildAt(0)).setText(a + " "
 							+ HEAVY_FOUR_BALLOON_SPOKED_ASTERISK);
+				} else {
+					((TextView) ans.getChildAt(0)).setText(q.getAnswers()
+							.get(i));
 				}
 				ansList.addView(ans);
 			}
@@ -101,7 +105,12 @@ public class ShowQuizActivity extends Activity {
 	public void onAnswerClick(View v) {
 		LinearLayout answersList = (LinearLayout) v.getParent();
 		int userAnswer = answersList.indexOfChild(v);
-		chosenAns[questionIndex] = userAnswer;
+		if (userAnswer == chosenAns[questionIndex]) {
+			chosenAns[questionIndex] = -1;
+		} else {
+			chosenAns[questionIndex] = userAnswer;
+		}
+		Log.d("chosen answer is ", "" + chosenAns[questionIndex]);
 		ansList.removeAllViews();
 		showQuestion(questionIndex);
 	}
