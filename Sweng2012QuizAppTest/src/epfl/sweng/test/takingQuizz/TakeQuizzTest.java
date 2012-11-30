@@ -19,8 +19,8 @@ public class TakeQuizzTest extends
 		ActivityInstrumentationTestCase2<ShowQuizActivity> {
 	private Solo solo;
 
-	private String question1 = "How much is 2 + 2 ?";
-	private String question2 = "How much is 1 + 1 ?";
+	private String question1 = "How much is 2 \\+ 2 ?";
+	private String question2 = "How much is 1 \\+ 1 ?";
 	private String question3 = "How is the best Team ?";
 	private List<String> response1 = new ArrayList<String>();
 	private List<String> response2 = new ArrayList<String>();
