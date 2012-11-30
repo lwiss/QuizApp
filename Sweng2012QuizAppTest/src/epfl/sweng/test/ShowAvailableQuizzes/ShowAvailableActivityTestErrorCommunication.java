@@ -6,6 +6,12 @@ import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import android.test.ActivityInstrumentationTestCase2;
 
+/**
+ * This class will perform the test for the ShowAvailableQuizzesActivity
+ * 
+ * @author MohamedBenArbia
+ * 
+ */
 public class ShowAvailableActivityTestErrorCommunication extends
 		ActivityInstrumentationTestCase2<ShowAvailableQuizzesActivity> {
 	private Solo solo;

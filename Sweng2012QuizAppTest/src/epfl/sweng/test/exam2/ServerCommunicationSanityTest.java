@@ -32,7 +32,6 @@ public class ServerCommunicationSanityTest extends AndroidTestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		super.setUp();
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		questionSearch = QuestionSearchCommunicationFactory.getInstance();
 	}
