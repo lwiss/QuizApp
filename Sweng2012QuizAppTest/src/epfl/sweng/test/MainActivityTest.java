@@ -19,14 +19,14 @@ import org.apache.http.protocol.HttpRequestExecutor;
 
 import com.jayway.android.robotium.solo.Solo;
 
-import epfl.sweng.editquestions.EditQuestionActivity;
+//import epfl.sweng.editquestions.EditQuestionActivity;
 import epfl.sweng.entry.MainActivity;
-import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
+//import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
-import epfl.sweng.showquestions.ShowQuestionsActivity;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
+//import epfl.sweng.showquestions.ShowQuestionsActivity;
+//import android.app.Activity;
+//import android.content.Intent;
+//import android.content.SharedPreferences;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 
