@@ -68,22 +68,25 @@ public class ShowQuizActivity extends Activity {
 	public void showQuestion(int index) {
 		QuizQuestion q = quizQuestionList.get(index);
 		ansList.removeAllViews();
-		if (q!=null) {
+		if (q != null) {
 			int userAns = chosenAns[index];
 			for (int i = 0; i < q.getAnswers().size(); i++) {
 				LinearLayout ans = (LinearLayout) LinearLayout.inflate(this,
 						R.layout.answer, null);
 				((TextView) ans.getChildAt(0)).setText(q.getAnswers().get(i));
 				if (i == userAns) {
-					String a = ((TextView) ans.getChildAt(0)).getText().toString();
-					((TextView) ans.getChildAt(0)).setText(a+" "+HEAVY_FOUR_BALLOON_SPOKED_ASTERISK);
+					String a = ((TextView) ans.getChildAt(0)).getText()
+							.toString();
+					((TextView) ans.getChildAt(0)).setText(a + " "
+							+ HEAVY_FOUR_BALLOON_SPOKED_ASTERISK);
 				}
 				ansList.addView(ans);
 			}
 			questionText.setText(q.getQuestion());
 
 		} else {
-			questionText.setText(RetrieveQuizAsyncTask.COMMUNICATION_ERROR_MESSAGE);
+			questionText
+					.setText(RetrieveQuizAsyncTask.COMMUNICATION_ERROR_MESSAGE);
 		}
 
 	}
@@ -102,26 +105,24 @@ public class ShowQuizActivity extends Activity {
 		ansList.removeAllViews();
 		showQuestion(questionIndex);
 	}
-	
+
 	public void next(View v) {
-		questionIndex=(questionIndex+1)%numberOfQuestions;
+		questionIndex = (questionIndex + 1) % numberOfQuestions;
 		showQuestion(questionIndex);
 	}
+
 	public void previous(View v) {
-		if (questionIndex==0) {
-			questionIndex=numberOfQuestions-1;
+		if (questionIndex == 0) {
+			questionIndex = numberOfQuestions - 1;
 		} else {
 			questionIndex--;
 		}
 		showQuestion(questionIndex);
 	}
-	
-	
+
 	public void handInQuiz(View v) {
-		// define swmantics of this method
+		new HandInQuizzAsyncTask().execute(this, chosenAns);
 	}
-	
-	
 
 	public int getQuizId() {
 		return quizId;
@@ -159,6 +160,5 @@ public class ShowQuizActivity extends Activity {
 	public TextView getQuestionText() {
 		return questionText;
 	}
-	
 
 }
