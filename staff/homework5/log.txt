@@ -1,0 +1,73 @@
+Checking out revision e7ab8ce41f3757363a7bbaa95475e34aeb2a74d4
+M	Sweng2012QuizAppTest/AndroidManifest.xml
+Installing the grading project
+Compiling Sweng2012QuizAppGrading
+Looking for tests to execute...
+Executing epfl.sweng.test.homework5.MainActivityTest#testTakeAQuizButtonStartsShowAvailableQuizzesActivity...
+PASSED: epfl.sweng.test.homework5.MainActivityTest#testTakeAQuizButtonStartsShowAvailableQuizzesActivity
+Executing epfl.sweng.test.homework5.ShowAvailableQuizzesActivityTest#testErrorMessageIfQuizzesCantBeFetched...
+Test crashed. Debug output follows...
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: class=epfl.sweng.test.homework5.ShowAvailableQuizzesActivityTest
+INSTRUMENTATION_STATUS: stream=
+epfl.sweng.test.homework5.ShowAvailableQuizzesActivityTest:
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: test=testErrorMessageIfQuizzesCantBeFetched
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_RESULT: shortMsg=java.lang.IllegalArgumentException
+INSTRUMENTATION_RESULT: longMsg=java.lang.IllegalArgumentException: HTTP entity may not be null
+INSTRUMENTATION_CODE: 0
+FAILED: epfl.sweng.test.homework5.ShowAvailableQuizzesActivityTest#testErrorMessageIfQuizzesCantBeFetched
+Executing epfl.sweng.test.homework5.ShowAvailableQuizzesActivityTest#testNoErrorMessageIfQuizzesAreSuccessfullyFetched...
+PASSED: epfl.sweng.test.homework5.ShowAvailableQuizzesActivityTest#testNoErrorMessageIfQuizzesAreSuccessfullyFetched
+Executing epfl.sweng.test.homework5.ShowAvailableQuizzesActivityTest#testNoQuizzesAvailableMessage...
+PASSED: epfl.sweng.test.homework5.ShowAvailableQuizzesActivityTest#testNoQuizzesAvailableMessage
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testAnswerSelectionsArePreservedWhenNavigating...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testAnswerSelectionsArePreservedWhenNavigating
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testAsteriskIsCorrectAfterOtherAnswerIsSelected...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testAsteriskIsCorrectAfterOtherAnswerIsSelected
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testAsteriskIsRemovedWhenDeselectingAnswer...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testAsteriskIsRemovedWhenDeselectingAnswer
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testCanDisplayNegativeScore...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testCanDisplayNegativeScore
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testCanDisplayPositiveScore...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testCanDisplayPositiveScore
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testCanSubmitHalfEmtpyQuiz...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testCanSubmitHalfEmtpyQuiz
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testCanSubmitQuizAfterComplexEditing...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testCanSubmitQuizAfterComplexEditing
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testErrorMessageWhenTestCannotBeFetched...
+Test crashed. Debug output follows...
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: class=epfl.sweng.test.homework5.TakeAQuizTest
+INSTRUMENTATION_STATUS: stream=
+epfl.sweng.test.homework5.TakeAQuizTest:
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: test=testErrorMessageWhenTestCannotBeFetched
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_RESULT: shortMsg=java.lang.IndexOutOfBoundsException
+INSTRUMENTATION_RESULT: longMsg=java.lang.IndexOutOfBoundsException: Invalid index 0, size is 0
+INSTRUMENTATION_CODE: 0
+FAILED: epfl.sweng.test.homework5.TakeAQuizTest#testErrorMessageWhenTestCannotBeFetched
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testInitiallyNoQuestionsAreMarked...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testInitiallyNoQuestionsAreMarked
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testQuestionNavigationBackwards...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testQuestionNavigationBackwards
+Executing epfl.sweng.test.homework5.TakeAQuizTest#testQuestionNavigationForwards...
+PASSED: epfl.sweng.test.homework5.TakeAQuizTest#testQuestionNavigationForwards
+Executing epfl.sweng.test.homework5sanity.MainActivitySanity#testTakeAQuizButton...
+PASSED: epfl.sweng.test.homework5sanity.MainActivitySanity#testTakeAQuizButton
+Executing epfl.sweng.test.homework5sanity.ShowAvailableQuizzesActivitySanity#testShowsAvailableQuizzes...
+PASSED: epfl.sweng.test.homework5sanity.ShowAvailableQuizzesActivitySanity#testShowsAvailableQuizzes
+Executing epfl.sweng.test.homework5sanity.TakeAQuizSanity#testSymbolIsDisplayedWhenAnswerIsSelected...
+PASSED: epfl.sweng.test.homework5sanity.TakeAQuizSanity#testSymbolIsDisplayedWhenAnswerIsSelected
+Executing epfl.sweng.test.homework5sanity.TakeAQuizSanity#testTakeTheQuizGivenAsExampleInTheHomeworkStatement...
+PASSED: epfl.sweng.test.homework5sanity.TakeAQuizSanity#testTakeTheQuizGivenAsExampleInTheHomeworkStatement
+Total: 17 / 19 tests passed
+Testing took 286 seconds
+If you feel that there is an error in the testing process,
+please write a private note on Piazza, titled
+homework5 test results: Eagles
+DONE

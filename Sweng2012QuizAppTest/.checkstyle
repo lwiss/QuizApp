@@ -4,7 +4,7 @@
   <local-check-config name="Sweng Code Convention" location="/Users/crazybhy/Documents/projetSWENG/staff/sweng-checkstyle.xml" type="external" description="">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="Sweng Code Convention" local="true">
+  <fileset name="all" enabled="true" check-config-name="Sweng Code Convention" local="false">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>
