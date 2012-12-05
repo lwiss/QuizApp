@@ -1,0 +1,36 @@
+MainActivitySanity                                             = 2/2 points
+  [pass] testTakeAQuizButton                                   = 2/2 points
+
+MainActivityTest                                               = 3/3 points
+  [pass] testTakeAQuizButtonStartsShowAvailableQuizzesActivity = 3/3 points
+
+ShowAvailableQuizzesActivitySanity                             = 5/5 points
+  [pass] testShowsAvailableQuizzes                             = 5/5 points
+
+ShowAvailableQuizzesActivityTest                               = 6/10 points
+  [FAIL] testErrorMessageIfQuizzesCantBeFetched                = 0/4 points
+  [pass] testNoErrorMessageIfQuizzesAreSuccessfullyFetched     = 2/2 points
+  [pass] testNoQuizzesAvailableMessage                         = 4/4 points
+
+TakeAQuizSanity                                                = 15/15 points
+  [pass] testSymbolIsDisplayedWhenAnswerIsSelected             = 5/5 points
+  [pass] testTakeTheQuizGivenAsExampleInTheHomeworkStatement   = 10/10 points
+
+TakeAQuizTest                                                  = 30/35 points
+  [pass] testAnswerSelectionsArePreservedWhenNavigating        = 4/4 points
+  [pass] testAsteriskIsCorrectAfterOtherAnswerIsSelected       = 5/5 points
+  [pass] testAsteriskIsRemovedWhenDeselectingAnswer            = 3/3 points
+  [pass] testCanDisplayNegativeScore                           = 2/2 points
+  [pass] testCanDisplayPositiveScore                           = 2/2 points
+  [pass] testCanSubmitHalfEmtpyQuiz                            = 3/3 points
+  [pass] testCanSubmitQuizAfterComplexEditing                  = 3/3 points
+  [FAIL] testErrorMessageWhenTestCannotBeFetched               = 0/5 points
+  [pass] testInitiallyNoQuestionsAreMarked                     = 2/2 points
+  [pass] testQuestionNavigationBackwards                       = 3/3 points
+  [pass] testQuestionNavigationForwards                        = 3/3 points
+
+TOTAL: 61/70 points
+
+
+Coverage: 67 %
+Full track grade: 21.04218750000000000000
