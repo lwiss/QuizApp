@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
+import epfl.sweng.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,11 +21,13 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+
 /**
  * 
  * @author crazybhy
- *
+ * 
  */
 public class ListAvailableQuizzesAsyncTask extends
 		AsyncTask<Object, String, String> {
@@ -42,7 +45,8 @@ public class ListAvailableQuizzesAsyncTask extends
 	@Override
 	protected String doInBackground(Object... params) {
 		activity = (ShowAvailableQuizzesActivity) params[0];
-		SharedPreferences preference = activity.getSharedPreferences(MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
+		SharedPreferences preference = activity.getSharedPreferences(
+				MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
 		sessionId = preference.getString("SESSION_ID", null);
 		getQuizzesTitles();
 		return null;
@@ -81,7 +85,7 @@ public class ListAvailableQuizzesAsyncTask extends
 		}
 
 	}
-	
+
 	private void getQuizzTitle(JSONArray json) throws JSONException {
 		for (int i = 0; i < json.length(); i++) {
 			JSONObject jsonObject = (JSONObject) json.get(i);
@@ -94,7 +98,7 @@ public class ListAvailableQuizzesAsyncTask extends
 
 		}
 	}
-	
+
 	private int auditErrors(int id, String title) {
 		int i = 0;
 		if (!verifyID(id)) {
@@ -105,43 +109,47 @@ public class ListAvailableQuizzesAsyncTask extends
 		}
 		return i;
 	}
+
 	private boolean verifyID(int id) {
 		if (id > 0) {
 			return true;
 		}
 		return false;
 	}
+
 	private boolean verifyTitle(String title) {
 		if (title.length() < MAX_CHARACTER_NUMBER) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
 	protected void onPostExecute(String param) {
-
+		TextView text = (TextView) activity.findViewById(R.id.errorMessage);
 		if (communicationError) {
-			activity.getText().setText(COMMUNICATION_ERROR_MESSAGE);
+			text.setText(COMMUNICATION_ERROR_MESSAGE);
 
 		} else if (noquizzAvailable) {
-			activity.getText().setText(NO_QUIZZES_AVAILABLE);
+			text.setText(NO_QUIZZES_AVAILABLE);
 
 		} else {
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity,
 					android.R.layout.simple_list_item_1, quizzesTitle);
 			activity.getList().setAdapter(adapter);
-			activity.getList().setOnItemClickListener(new OnItemClickListener() {
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-					ShowAvailableQuizzesActivity.setChosenQuizId(position);
-					Intent intent = new Intent(activity,
-							ShowQuizActivity.class);
-					activity.startActivity(intent);
-				}
-			});
+			activity.getList().setOnItemClickListener(
+					new OnItemClickListener() {
+						public void onItemClick(AdapterView<?> parent,
+								View view, int position, long id) {
+							ShowAvailableQuizzesActivity
+									.setChosenQuizId(position);
+							Intent intent = new Intent(activity,
+									ShowQuizActivity.class);
+							activity.startActivity(intent);
+						}
+					});
 
 		}
 	}
-	
+
 }

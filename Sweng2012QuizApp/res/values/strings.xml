@@ -30,6 +30,7 @@
     <string name="title_activity_show_quiz">ShowQuizActivity</string>
     <string name="next">Next question</string>
     <string name="previous">Previous question</string>
+    <string name="offline">Offline mode</string>
     <string name="hand_in_quiz">Hand in quiz</string>
 
 </resources>

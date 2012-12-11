@@ -68,4 +68,11 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
+	/**
+	 * This method is called when the chekbox is clicked 
+	 */
+	public void onCheckBoxClick() {
+
+	}
+
 }

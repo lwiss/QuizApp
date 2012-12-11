@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -139,7 +140,8 @@ public class RetrieveQuizAsyncTask extends
 	@Override
 	protected String doInBackground(ShowQuizActivity... params) {
 		activity = (ShowQuizActivity) params[0];
-		SharedPreferences preference = activity.getSharedPreferences(MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
+		SharedPreferences preference = activity.getSharedPreferences(
+				MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
 		sessionId = preference.getString("SESSION_ID", null);
 		JSONArray quiz = retrieveQuizQuestions(activity.getQuizId());
 		activity.setQuizQuestionList(fillQuestionsList(quiz));
@@ -158,6 +160,8 @@ public class RetrieveQuizAsyncTask extends
 		if (message != null) {
 			// then show the COMMUNICATION_ERROR_MESSAGE
 			// and disable buttons
+			TextView text = (TextView) activity.findViewById(R.id.questionText);
+			text.setText(COMMUNICATION_ERROR_MESSAGE);
 			activity.getQuestionText().setText(COMMUNICATION_ERROR_MESSAGE);
 			Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 			((Button) activity.findViewById(R.id.next)).setEnabled(false);
@@ -166,7 +170,8 @@ public class RetrieveQuizAsyncTask extends
 		} else if (communicationError) {
 			// then show the COMMUNICATION_ERROR_MESSAGE
 			// and disable buttons
-			activity.getQuestionText().setText(COMMUNICATION_ERROR_MESSAGE);
+			TextView text = (TextView) activity.findViewById(R.id.questionText);
+			text.setText(COMMUNICATION_ERROR_MESSAGE);
 			((Button) activity.findViewById(R.id.next)).setEnabled(false);
 			((Button) activity.findViewById(R.id.previous)).setEnabled(false);
 			((Button) activity.findViewById(R.id.handIn)).setEnabled(false);
