@@ -1,6 +1,7 @@
 package epfl.sweng.servercomm.communication;
 
 import epfl.sweng.quizquestions.QuizQuestion;
+import epfl.sweng.servercomm.search.CommunicationException;
 import epfl.sweng.showquestions.Rating;
 
 /**
@@ -16,7 +17,7 @@ public interface Communication {
 	 * This method is responsable of returning the quizzQuestion fetched from the server
 	 * @return
 	 */
-	QuizQuestion getQuizQuestion();
+	QuizQuestion getQuizQuestion(String sessionId) throws CommunicationException;
 	/**
 	 * post a quizz question that the user submit 
 	 * @param quizQuestion

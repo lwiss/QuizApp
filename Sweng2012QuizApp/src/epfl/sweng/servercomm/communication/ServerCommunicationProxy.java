@@ -15,20 +15,17 @@ public final class ServerCommunicationProxy implements Communication {
 	private ServerCommunication serverCommunication;
 	private static ServerCommunicationProxy proxy;
 
-	private ServerCommunicationProxy() {
+	private ServerCommunicationProxy(String sessionId) {
 
 	}
 
 	public static ServerCommunicationProxy getInstance() {
-		if (proxy == null) {
-			return new ServerCommunicationProxy();
-		}
-		return proxy;
+		return null;
 	}
 
-	public QuizQuestion getQuizQuestion() {
+	public QuizQuestion getQuizQuestion(String sessionId) {
 		// TODO Auto-generated method stub
-	
+
 		return null;
 	}
 

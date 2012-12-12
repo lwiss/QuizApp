@@ -3,32 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <Button 
-        android:text="@string/show_question"
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="showQuestion"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"/>
-    <Button 
-        android:text="@string/submit_question"
+        android:text="@string/show_question" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="submitQuestion"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"/>
-     <Button 
-        android:text="@string/take_quiz"
+        android:text="@string/submit_question" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="takeQuiz"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"/>
-    <Button 
-        android:text="@string/logout"
+        android:text="@string/take_quiz" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="logout"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"/>
-    <CheckBox 
+        android:text="@string/logout" />
+
+    <CheckBox
         android:id="@+id/chekboxOffline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/offline"
+        android:checked="true"
         android:onClick="onCheckBoxClick"
-        />
+        android:text="@string/offline" />
 
 </LinearLayout>

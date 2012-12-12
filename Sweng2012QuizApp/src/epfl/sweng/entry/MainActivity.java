@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
+import android.widget.CheckBox;
 
 /**
  * 
@@ -19,6 +20,15 @@ import android.view.View;
  */
 public class MainActivity extends Activity {
 	public final static String PREF_NAME = "user_session";
+	private static boolean online = false;
+
+	public static boolean isOnline() {
+		return online;
+	}
+
+	public static void setOnline(boolean onLine) {
+		MainActivity.online = onLine;
+	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,9 +79,12 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * This method is called when the chekbox is clicked 
+	 * This method is called when the chekbox is clicked
 	 */
-	public void onCheckBoxClick() {
+	public void onCheckBoxClick(View view) {
+
+		boolean isCheked = ((CheckBox) view).isChecked();
+		online = !isCheked;
 
 	}
 
