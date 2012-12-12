@@ -1,5 +1,10 @@
 package epfl.sweng.servercomm.communication;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
+import android.util.Log;
+import epfl.sweng.cash.CacheManager;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.search.CommunicationException;
@@ -15,31 +20,44 @@ import epfl.sweng.showquestions.Rating;
  */
 public final class ServerCommunicationProxy implements Communication {
 	private Communication serverCommunication;
+	private CacheManager caheManager;
 	private static ServerCommunicationProxy proxy;
-	private boolean online;
+
 
 	private ServerCommunicationProxy() {
-		online = MainActivity.isOnline();
+		caheManager = CacheManager.getInstance();
+		serverCommunication = ServerCommunication.getInstance();
 	}
 
 	public static ServerCommunicationProxy getInstance() {
 		if (proxy == null) {
 			proxy = new ServerCommunicationProxy();
 		}
-		return null;
+		return proxy;
 	}
 
 	public QuizQuestion getQuizQuestion(String sessionId) {
-		serverCommunication = ServerCommunicationProxy.getInstance();
+		Log.d("getQuestion Proxy method", "here in proxy ");
 		QuizQuestion quizQuestion = null;
-		if (online) {
+		if (MainActivity.isOnline()) {
+			Log.d("Online", "here in proxy");
+			// then call getQuizQuestion method of servercommunication class to
+			// do the communication with the server and cache the quizz question with the Cache
+			// Manager.
+			// If an error is generated an exception is thrown and we pass in
+			// offline Mode
 			try {
 				quizQuestion = serverCommunication.getQuizQuestion(sessionId);
+				caheManager.cacheOnlineQuizQuestion(quizQuestion);
 			} catch (CommunicationException e) {
+				quizQuestion = new QuizQuestion(
+						"There was an error retrieving the question",
+						new ArrayList<String>(), -1, new HashSet<String>(), -1,
+						null);
 				MainActivity.setOnline(false);
 			}
 		}
-		return null;
+		return quizQuestion; 
 	}
 
 	public void postQuestion(QuizQuestion quizQuestion) {

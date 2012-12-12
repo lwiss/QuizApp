@@ -4,6 +4,7 @@ import epfl.sweng.R;
 import epfl.sweng.authentication.AuthenticationActivity;
 import epfl.sweng.editquestions.EditQuestionActivity;
 import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
+import epfl.sweng.servercomm.communication.ServerCommunicationProxy;
 import epfl.sweng.showquestions.ShowQuestionsActivity;
 import android.os.Bundle;
 import android.app.Activity;
@@ -36,6 +37,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		SharedPreferences settings = getSharedPreferences(PREF_NAME,
 				MODE_PRIVATE);
+		ServerCommunicationProxy.getInstance();
 		if (settings.getString("SESSION_ID", null) == null) {
 			Intent intent = new Intent(MainActivity.this,
 					AuthenticationActivity.class);
@@ -84,7 +86,7 @@ public class MainActivity extends Activity {
 	public void onCheckBoxClick(View view) {
 
 		boolean isCheked = ((CheckBox) view).isChecked();
-		online = !isCheked;
+		MainActivity.setOnline(!isCheked);
 
 	}
 

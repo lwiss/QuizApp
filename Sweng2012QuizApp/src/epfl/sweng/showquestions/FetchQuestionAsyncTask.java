@@ -15,6 +15,7 @@ import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.servercomm.communication.ServerCommunication;
+import epfl.sweng.servercomm.communication.ServerCommunicationProxy;
 import epfl.sweng.servercomm.search.CommunicationException;
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -36,7 +37,6 @@ import android.widget.TextView;
  */
 public class FetchQuestionAsyncTask extends
 		AsyncTask<ShowQuestionsActivity, String, QuizQuestion> {
-	private static final String URL = "https://sweng-quiz.appspot.com/quizquestions/random";
 	private ShowQuestionsActivity activity;
 
 	@Override
@@ -47,17 +47,8 @@ public class FetchQuestionAsyncTask extends
 				MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
 		activity.setSessionId(preference.getString("SESSION_ID", null));
 		String sessionId = activity.getSessionId();
-		QuizQuestion quizzQuestion = null;
-		try {
-			quizzQuestion = ServerCommunication.getInstance().getQuizQuestion(
-					sessionId);
-		} catch (CommunicationException e) {
-			Log.d("Error", "I'am here");
-			quizzQuestion = new QuizQuestion(
-					"There was an error retrieving the question",
-					new ArrayList<String>(), -1, new HashSet<String>(), -1,
-					null);
-		}
+		QuizQuestion quizzQuestion = ServerCommunicationProxy.getInstance()
+				.getQuizQuestion(sessionId);
 		activity.setQuizQuestion(quizzQuestion);
 		return quizzQuestion;
 		/**
