@@ -1,5 +1,6 @@
 package epfl.sweng.servercomm.communication;
 
+import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.showquestions.Rating;
 
@@ -12,19 +13,22 @@ import epfl.sweng.showquestions.Rating;
  * 
  */
 public final class ServerCommunicationProxy implements Communication {
-	private ServerCommunication serverCommunication;
+	private Communication serverCommunication;
 	private static ServerCommunicationProxy proxy;
+	private boolean online;
 
-	private ServerCommunicationProxy(String sessionId) {
-
+	private ServerCommunicationProxy() {
+		online = MainActivity.isOnline();
 	}
 
 	public static ServerCommunicationProxy getInstance() {
+		if (proxy == null) {
+			proxy = new ServerCommunicationProxy();
+		}
 		return null;
 	}
 
 	public QuizQuestion getQuizQuestion(String sessionId) {
-		// TODO Auto-generated method stub
 
 		return null;
 	}
