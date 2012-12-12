@@ -2,6 +2,7 @@ package epfl.sweng.servercomm.communication;
 
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
+import epfl.sweng.servercomm.search.CommunicationException;
 import epfl.sweng.showquestions.Rating;
 
 /**
@@ -29,7 +30,15 @@ public final class ServerCommunicationProxy implements Communication {
 	}
 
 	public QuizQuestion getQuizQuestion(String sessionId) {
-
+		serverCommunication = ServerCommunicationProxy.getInstance();
+		QuizQuestion quizQuestion = null;
+		if (online) {
+			try {
+				quizQuestion = serverCommunication.getQuizQuestion(sessionId);
+			} catch (CommunicationException e) {
+				MainActivity.setOnline(false);
+			}
+		}
 		return null;
 	}
 
