@@ -3,6 +3,7 @@ package epfl.sweng.servercomm.communication;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.search.CommunicationException;
 import epfl.sweng.showquestions.Rating;
+import epfl.sweng.showquestions.Rating.RateState;
 
 /**
  * This interface defines the methods that will be used by the
@@ -14,24 +15,33 @@ import epfl.sweng.showquestions.Rating;
 public interface Communication {
 
 	/**
-	 * This method is responsable of returning the quizzQuestion fetched from the server
+	 * This method is responsable of returning the quizzQuestion fetched from
+	 * the server
+	 * 
 	 * @return
 	 */
-	QuizQuestion getQuizQuestion(String sessionId) throws CommunicationException;
+	QuizQuestion getQuizQuestion()
+		throws CommunicationException;
+
 	/**
-	 * post a quizz question that the user submit 
+	 * post a quizz question that the user submit
+	 * 
 	 * @param quizQuestion
 	 */
-	void postQuestion(QuizQuestion quizQuestion);
+	boolean postQuestion(QuizQuestion quizQuestion) throws CommunicationException;
+
 	/**
-	 * return the rating of a quizz question 
+	 * return the rating of a quizz question
+	 * 
 	 * @return
 	 */
-	Rating getRatings();
+	Rating getRatings(int id) throws CommunicationException;
+
 	/**
-	 * post a rating of a quiz question 
+	 * post a rating of a quiz question
+	 * 
 	 * @param rating
 	 */
-	void postRating(Rating rating);
+	RateState postRating(String verdict, int id) throws CommunicationException;
 
 }

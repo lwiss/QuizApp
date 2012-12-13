@@ -1,26 +1,17 @@
 package epfl.sweng.showquestions;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.json.JSONException;
 
 import epfl.sweng.R;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
-import epfl.sweng.servercomm.SwengHttpClientFactory;
-import epfl.sweng.servercomm.communication.ServerCommunication;
+
 import epfl.sweng.servercomm.communication.ServerCommunicationProxy;
-import epfl.sweng.servercomm.search.CommunicationException;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.util.Log;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -46,9 +37,10 @@ public class FetchQuestionAsyncTask extends
 		SharedPreferences preference = activity.getSharedPreferences(
 				MainActivity.PREF_NAME, Activity.MODE_PRIVATE);
 		activity.setSessionId(preference.getString("SESSION_ID", null));
-		String sessionId = activity.getSessionId();
+
+		// The communication with the server is passed throw the proxy
 		QuizQuestion quizzQuestion = ServerCommunicationProxy.getInstance()
-				.getQuizQuestion(sessionId);
+				.getQuizQuestion();
 		activity.setQuizQuestion(quizzQuestion);
 		return quizzQuestion;
 		/**

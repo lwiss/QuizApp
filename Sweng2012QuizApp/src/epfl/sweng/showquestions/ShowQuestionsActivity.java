@@ -106,16 +106,19 @@ public class ShowQuestionsActivity extends Activity {
     
 	public void like(View view) {
 		new PostRatingAsyncTask().execute(this, "like");
+		new GetRatingsAsyncTask().execute(this);
 
 	}
 
 	public void dislike(View view) {
 		new PostRatingAsyncTask().execute(this, "dislike");
+		new GetRatingsAsyncTask().execute(this);
 
 	}
 
 	public void incorrect(View view) {
 		new PostRatingAsyncTask().execute(this, "incorrect");
+		new GetRatingsAsyncTask().execute(this);
 
 	}
     

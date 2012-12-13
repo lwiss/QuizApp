@@ -1,22 +1,28 @@
 package epfl.sweng.servercomm.communication;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
+
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ResponseHandler;
+
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+
+import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.util.Log;
 
+import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.servercomm.search.CommunicationException;
 import epfl.sweng.showquestions.Rating;
+import epfl.sweng.showquestions.Rating.RateState;
 
 /**
  * This class implements method that are responsable of doing the communication
@@ -28,7 +34,14 @@ import epfl.sweng.showquestions.Rating;
  */
 public final class ServerCommunication implements Communication {
 	private static final String GET_QUESTION_SERVER_URL = "https://sweng-quiz.appspot.com/quizquestions/random";
+	private final static String RATING_URL_SERVER = "https://sweng-quiz.appspot.com/quizquestions";
+	private final static String POST_RATING = "https://sweng-quiz.appspot.com/quizquestions";
+	private final static String POST_QUESTION_URL = "https://sweng-quiz.appspot.com/quizquestions";
 	private static final int OK_STATUS = 200;
+	private static final int CREATED_STATUS = 201;
+	private static final int NO_CONTENT_STATUS = 204;
+	private static final int NOT_FOUND_STATUS = 404;
+	private static final int UNAUTHORIZED_STATUS = 401;
 	private static ServerCommunication serverCommunication;
 
 	public static ServerCommunication getInstance() {
@@ -41,15 +54,16 @@ public final class ServerCommunication implements Communication {
 	private ServerCommunication() {
 
 	}
+
 	/**
-	 * This method is responsible of getting q quizzQuestion from the server 
-	 * IF an error communication occurs then a Communication Exception is generated
+	 * This method is responsible of getting q quizzQuestion from the server IF
+	 * an error communication occurs then a Communication Exception is thrown
 	 */
 
-	public QuizQuestion getQuizQuestion(String sessionId)
-		throws CommunicationException {
+	public QuizQuestion getQuizQuestion() throws CommunicationException {
 		HttpGet httpGet = new HttpGet(GET_QUESTION_SERVER_URL);
-		httpGet.setHeader("Authorization", "Tequila " + sessionId);
+		httpGet.setHeader("Authorization",
+				"Tequila " + MainActivity.getSessionId());
 		HttpResponse httpResponse = null;
 		QuizQuestion quizQuestion = null;
 		try {
@@ -61,8 +75,10 @@ public final class ServerCommunication implements Communication {
 					String responseEntity = EntityUtils.toString(httpResponse
 							.getEntity());
 					quizQuestion = new QuizQuestion(responseEntity);
+					return quizQuestion;
 				} else {
-					Log.d("Server Response while fetching question", ""+status);
+					Log.d("Server Response while fetching question", ""
+							+ status);
 					throw new CommunicationException();
 				}
 			} else {
@@ -75,21 +91,182 @@ public final class ServerCommunication implements Communication {
 			throw new CommunicationException(e);
 		}
 
-		return quizQuestion;
 	}
 
-	public void postQuestion(QuizQuestion quizQuestion) {
+	/**
+	 * This method is responsable for posting a quizz question
+	 * 
+	 * @throws CommunicationException
+	 */
+	public boolean postQuestion(QuizQuestion question)
+		throws CommunicationException {
 		// TODO Auto-generated method stub
+		JSONObject json = new JSONObject();
+		try {
+			json.put("question", question.getQuestion());
+			json.put("answers", new JSONArray(question.getAnswers()));
+			json.put("solutionIndex", question.getSolutionIndex());
+			json.put("tags", new JSONArray(question.getTags()));
+		} catch (JSONException e) {
+			System.err.println("Error while constructing JsonObject");
+		}
+		HttpPost post = new HttpPost(POST_QUESTION_URL);
+
+		try {
+			post.setEntity(new StringEntity(json.toString()));
+			post.setHeader(new BasicHeader("Content-type", "application/json"));
+			post.setHeader("Authorization",
+					"Tequila " + MainActivity.getSessionId());
+			HttpResponse response = SwengHttpClientFactory.getInstance()
+					.execute(post);
+			if (response != null) {
+				int status = response.getStatusLine().getStatusCode();
+				return status == CREATED_STATUS;
+			} else {
+				throw new CommunicationException();
+			}
+
+		} catch (IOException e) {
+			throw new CommunicationException(e);
+		}
 
 	}
 
-	public Rating getRatings() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * this method is responsable of getting a rating of question from the
+	 * server If an errorCommunication occurs, a CommunicationException is
+	 * thrown
+	 */
+
+	public Rating getRatings(int questionId) throws CommunicationException {
+		Rating rating = new Rating(-1, -1, -1, null, questionId);
+		getAllRatings(questionId, rating);
+		getRating(questionId, rating);
+		return rating;
+
 	}
 
-	public void postRating(Rating rating) {
-		// TODO Auto-generated method stub
+	private void getAllRatings(int id, Rating rating)
+		throws CommunicationException {
+		HttpResponse httpResponse = getRequest(RATING_URL_SERVER + "/" + id
+				+ "/ratings");
+		if (httpResponse != null
+				&& httpResponse.getStatusLine().getStatusCode() == OK_STATUS) {
+			try {
+				String response = EntityUtils
+						.toString(httpResponse.getEntity());
+				JSONObject json = new JSONObject(response);
+				rating.setLikeCount(json.getInt("likeCount"));
+				rating.setDislikeCount(json.getInt("dislikeCount"));
+				rating.setIncorrectCount(json.getInt("incorrectCount"));
+			} catch (IOException e) {
+				throw new CommunicationException(e);
+			} catch (JSONException e) {
+				throw new CommunicationException(e);
+			}
+		} else {
+			throw new CommunicationException();
+		}
+	}
+
+	private void getRating(int id, Rating rating) throws CommunicationException {
+		HttpResponse httpResponse = getRequest(RATING_URL_SERVER + "/" + id
+				+ "/rating");
+		if (httpResponse != null) {
+			switch (httpResponse.getStatusLine().getStatusCode()) {
+				case OK_STATUS:
+					try {
+						String response = EntityUtils.toString(httpResponse
+								.getEntity());
+						JSONObject json = new JSONObject(response);
+						rating.setVerdict(json.getString("verdict"));
+					} catch (IOException e) {
+						throw new CommunicationException(e);
+					} catch (JSONException e) {
+						throw new CommunicationException(e);
+					}
+					break;
+				case NO_CONTENT_STATUS:
+					rating.setVerdict("You have not rated this question");
+					break;
+				case NOT_FOUND_STATUS:
+					throw new CommunicationException();
+				case UNAUTHORIZED_STATUS:
+					try {
+						String response = EntityUtils.toString(httpResponse
+								.getEntity());
+						JSONObject json = new JSONObject(response);
+						rating.setVerdict(json.getString("message"));
+						throw new CommunicationException();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				default:
+			}
+		} else {
+			throw new CommunicationException();
+		}
+	}
+
+	private HttpResponse getRequest(String url) throws CommunicationException {
+		HttpGet httpGet = new HttpGet(url);
+		HttpResponse httpResponse = null;
+		String sessionId = MainActivity.getSessionId();
+		httpGet.setHeader("Authorization", "Tequila " + sessionId);
+		try {
+			httpResponse = SwengHttpClientFactory.getInstance()
+					.execute(httpGet);
+
+		} catch (IOException e) {
+			throw new CommunicationException();
+		}
+		return httpResponse;
+	}
+
+	/**
+	 * This method is responsable of posting a rating of a user to a
+	 * quizzQuestion
+	 */
+	public RateState postRating(String verdict, int questionID)
+		throws CommunicationException {
+		return postUserRating(questionID, verdict);
+
+	}
+
+	private RateState postUserRating(int questionID, String rate)
+		throws CommunicationException {
+		HttpResponse response = null;
+		try {
+			JSONObject json = new JSONObject();
+			json.put("verdict", rate);
+
+			HttpPost post = new HttpPost(POST_RATING + "/" + questionID
+					+ "/rating");
+			post.setHeader("Authorization",
+					"Tequila " + MainActivity.getSessionId());
+			post.setEntity(new StringEntity(json.toString()));
+			response = SwengHttpClientFactory.getInstance().execute(post);
+			if (response != null) {
+				int status = response.getStatusLine().getStatusCode();
+				response.getEntity().getContent().close();
+				if (status == OK_STATUS) {
+					return RateState.UPDATED;
+				} else if (status == CREATED_STATUS) {
+					return RateState.REGISTRED;
+				} else {
+					return RateState.NOTFOUND;
+				}
+
+			} else {
+				throw new CommunicationException();
+			}
+		} catch (JSONException e) {
+			throw new CommunicationException(e);
+		} catch (IOException e) {
+			throw new CommunicationException(e);
+		}
 
 	}
 
