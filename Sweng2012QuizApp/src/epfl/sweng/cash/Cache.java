@@ -7,7 +7,7 @@ import epfl.sweng.quizquestions.QuizQuestion;
  * defines the methods that the casheManager has to implement
  *
  */
-public interface Cash {
+public interface Cache {
 	
 	/**
 	 * This method is used to cache the quizzQuestion in online mode:
