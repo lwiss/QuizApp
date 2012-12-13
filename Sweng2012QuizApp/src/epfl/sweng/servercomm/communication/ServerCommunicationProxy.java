@@ -2,6 +2,8 @@ package epfl.sweng.servercomm.communication;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 import android.util.Log;
 import epfl.sweng.cash.CacheManager;
@@ -65,6 +67,7 @@ public final class ServerCommunicationProxy implements Communication {
 				MainActivity.setOnline(false);
 			}
 		} else {
+			quizQuestion = caheManager.getCachedQuizQuestion();
 			// display the cahced information to the user using a method defined
 			// in CacheManager
 		}
@@ -132,13 +135,46 @@ public final class ServerCommunicationProxy implements Communication {
 			// question !
 			// Use the method updateRating defined in Rating
 			// store it using the cacheManager
-			
-			// this method will save the user rating in a list in order to send it after to the 
-			// to the server and will save it in list_of_all_ratings in the way that if there
-			// is a question of the same id  , it update the state of that question 
-			caheManager.cacheUserRating(new Rating(verdict, questionID));
+
+			// this method will save the user rating in a list in order to send
+			// it after to the
+			// to the server and will save it in list_of_all_ratings in the way
+			// that if there
+			// is a question of the same id , it update the state of that
+			// question !!
+			rateState = caheManager.cacheUserRating(new Rating(verdict,
+					questionID));
 		}
 		return rateState;
+
+	}
+
+	public void sendCachedContent() {
+		List<QuizQuestion> listOfQuizQuestionToSubmit = caheManager
+				.getListOfQuizQuestionTosubmit();
+		List<Rating> listOfUserRating = caheManager
+				.getListOfUserRatingToSubmit();
+
+		for (QuizQuestion quizQuestion : listOfQuizQuestionToSubmit) {
+			try {
+				serverCommunication.postQuestion(quizQuestion);
+				listOfQuizQuestionToSubmit.remove(quizQuestion);
+			} catch (CommunicationException e) {
+				MainActivity.setOnline(false);
+			}
+
+		}
+
+		for (Rating rating : listOfUserRating) {
+
+			try {
+				serverCommunication.postRating(rating.getVerdict(),
+						rating.getQuestionId());
+				listOfUserRating.remove(rating);
+			} catch (CommunicationException e) {
+				MainActivity.setOnline(false);
+			}
+		}
 
 	}
 

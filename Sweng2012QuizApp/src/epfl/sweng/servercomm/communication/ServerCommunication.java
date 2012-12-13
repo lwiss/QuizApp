@@ -2,7 +2,6 @@ package epfl.sweng.servercomm.communication;
 
 import java.io.IOException;
 
-
 import org.apache.http.HttpResponse;
 
 import org.apache.http.client.methods.HttpGet;
@@ -99,7 +98,7 @@ public final class ServerCommunication implements Communication {
 	 * @throws CommunicationException
 	 */
 	public boolean postQuestion(QuizQuestion question)
-		throws CommunicationException {
+			throws CommunicationException {
 		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject();
 		try {
@@ -121,7 +120,11 @@ public final class ServerCommunication implements Communication {
 					.execute(post);
 			if (response != null) {
 				int status = response.getStatusLine().getStatusCode();
-				return status == CREATED_STATUS;
+				if (status == CREATED_STATUS) {
+					return true;
+				} else {
+					throw new CommunicationException();
+				}
 			} else {
 				throw new CommunicationException();
 			}
@@ -147,7 +150,7 @@ public final class ServerCommunication implements Communication {
 	}
 
 	private void getAllRatings(int id, Rating rating)
-		throws CommunicationException {
+			throws CommunicationException {
 		HttpResponse httpResponse = getRequest(RATING_URL_SERVER + "/" + id
 				+ "/ratings");
 		if (httpResponse != null
@@ -174,36 +177,36 @@ public final class ServerCommunication implements Communication {
 				+ "/rating");
 		if (httpResponse != null) {
 			switch (httpResponse.getStatusLine().getStatusCode()) {
-				case OK_STATUS:
-					try {
-						String response = EntityUtils.toString(httpResponse
-								.getEntity());
-						JSONObject json = new JSONObject(response);
-						rating.setVerdict(json.getString("verdict"));
-					} catch (IOException e) {
-						throw new CommunicationException(e);
-					} catch (JSONException e) {
-						throw new CommunicationException(e);
-					}
-					break;
-				case NO_CONTENT_STATUS:
-					rating.setVerdict("You have not rated this question");
-					break;
-				case NOT_FOUND_STATUS:
+			case OK_STATUS:
+				try {
+					String response = EntityUtils.toString(httpResponse
+							.getEntity());
+					JSONObject json = new JSONObject(response);
+					rating.setVerdict(json.getString("verdict"));
+				} catch (IOException e) {
+					throw new CommunicationException(e);
+				} catch (JSONException e) {
+					throw new CommunicationException(e);
+				}
+				break;
+			case NO_CONTENT_STATUS:
+				rating.setVerdict("You have not rated this question");
+				break;
+			case NOT_FOUND_STATUS:
+				throw new CommunicationException();
+			case UNAUTHORIZED_STATUS:
+				try {
+					String response = EntityUtils.toString(httpResponse
+							.getEntity());
+					JSONObject json = new JSONObject(response);
+					rating.setVerdict(json.getString("message"));
 					throw new CommunicationException();
-				case UNAUTHORIZED_STATUS:
-					try {
-						String response = EntityUtils.toString(httpResponse
-								.getEntity());
-						JSONObject json = new JSONObject(response);
-						rating.setVerdict(json.getString("message"));
-						throw new CommunicationException();
-					} catch (IOException e) {
-						e.printStackTrace();
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				default:
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			default:
 			}
 		} else {
 			throw new CommunicationException();
@@ -230,13 +233,13 @@ public final class ServerCommunication implements Communication {
 	 * quizzQuestion
 	 */
 	public RateState postRating(String verdict, int questionID)
-		throws CommunicationException {
+			throws CommunicationException {
 		return postUserRating(questionID, verdict);
 
 	}
 
 	private RateState postUserRating(int questionID, String rate)
-		throws CommunicationException {
+			throws CommunicationException {
 		HttpResponse response = null;
 		try {
 			JSONObject json = new JSONObject();
@@ -256,7 +259,7 @@ public final class ServerCommunication implements Communication {
 				} else if (status == CREATED_STATUS) {
 					return RateState.REGISTRED;
 				} else {
-					return RateState.NOTFOUND;
+					throw new CommunicationException();
 				}
 
 			} else {

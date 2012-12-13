@@ -1,5 +1,7 @@
 package epfl.sweng.cash;
 
+import java.util.List;
+
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.showquestions.Rating;
 import epfl.sweng.showquestions.Rating.RateState;
@@ -13,6 +15,17 @@ import epfl.sweng.showquestions.Rating.RateState;
 public final class CacheManager implements Cash {
 
 	private static CacheManager cacheManager;
+
+	private List<QuizQuestion> listOfQuizQuestionTosubmit;
+	public List<QuizQuestion> getListOfQuizQuestionTosubmit() {
+		return listOfQuizQuestionTosubmit;
+	}
+
+	public List<Rating> getListOfUserRatingToSubmit() {
+		return listOfUserRatingToSubmit;
+	}
+
+	private List<Rating> listOfUserRatingToSubmit;
 
 	private CacheManager() {
 
@@ -41,6 +54,16 @@ public final class CacheManager implements Cash {
 	public void cacheQuizQuestionToSubmit(QuizQuestion quizQuestion) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public QuizQuestion getCachedQuizQuestion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Rating getRatingQuestion(int questionId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
