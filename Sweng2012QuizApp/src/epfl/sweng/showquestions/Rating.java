@@ -1,5 +1,7 @@
 package epfl.sweng.showquestions;
 
+import epfl.sweng.quizquestions.QuizQuestion;
+
 /**
  * This class describes a rating of a question
  * 
@@ -12,14 +14,15 @@ public class Rating {
 	private int dislikeCount;
 	private int incorrectCount;
 	private String verdict;
-	private int questionId;
 
-	public int getQuestionId() {
-		return questionId;
+	private QuizQuestion quizQuestion;
+
+	public QuizQuestion getQuizQuestion() {
+		return quizQuestion;
 	}
 
-	public void setQuestionId(int questionID) {
-		this.questionId = questionID;
+	public void setQuizQuestion(QuizQuestion quizquestion) {
+		this.quizQuestion = quizquestion;
 	}
 
 	/**
@@ -77,17 +80,17 @@ public class Rating {
 	}
 
 	public Rating(int likecount, int dislikecount, int incorrectcount,
-			String userverdict, int questionID) {
+			String userverdict, QuizQuestion quizquestion) {
 		likeCount = likecount;
 		dislikeCount = dislikecount;
 		incorrectCount = incorrectcount;
 		verdict = userverdict;
-		questionId = questionID;
+		this.quizQuestion = quizquestion;
 	}
 
-	public Rating(String userVerdict, int questionID) {
+	public Rating(String userVerdict, QuizQuestion quizquestion) {
 		verdict = userVerdict;
-		questionId = questionID;
+		this.quizQuestion = quizquestion;
 	}
 
 }

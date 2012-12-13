@@ -35,13 +35,13 @@ public interface Communication {
 	 * 
 	 * @return
 	 */
-	Rating getRatings(int id) throws CommunicationException;
+	Rating getRatings(QuizQuestion quizQuestion) throws CommunicationException;
 
 	/**
 	 * post a rating of a quiz question
 	 * 
 	 * @param rating
 	 */
-	RateState postRating(String verdict, int id) throws CommunicationException;
+	RateState postRating(String verdict, QuizQuestion quizQuestion) throws CommunicationException;
 
 }

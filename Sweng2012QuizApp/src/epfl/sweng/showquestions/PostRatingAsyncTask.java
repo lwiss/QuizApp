@@ -28,15 +28,14 @@ public class PostRatingAsyncTask extends
 	 * 401;
 	 */
 	private RateState rateState;
-	private int questionId;
+	
 
 	@Override
 	protected HttpResponse doInBackground(Object... params) {
 		activity = (ShowQuestionsActivity) params[0];
 		String rate = (String) params[1];
-		questionId = activity.getQuizQuestion().getId();
 		rateState = ServerCommunicationProxy.getInstance().postRating(rate,
-				questionId);
+				activity.getQuizQuestion());
 		// return postUserRating(questionId, rate);
 		return null;
 	}

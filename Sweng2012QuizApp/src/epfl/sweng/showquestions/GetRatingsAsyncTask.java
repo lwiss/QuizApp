@@ -35,10 +35,8 @@ public class GetRatingsAsyncTask extends AsyncTask<Object, String, Rating> {
 	@Override
 	protected Rating doInBackground(Object... arg0) {
 		activity = (ShowQuestionsActivity) arg0[0];
-		int questionId = activity.getQuizQuestion().getId();
-
 		// See the cases of error communication
-		rating = ServerCommunicationProxy.getInstance().getRatings(questionId);
+		rating = ServerCommunicationProxy.getInstance().getRatings(activity.getQuizQuestion());
 		// getRatings(questionId);
 		// getRating(questionId);
 		return rating;

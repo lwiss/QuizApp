@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import epfl.sweng.cash.CacheManager;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
@@ -98,7 +99,7 @@ public final class ServerCommunication implements Communication {
 	 * @throws CommunicationException
 	 */
 	public boolean postQuestion(QuizQuestion question)
-			throws CommunicationException {
+		throws CommunicationException {
 		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject();
 		try {
@@ -121,6 +122,16 @@ public final class ServerCommunication implements Communication {
 			if (response != null) {
 				int status = response.getStatusLine().getStatusCode();
 				if (status == CREATED_STATUS) {
+					String responseEntity = EntityUtils.toString(response
+							.getEntity());
+					try {
+						QuizQuestion quizQuestion = new QuizQuestion(
+								responseEntity);
+						CacheManager.getInstance().cacheOnlineQuizQuestion(
+								quizQuestion);
+					} catch (JSONException e) {
+						throw new CommunicationException();
+					}
 					return true;
 				} else {
 					throw new CommunicationException();
@@ -141,8 +152,10 @@ public final class ServerCommunication implements Communication {
 	 * thrown
 	 */
 
-	public Rating getRatings(int questionId) throws CommunicationException {
-		Rating rating = new Rating(-1, -1, -1, null, questionId);
+	public Rating getRatings(QuizQuestion quizQuestion)
+		throws CommunicationException {
+		int questionId = quizQuestion.getId();
+		Rating rating = new Rating(-1, -1, -1, null, quizQuestion);
 		getAllRatings(questionId, rating);
 		getRating(questionId, rating);
 		return rating;
@@ -150,7 +163,7 @@ public final class ServerCommunication implements Communication {
 	}
 
 	private void getAllRatings(int id, Rating rating)
-			throws CommunicationException {
+		throws CommunicationException {
 		HttpResponse httpResponse = getRequest(RATING_URL_SERVER + "/" + id
 				+ "/ratings");
 		if (httpResponse != null
@@ -177,36 +190,36 @@ public final class ServerCommunication implements Communication {
 				+ "/rating");
 		if (httpResponse != null) {
 			switch (httpResponse.getStatusLine().getStatusCode()) {
-			case OK_STATUS:
-				try {
-					String response = EntityUtils.toString(httpResponse
-							.getEntity());
-					JSONObject json = new JSONObject(response);
-					rating.setVerdict(json.getString("verdict"));
-				} catch (IOException e) {
-					throw new CommunicationException(e);
-				} catch (JSONException e) {
-					throw new CommunicationException(e);
-				}
-				break;
-			case NO_CONTENT_STATUS:
-				rating.setVerdict("You have not rated this question");
-				break;
-			case NOT_FOUND_STATUS:
-				throw new CommunicationException();
-			case UNAUTHORIZED_STATUS:
-				try {
-					String response = EntityUtils.toString(httpResponse
-							.getEntity());
-					JSONObject json = new JSONObject(response);
-					rating.setVerdict(json.getString("message"));
+				case OK_STATUS:
+					try {
+						String response = EntityUtils.toString(httpResponse
+								.getEntity());
+						JSONObject json = new JSONObject(response);
+						rating.setVerdict(json.getString("verdict"));
+					} catch (IOException e) {
+						throw new CommunicationException(e);
+					} catch (JSONException e) {
+						throw new CommunicationException(e);
+					}
+					break;
+				case NO_CONTENT_STATUS:
+					rating.setVerdict("You have not rated this question");
+					break;
+				case NOT_FOUND_STATUS:
 					throw new CommunicationException();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			default:
+				case UNAUTHORIZED_STATUS:
+					try {
+						String response = EntityUtils.toString(httpResponse
+								.getEntity());
+						JSONObject json = new JSONObject(response);
+						rating.setVerdict(json.getString("message"));
+						throw new CommunicationException();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				default:
 			}
 		} else {
 			throw new CommunicationException();
@@ -232,14 +245,15 @@ public final class ServerCommunication implements Communication {
 	 * This method is responsable of posting a rating of a user to a
 	 * quizzQuestion
 	 */
-	public RateState postRating(String verdict, int questionID)
-			throws CommunicationException {
+	public RateState postRating(String verdict, QuizQuestion quizQuestion)
+		throws CommunicationException {
+		int questionID = quizQuestion.getId();
 		return postUserRating(questionID, verdict);
 
 	}
 
 	private RateState postUserRating(int questionID, String rate)
-			throws CommunicationException {
+		throws CommunicationException {
 		HttpResponse response = null;
 		try {
 			JSONObject json = new JSONObject();

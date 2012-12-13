@@ -2,7 +2,6 @@ package epfl.sweng.servercomm.communication;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
 import android.util.Log;
@@ -84,7 +83,6 @@ public final class ServerCommunicationProxy implements Communication {
 		if (MainActivity.isOnline()) {
 			try {
 				questionPosted = serverCommunication.postQuestion(quizQuestion);
-				caheManager.cacheOnlineQuizQuestion(quizQuestion);
 			} catch (CommunicationException e) {
 				questionPosted = false;
 			}
@@ -97,28 +95,30 @@ public final class ServerCommunicationProxy implements Communication {
 		return questionPosted;
 	}
 
-	public Rating getRatings(int questionId) {
+	public Rating getRatings(QuizQuestion quizQuestion) {
 		Rating rating = null;
 		if (MainActivity.isOnline()) {
 			try {
-				rating = serverCommunication.getRatings(questionId);
+				rating = serverCommunication.getRatings(quizQuestion);
 				caheManager.cacheOnlineRatings(rating);
 			} catch (CommunicationException e) {
 				rating = null;
 				MainActivity.setOnline(false);
 			}
 		} else {
+			rating = caheManager.getRatingQuestion(quizQuestion);
 			// return the cached informati
 		}
 		return rating;
 	}
 
-	public RateState postRating(String verdict, int questionID) {
+	public RateState postRating(String verdict, QuizQuestion quizQuestion) {
+		
 		RateState rateState = null;
 		if (MainActivity.isOnline()) {
 
 			try {
-				rateState = serverCommunication.postRating(verdict, questionID);
+				rateState = serverCommunication.postRating(verdict, quizQuestion);
 				// do not have to cahe because getRatings will be called
 				// and the rating will be cached
 			} catch (CommunicationException e) {
@@ -143,7 +143,7 @@ public final class ServerCommunicationProxy implements Communication {
 			// is a question of the same id , it update the state of that
 			// question !!
 			rateState = caheManager.cacheUserRating(new Rating(verdict,
-					questionID));
+					quizQuestion));
 		}
 		return rateState;
 
@@ -169,7 +169,7 @@ public final class ServerCommunicationProxy implements Communication {
 
 			try {
 				serverCommunication.postRating(rating.getVerdict(),
-						rating.getQuestionId());
+						rating.getQuizQuestion());
 				listOfUserRating.remove(rating);
 			} catch (CommunicationException e) {
 				MainActivity.setOnline(false);

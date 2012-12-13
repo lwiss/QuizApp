@@ -61,7 +61,7 @@ public final class CacheManager implements Cash {
 		return null;
 	}
 
-	public Rating getRatingQuestion(int questionId) {
+	public Rating getRatingQuestion(QuizQuestion quizQuestion) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -44,6 +44,11 @@ public interface Cash {
 
 	QuizQuestion getCachedQuizQuestion();
 
-	Rating getRatingQuestion(int questionId);
+	/**
+	 * return a rating of a question from the list of all ratings
+	 * @param questionId
+	 * @return
+	 */
+	Rating getRatingQuestion(QuizQuestion quizQuestion);
 
 }
