@@ -84,6 +84,7 @@ public final class ServerCommunicationProxy implements Communication {
 			try {
 				questionPosted = serverCommunication.postQuestion(quizQuestion);
 			} catch (CommunicationException e) {
+				MainActivity.setOnline(false);
 				questionPosted = false;
 			}
 		} else {
@@ -113,12 +114,13 @@ public final class ServerCommunicationProxy implements Communication {
 	}
 
 	public RateState postRating(String verdict, QuizQuestion quizQuestion) {
-		
+
 		RateState rateState = null;
 		if (MainActivity.isOnline()) {
 
 			try {
-				rateState = serverCommunication.postRating(verdict, quizQuestion);
+				rateState = serverCommunication.postRating(verdict,
+						quizQuestion);
 				// do not have to cahe because getRatings will be called
 				// and the rating will be cached
 			} catch (CommunicationException e) {
@@ -142,6 +144,7 @@ public final class ServerCommunicationProxy implements Communication {
 			// that if there
 			// is a question of the same id , it update the state of that
 			// question !!
+
 			rateState = caheManager.cacheUserRating(new Rating(verdict,
 					quizQuestion));
 		}
@@ -155,12 +158,16 @@ public final class ServerCommunicationProxy implements Communication {
 				.getListOfQuizQuestionTosubmit();
 		List<Rating> listOfUserRating = caheManager
 				.getListOfUserRatingToSubmit();
+		List<QuizQuestion> listOfAllQuizzQuestionCached = caheManager
+				.getListOfAllCachedQuizzQuestion();
 
 		for (QuizQuestion quizQuestion : listOfQuizQuestionToSubmit) {
 			try {
 				serverCommunication.postQuestion(quizQuestion);
 				listOfQuizQuestionToSubmit.remove(quizQuestion);
 			} catch (CommunicationException e) {
+				// this case only happens if we have 500 status or an
+				// IOException
 				MainActivity.setOnline(false);
 			}
 
@@ -173,8 +180,23 @@ public final class ServerCommunicationProxy implements Communication {
 						rating.getQuizQuestion());
 				listOfUserRating.remove(rating);
 			} catch (CommunicationException e) {
+				// this case only happens if we have 500 status or an
+				// IOException
 				MainActivity.setOnline(false);
 			}
+		}
+
+		// get the lastest ratings of all quizQuestion
+
+		for (QuizQuestion quizQuestion : listOfAllQuizzQuestionCached) {
+			try {
+
+				caheManager.cacheOnlineRatings(serverCommunication
+						.getRatings(quizQuestion));
+			} catch (CommunicationException e) {
+				MainActivity.setOnline(false);
+			}
+
 		}
 
 	}

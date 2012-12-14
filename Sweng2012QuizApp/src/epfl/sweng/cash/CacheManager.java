@@ -165,4 +165,9 @@ public final class CacheManager implements Cache {
 		return null;
 	}
 
+	public List<QuizQuestion> getListOfAllCachedQuizzQuestion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

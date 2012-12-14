@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
-import android.webkit.WebView.FindListener;
 import android.widget.CheckBox;
 
 /**
@@ -93,9 +92,10 @@ public class MainActivity extends Activity {
 
 		boolean isCheked = ((CheckBox) view).isChecked();
 		MainActivity.setOnline(!isCheked);
-		if (!isCheked) {
-			ServerCommunicationProxy.getInstance().sendCachedContent();
-		}
+		/**
+		 * if (!isCheked) {
+		 * ServerCommunicationProxy.getInstance().sendCachedContent(); }
+		 */
 
 	}
 

@@ -1,6 +1,10 @@
 package epfl.sweng.cash;
 
 import java.util.ArrayList;
+import java.util.List;
+
+
+
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.showquestions.Rating;
 import epfl.sweng.showquestions.Rating.RateState;
@@ -61,6 +65,7 @@ public interface Cache {
 
 	/**
 	 * return a rating of a question from the list of all ratings
+	 * 
 	 * @param questionId
 	 * @return
 	 */
@@ -71,5 +76,7 @@ public interface Cache {
 	 * @return an ArrayList containing all quizQuestions to be submitted 
 	 */
 	ArrayList<QuizQuestion> getListOfQuizQuestionTosubmit();
+
+	List<QuizQuestion> getListOfAllCachedQuizzQuestion();
 
 }

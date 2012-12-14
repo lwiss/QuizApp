@@ -1,6 +1,8 @@
 package epfl.sweng.servercomm.communication;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.apache.http.HttpResponse;
 
@@ -14,7 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
 
 import epfl.sweng.cash.CacheManager;
 import epfl.sweng.entry.MainActivity;
@@ -38,6 +39,7 @@ public final class ServerCommunication implements Communication {
 	private final static String POST_RATING = "https://sweng-quiz.appspot.com/quizquestions";
 	private final static String POST_QUESTION_URL = "https://sweng-quiz.appspot.com/quizquestions";
 	private static final int OK_STATUS = 200;
+	private static final int ERROR_STATUS = 500;
 	private static final int CREATED_STATUS = 201;
 	private static final int NO_CONTENT_STATUS = 204;
 	private static final int NOT_FOUND_STATUS = 404;
@@ -57,10 +59,16 @@ public final class ServerCommunication implements Communication {
 
 	/**
 	 * This method is responsible of getting q quizzQuestion from the server IF
-	 * an error communication occurs then a Communication Exception is thrown
+	 * an error communication occurs then a Communication Exception is thrown A
+	 * communicationError is : An IoException or 500 status ! Otherwise return
+	 * the errorQuizQuestion
 	 */
 
 	public QuizQuestion getQuizQuestion() throws CommunicationException {
+
+		QuizQuestion errorQuizQuestion = new QuizQuestion(
+				"There was an error retrieving the question",
+				new ArrayList<String>(), -1, new HashSet<String>(), -1, null);
 		HttpGet httpGet = new HttpGet(GET_QUESTION_SERVER_URL);
 		httpGet.setHeader("Authorization",
 				"Tequila " + MainActivity.getSessionId());
@@ -76,19 +84,19 @@ public final class ServerCommunication implements Communication {
 							.getEntity());
 					quizQuestion = new QuizQuestion(responseEntity);
 					return quizQuestion;
-				} else {
-					Log.d("Server Response while fetching question", ""
-							+ status);
+				} else if (status == ERROR_STATUS) {
 					throw new CommunicationException();
+				} else {
+					return errorQuizQuestion;
 				}
 			} else {
-				throw new CommunicationException();
+				return errorQuizQuestion;
 			}
 
 		} catch (IOException e) {
 			throw new CommunicationException(e);
 		} catch (JSONException e) {
-			throw new CommunicationException(e);
+			return errorQuizQuestion;
 		}
 
 	}
@@ -108,7 +116,7 @@ public final class ServerCommunication implements Communication {
 			json.put("solutionIndex", question.getSolutionIndex());
 			json.put("tags", new JSONArray(question.getTags()));
 		} catch (JSONException e) {
-			System.err.println("Error while constructing JsonObject");
+			return false;
 		}
 		HttpPost post = new HttpPost(POST_QUESTION_URL);
 
@@ -130,14 +138,16 @@ public final class ServerCommunication implements Communication {
 						CacheManager.getInstance().cacheOnlineQuizQuestion(
 								quizQuestion);
 					} catch (JSONException e) {
-						throw new CommunicationException();
+						return false;
 					}
 					return true;
-				} else {
+				} else if (status == ERROR_STATUS) {
 					throw new CommunicationException();
+				} else {
+					return false;
 				}
 			} else {
-				throw new CommunicationException();
+				return false;
 			}
 
 		} catch (IOException e) {
@@ -166,22 +176,30 @@ public final class ServerCommunication implements Communication {
 		throws CommunicationException {
 		HttpResponse httpResponse = getRequest(RATING_URL_SERVER + "/" + id
 				+ "/ratings");
-		if (httpResponse != null
-				&& httpResponse.getStatusLine().getStatusCode() == OK_STATUS) {
-			try {
-				String response = EntityUtils
-						.toString(httpResponse.getEntity());
-				JSONObject json = new JSONObject(response);
-				rating.setLikeCount(json.getInt("likeCount"));
-				rating.setDislikeCount(json.getInt("dislikeCount"));
-				rating.setIncorrectCount(json.getInt("incorrectCount"));
-			} catch (IOException e) {
-				throw new CommunicationException(e);
-			} catch (JSONException e) {
-				throw new CommunicationException(e);
+		if (httpResponse != null) {
+			int status = httpResponse.getStatusLine().getStatusCode();
+			if (status == OK_STATUS) {
+				try {
+					String response = EntityUtils.toString(httpResponse
+							.getEntity());
+					JSONObject json = new JSONObject(response);
+					rating.setLikeCount(json.getInt("likeCount"));
+					rating.setDislikeCount(json.getInt("dislikeCount"));
+					rating.setIncorrectCount(json.getInt("incorrectCount"));
+				} catch (IOException e) {
+					throw new CommunicationException(e);
+				} catch (JSONException e) {
+					rating.setDislikeCount(-1);
+					rating.setLikeCount(-1);
+					rating.setIncorrectCount(-1);
+				}
+			} else if (status == ERROR_STATUS) {
+				throw new CommunicationException();
 			}
 		} else {
-			throw new CommunicationException();
+			rating.setDislikeCount(-1);
+			rating.setLikeCount(-1);
+			rating.setIncorrectCount(-1);
 		}
 	}
 
@@ -199,14 +217,14 @@ public final class ServerCommunication implements Communication {
 					} catch (IOException e) {
 						throw new CommunicationException(e);
 					} catch (JSONException e) {
-						throw new CommunicationException(e);
+						rating.setVerdict("");
 					}
 					break;
 				case NO_CONTENT_STATUS:
 					rating.setVerdict("You have not rated this question");
 					break;
 				case NOT_FOUND_STATUS:
-					throw new CommunicationException();
+					rating.setVerdict("");
 				case UNAUTHORIZED_STATUS:
 					try {
 						String response = EntityUtils.toString(httpResponse
@@ -219,10 +237,12 @@ public final class ServerCommunication implements Communication {
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
+				case ERROR_STATUS:
+					throw new CommunicationException();
 				default:
 			}
 		} else {
-			throw new CommunicationException();
+			rating.setVerdict("");
 		}
 	}
 
@@ -272,19 +292,20 @@ public final class ServerCommunication implements Communication {
 					return RateState.UPDATED;
 				} else if (status == CREATED_STATUS) {
 					return RateState.REGISTRED;
-				} else {
+				} else if (status == ERROR_STATUS) {
 					throw new CommunicationException();
+				} else {
+					return RateState.NOTFOUND;
 				}
 
 			} else {
-				throw new CommunicationException();
+				return RateState.NOTFOUND;
 			}
 		} catch (JSONException e) {
-			throw new CommunicationException(e);
+			return RateState.NOTFOUND;
 		} catch (IOException e) {
 			throw new CommunicationException(e);
 		}
 
 	}
-
 }

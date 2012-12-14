@@ -1,8 +1,6 @@
 package epfl.sweng.showquestions;
 
-
 import epfl.sweng.servercomm.communication.ServerCommunicationProxy;
-
 
 import android.os.AsyncTask;
 import android.widget.Toast;
@@ -15,12 +13,12 @@ import android.widget.Toast;
 public class GetRatingsAsyncTask extends AsyncTask<Object, String, Rating> {
 	private ShowQuestionsActivity activity;
 	/**
-	private final static String URL_SERVER = "https://sweng-quiz.appspot.com/quizquestions";
-	private static final int OK_STATUS = 200;
-	private static final int NO_CONTENT_STATUS = 204;
-	private static final int NOT_FOUND_STATUS = 404;
-	private static final int UNAUTHORIZED_STATUS = 401;
-	*/
+	 * private final static String URL_SERVER =
+	 * "https://sweng-quiz.appspot.com/quizquestions"; private static final int
+	 * OK_STATUS = 200; private static final int NO_CONTENT_STATUS = 204;
+	 * private static final int NOT_FOUND_STATUS = 404; private static final int
+	 * UNAUTHORIZED_STATUS = 401;
+	 */
 	private final static String LIKE_TEXT = "You like the question";
 	private final static String DISLIKE_TEXT = "You dislike the question";
 	private final static String INCORRECR_QUESTION_TEXT = "You think the question is incorrect";
@@ -30,13 +28,14 @@ public class GetRatingsAsyncTask extends AsyncTask<Object, String, Rating> {
 	private int dislikeCount = -1;
 	private int incorrectCount = -1;
 	private String verdict = null;
-	private String error = null;
+	
 
 	@Override
 	protected Rating doInBackground(Object... arg0) {
 		activity = (ShowQuestionsActivity) arg0[0];
 		// See the cases of error communication
-		rating = ServerCommunicationProxy.getInstance().getRatings(activity.getQuizQuestion());
+		rating = ServerCommunicationProxy.getInstance().getRatings(
+				activity.getQuizQuestion());
 		// getRatings(questionId);
 		// getRating(questionId);
 		return rating;
@@ -103,12 +102,11 @@ public class GetRatingsAsyncTask extends AsyncTask<Object, String, Rating> {
 					activity.getUserRating().setText(INCORRECR_QUESTION_TEXT);
 				} else if (verdict.equals(NO_RATED_QUESTION)) {
 					activity.getUserRating().setText(NO_RATED_QUESTION);
+				} else if (verdict.equals("")) {
+					Toast.makeText(activity,
+							"There was an error retrieving the ratings",
+							Toast.LENGTH_LONG).show();
 				}
-			} else if (error != null) {
-				Toast.makeText(activity,
-						"There was an error retrieving the ratings",
-						Toast.LENGTH_LONG).show();
-				activity.getUserRating().setText(error);
 			} else {
 				Toast.makeText(activity,
 						"There was an error retrieving the ratings",
