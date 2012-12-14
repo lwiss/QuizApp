@@ -1,5 +1,6 @@
 package epfl.sweng.showquestions;
 
+import epfl.sweng.entry.MainActivity;
 import epfl.sweng.servercomm.communication.ServerCommunicationProxy;
 
 import android.os.AsyncTask;
@@ -28,7 +29,6 @@ public class GetRatingsAsyncTask extends AsyncTask<Object, String, Rating> {
 	private int dislikeCount = -1;
 	private int incorrectCount = -1;
 	private String verdict = null;
-	
 
 	@Override
 	protected Rating doInBackground(Object... arg0) {
@@ -108,9 +108,13 @@ public class GetRatingsAsyncTask extends AsyncTask<Object, String, Rating> {
 							Toast.LENGTH_LONG).show();
 				}
 			} else {
-				Toast.makeText(activity,
-						"There was an error retrieving the ratings",
-						Toast.LENGTH_LONG).show();
+				if (!MainActivity.isOnline()) {
+					activity.getUserRating().setText(NO_RATED_QUESTION);
+				} else {
+					Toast.makeText(activity,
+							"There was an error retrieving the ratings",
+							Toast.LENGTH_LONG).show();
+				}
 			}
 		} else {
 			Toast.makeText(activity,

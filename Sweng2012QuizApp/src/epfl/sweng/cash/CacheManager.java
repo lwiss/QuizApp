@@ -3,7 +3,7 @@ package epfl.sweng.cash;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-
+import java.util.ArrayList;
 import android.util.Log;
 import android.util.SparseArray;
 import epfl.sweng.quizquestions.QuizQuestion;
@@ -48,6 +48,7 @@ public final class CacheManager implements Cache {
 		onlineCachedQuizQuestionList = new SparseArray<QuizQuestion>();
 		onlineCachedRatings = new SparseArray<Rating>();
 		offlineCachedQuizQuestionVsRatings = new HashMap<QuizQuestion, Rating>();
+		listOfUserRatingToSubmit = new ArrayList<Rating>();
 	}
 
 	/**
@@ -95,7 +96,9 @@ public final class CacheManager implements Cache {
 		RateState state;
 		QuizQuestion q = rating.getQuizQuestion();
 		// add the user rating to the list of tasks to be done
+
 		listOfUserRatingToSubmit.add(rating);
+
 		// update the rating corresponding to this question
 		int qId = q.getId();
 		if (qId == -1) { // this means that the question belongs to the
@@ -128,9 +131,11 @@ public final class CacheManager implements Cache {
 
 		int i = new Random().nextInt(2);
 		if (onlineCachedQuizQuestionList.size() == 0) {
-			i=1;
+
+			i = 1;
 		} else if (offlineCachedQuizQuestionVsRatings.keySet().toArray().length == 0) {
-			i=0;
+			i = 0;
+
 		}
 		if (i == 0) { // the question will be selected from the
 						// onlineCachedQuizQuestion List
@@ -175,6 +180,39 @@ public final class CacheManager implements Cache {
 
 	public List<Rating> getListOfUserRatingToSubmit() {
 		return listOfUserRatingToSubmit;
+	}
+
+	public String showCahcedQuizQuestion() {
+		int length = onlineCachedQuizQuestionList.size();
+		String a = "";
+		for (int i = 0; i < length; i++) {
+			a += " \n" + i + " : "
+					+ onlineCachedQuizQuestionList.valueAt(i).toString();
+		}
+		return a;
+	}
+
+	public String showCachedRaings() {
+		String a = "";
+		int length = onlineCachedRatings.size();
+		for (int i = 0; i < length; i++) {
+			a += " \n" + i + " : " + onlineCachedRatings.valueAt(i).toString();
+		}
+
+		return a;
+	}
+
+	public String showQuizQuestionToSubmit() {
+		String a = "";
+		for (QuizQuestion q : offlineCachedQuizQuestionVsRatings.keySet()) {
+			a += "\n" + q.toString();
+		}
+		return a;
+	}
+
+	public String showUserRating() {
+		String a = "";
+		return a;
 	}
 
 }

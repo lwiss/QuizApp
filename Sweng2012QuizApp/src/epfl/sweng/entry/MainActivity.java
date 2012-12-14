@@ -29,9 +29,15 @@ public class MainActivity extends Activity {
 		return online;
 	}
 
+	public static void setOnlineTest(boolean onLine) {
+		MainActivity.online = onLine;
+	}
+
 	public static void setOnline(boolean onLine) {
 		MainActivity.online = onLine;
-		checkBox.setChecked(!onLine);
+		if (checkBox != null) {
+			checkBox.setChecked(!onLine);
+		}
 	}
 
 	@Override
@@ -92,10 +98,11 @@ public class MainActivity extends Activity {
 
 		boolean isCheked = ((CheckBox) view).isChecked();
 		MainActivity.setOnline(!isCheked);
-		/**
-		 * if (!isCheked) {
-		 * ServerCommunicationProxy.getInstance().sendCachedContent(); }
-		 */
+
+		if (!isCheked) {
+			// ServerCommunicationProxy.getInstance().sendCachedContent();
+			new SendCachAsyncTask().execute();
+		}
 
 	}
 

@@ -60,6 +60,8 @@ public final class ServerCommunicationProxy implements Communication {
 			try {
 				quizQuestion = serverCommunication.getQuizQuestion();
 				caheManager.cacheOnlineQuizQuestion(quizQuestion);
+				Log.d(" CACHED QUESTIONS ",
+						caheManager.showCahcedQuizQuestion());
 			} catch (CommunicationException e) {
 				quizQuestion = new QuizQuestion(
 						"There was an error retrieving the question",
@@ -85,12 +87,15 @@ public final class ServerCommunicationProxy implements Communication {
 		if (MainActivity.isOnline()) {
 			try {
 				questionPosted = serverCommunication.postQuestion(quizQuestion);
+				Log.d("CACHED QUESTIONS  ",
+						caheManager.showCahcedQuizQuestion());
 			} catch (CommunicationException e) {
 				MainActivity.setOnline(false);
 				questionPosted = false;
 			}
 		} else {
 			caheManager.cacheQuizQuestionToSubmit(quizQuestion);
+			Log.d("QUESTION TO SUBMIT ", caheManager.showQuizQuestionToSubmit());
 			questionPosted = true;
 			// cache the posted question
 		}
@@ -104,12 +109,18 @@ public final class ServerCommunicationProxy implements Communication {
 			try {
 				rating = serverCommunication.getRatings(quizQuestion);
 				caheManager.cacheOnlineRatings(rating);
+				Log.d("CACHED RATINGS", caheManager.showCachedRaings());
 			} catch (CommunicationException e) {
 				rating = null;
 				MainActivity.setOnline(false);
+
 			}
 		} else {
 			rating = caheManager.getRatingQuestion(quizQuestion);
+			if (rating != null) {
+				Log.d("rating", "" + rating);
+				Log.d("Rating in OFFLINE MODE", rating.toString());
+			}
 			// return the cached informati
 		}
 		return rating;
@@ -123,6 +134,7 @@ public final class ServerCommunicationProxy implements Communication {
 			try {
 				rateState = serverCommunication.postRating(verdict,
 						quizQuestion);
+
 				// do not have to cahe because getRatings will be called
 				// and the rating will be cached
 			} catch (CommunicationException e) {
@@ -154,7 +166,6 @@ public final class ServerCommunicationProxy implements Communication {
 
 	}
 
-	
 	public void sendCachedContent() {
 		HashMap<QuizQuestion, Rating> listOfQuizQuestionToSubmit = caheManager
 				.getListOfQuizQuestionTosubmit();
@@ -164,37 +175,37 @@ public final class ServerCommunicationProxy implements Communication {
 				.getListOfAllCachedQuizzQuestion();
 
 		for (QuizQuestion quizQuestion : listOfQuizQuestionToSubmit.keySet()) {
-			try {
-				serverCommunication.postQuestion(quizQuestion);
-				listOfQuizQuestionToSubmit.remove(quizQuestion);
-			} catch (CommunicationException e) {
-				// this case only happens if we have 500 status or an
-				// IOException
-				MainActivity.setOnline(false);
-			}
-
+			postQuestion(quizQuestion);
+			listOfQuizQuestionToSubmit.remove(quizQuestion);
+			/**
+			 * try { Log.d("Quizz Question To submit", quizQuestion.toString());
+			 * serverCommunication.postQuestion(quizQuestion);
+			 * listOfQuizQuestionToSubmit.remove(quizQuestion); } catch
+			 * (CommunicationException e) { // this case only happens if we have
+			 * 500 status or an // IOException MainActivity.setOnline(false); }
+			 */
 		}
 
 		for (Rating rating : listOfUserRating) {
-
-			try {
-				serverCommunication.postRating(rating.getVerdict(),
-						rating.getQuizQuestion());
-				listOfUserRating.remove(rating);
-			} catch (CommunicationException e) {
-				// this case only happens if we have 500 status or an
-				// IOException
-				MainActivity.setOnline(false);
-			}
+			postRating(rating.getVerdict(), rating.getQuizQuestion());
+			listOfUserRating.remove(rating);
+			/**
+			 * try { serverCommunication.postRating(rating.getVerdict(),
+			 * rating.getQuizQuestion()); listOfUserRating.remove(rating); }
+			 * catch (CommunicationException e) { // this case only happens if
+			 * we have 500 status or an // IOException
+			 * MainActivity.setOnline(false); }
+			 */
 		}
 
 		// get the latest ratings of all quizQuestion
 
-		int length=listOfAllQuizzQuestionCached.size();
-		for (int j = 0; j <length; j++) {
+		int length = listOfAllQuizzQuestionCached.size();
+		for (int j = 0; j < length; j++) {
 			try {
 
-				QuizQuestion quizQuestion = listOfAllQuizzQuestionCached.valueAt(j);
+				QuizQuestion quizQuestion = listOfAllQuizzQuestionCached
+						.valueAt(j);
 				caheManager.cacheOnlineRatings(serverCommunication
 						.getRatings(quizQuestion));
 			} catch (CommunicationException e) {
