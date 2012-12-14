@@ -1,6 +1,4 @@
 package epfl.sweng.cash;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -45,9 +43,7 @@ public final class CacheManager implements Cache {
 	 */
 	private List<Rating> listOfUserRatingToSubmit;
 
-	public List<Rating> getListOfUserRatingToSubmit() {
-		return listOfUserRatingToSubmit;
-	}
+	
 
 	private CacheManager() {
 		onlineCachedQuizQuestionList = new SparseArray<QuizQuestion>();
@@ -157,17 +153,23 @@ public final class CacheManager implements Cache {
 	}
 
 	public Rating getRatingQuestion(QuizQuestion quizQuestion) {
-		return null;
+		int qId = quizQuestion.getId();
+		if (qId == -1) {
+			return offlineCachedQuizQuestionVsRatings.get(quizQuestion);
+		} else {
+			return onlineCachedRatings.get(qId);
+		}
 	}
 
-	public ArrayList<QuizQuestion> getListOfQuizQuestionTosubmit() {
-
-		return null;
+	public HashMap<QuizQuestion, Rating> getListOfQuizQuestionTosubmit() {
+		return offlineCachedQuizQuestionVsRatings;
 	}
 
-	public List<QuizQuestion> getListOfAllCachedQuizzQuestion() {
-		// TODO Auto-generated method stub
-		return null;
+	public SparseArray<QuizQuestion> getListOfAllCachedQuizzQuestion() {
+		return onlineCachedQuizQuestionList;
+	}
+	public List<Rating> getListOfUserRatingToSubmit() {
+		return listOfUserRatingToSubmit;
 	}
 
 }

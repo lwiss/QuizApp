@@ -1,10 +1,12 @@
 package epfl.sweng.servercomm.communication;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
 import android.util.Log;
+import android.util.SparseArray;
 import epfl.sweng.cash.CacheManager;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
@@ -152,16 +154,16 @@ public final class ServerCommunicationProxy implements Communication {
 
 	}
 
-	//TODO adapt this method to 
+	
 	public void sendCachedContent() {
-		List<QuizQuestion> listOfQuizQuestionToSubmit = caheManager
+		HashMap<QuizQuestion, Rating> listOfQuizQuestionToSubmit = caheManager
 				.getListOfQuizQuestionTosubmit();
 		List<Rating> listOfUserRating = caheManager
 				.getListOfUserRatingToSubmit();
-		List<QuizQuestion> listOfAllQuizzQuestionCached = caheManager
+		SparseArray<QuizQuestion> listOfAllQuizzQuestionCached = caheManager
 				.getListOfAllCachedQuizzQuestion();
 
-		for (QuizQuestion quizQuestion : listOfQuizQuestionToSubmit) {
+		for (QuizQuestion quizQuestion : listOfQuizQuestionToSubmit.keySet()) {
 			try {
 				serverCommunication.postQuestion(quizQuestion);
 				listOfQuizQuestionToSubmit.remove(quizQuestion);
@@ -186,11 +188,13 @@ public final class ServerCommunicationProxy implements Communication {
 			}
 		}
 
-		// get the lastest ratings of all quizQuestion
+		// get the latest ratings of all quizQuestion
 
-		for (QuizQuestion quizQuestion : listOfAllQuizzQuestionCached) {
+		int length=listOfAllQuizzQuestionCached.size();
+		for (int j = 0; j <length; j++) {
 			try {
 
+				QuizQuestion quizQuestion = listOfAllQuizzQuestionCached.valueAt(j);
 				caheManager.cacheOnlineRatings(serverCommunication
 						.getRatings(quizQuestion));
 			} catch (CommunicationException e) {
