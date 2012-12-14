@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
-import android.webkit.WebView.FindListener;
 import android.widget.CheckBox;
 
 /**
@@ -36,7 +35,9 @@ public class MainActivity extends Activity {
 
 	public static void setOnline(boolean onLine) {
 		MainActivity.online = onLine;
-		checkBox.setChecked(!onLine);
+		if (checkBox != null) {
+			checkBox.setChecked(!onLine);
+		}
 	}
 
 	@Override

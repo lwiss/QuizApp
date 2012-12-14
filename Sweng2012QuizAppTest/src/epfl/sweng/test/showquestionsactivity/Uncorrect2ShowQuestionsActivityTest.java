@@ -7,7 +7,6 @@ import com.jayway.android.robotium.solo.Solo;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.showquestions.ShowQuestionsActivity;
-import android.R;
 import android.test.ActivityInstrumentationTestCase2;
 
 /**

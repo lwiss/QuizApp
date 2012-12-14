@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import android.R;
+
 import android.util.Log;
 import android.util.SparseArray;
 import epfl.sweng.cash.CacheManager;
@@ -114,12 +114,14 @@ public final class ServerCommunicationProxy implements Communication {
 			} catch (CommunicationException e) {
 				rating = null;
 				MainActivity.setOnline(false);
-				
+
 			}
 		} else {
 			rating = caheManager.getRatingQuestion(quizQuestion);
-			Log.d("rating", "" + rating);
-			Log.d("Rating in OFFLINE MODE", rating.toString());
+			if (rating != null) {
+				Log.d("rating", "" + rating);
+				Log.d("Rating in OFFLINE MODE", rating.toString());
+			}
 			// return the cached informati
 		}
 		return rating;
