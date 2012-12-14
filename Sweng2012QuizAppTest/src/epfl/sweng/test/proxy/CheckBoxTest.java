@@ -32,11 +32,6 @@ public class CheckBoxTest extends
 	public void testATickedCheckBox() {
 		assertTrue(solo.searchText("Offline mode"));
         assertTrue(MainActivity.isOnline());
-		/**
-		 * MainActivity.setOnline(true); assertTrue(!solo.isCheckBoxChecked(0));
-		 * 
-		 * MainActivity.setOnline(false); assertTrue(solo.isCheckBoxChecked(0));
-		 */
 		solo.clickOnCheckBox(0);
 		solo.sleep(1);
 		assertTrue(!MainActivity.isOnline());
