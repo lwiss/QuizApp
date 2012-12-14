@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -169,7 +169,7 @@ public final class ServerCommunicationProxy implements Communication {
 	}
 
 	public void sendCachedContent() {
-		Map<QuizQuestion, Rating> listOfQuizQuestionToSubmit = caheManager
+		HashMap<QuizQuestion, Rating> listOfQuizQuestionToSubmit = caheManager
 				.getListOfQuizQuestionTosubmit();
 		List<Rating> listOfUserRating = caheManager
 				.getListOfUserRatingToSubmit();

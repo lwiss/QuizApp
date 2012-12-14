@@ -39,6 +39,7 @@ public class MockHttpClient extends DefaultHttpClient {
 				final HttpClientConnection conn, final HttpContext context)
 			throws IOException, HttpException {
 			final int statusOk = 200;
+			final int createdOk = 201 ; 
 			String uri = request.getRequestLine().getUri();
 			String method = request.getRequestLine().getMethod();
 
@@ -49,16 +50,15 @@ public class MockHttpClient extends DefaultHttpClient {
 						new BasicStatusLine(HttpVersion.HTTP_1_1, statusOk,
 								"OK"));
 				return response;
-			}
-
-			else if (method.equals("POST") && uri.equals("/quizquestions")) {
+			} else if (method.equals("POST") && uri.equals("/quizquestions")) {
+				Log.d("POST", "I?MA HERE");
 				HttpResponse response = new BasicHttpResponse(
-						new BasicStatusLine(HttpVersion.HTTP_1_1, statusOk,
+						new BasicStatusLine(HttpVersion.HTTP_1_1, createdOk,
 								"OK"));
 				response.setEntity(new StringEntity("{"
 						+ " \"question\": \"2+2=?\","
 						+ " \"answers\": [ \"3\", \"4\" ],"
-						+ " \"solutionIndex\": 1," + " \"id\": 4243,"
+						+ " \"solutionIndex\": 1," + " \"id\": 42,"
 						+ " \"owner\": \"anounymous\","
 						+ " \"tags\": [ \"math\" ]" + " }"));
 				response.setHeader("Content-type",

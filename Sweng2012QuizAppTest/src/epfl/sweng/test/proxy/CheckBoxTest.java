@@ -49,6 +49,7 @@ public class CheckBoxTest extends
 		assertTrue(quizQuestion.getId() == quizId);
 		assertTrue(rating.getVerdict().equals("like"));
 		solo.goBack();
+		
 		solo.clickOnButton(1);
 		solo.enterText(0, "2+2=?");
 		solo.enterText(1, "3");
@@ -58,6 +59,12 @@ public class CheckBoxTest extends
 		solo.enterText(tagNumber, "Math");
 		solo.scrollDown();
 		solo.clickOnText("Submit");
+		final int id = 42;
+		quizQuestion = CacheManager.getInstance().getListCachedQuizQuestion()
+				.get(id);
+		Log.d("Question cached", quizQuestion.toString());
+		assertTrue(quizQuestion.getQuestion().equals("2+2=?"));
+		solo.goBack();
 	}
 
 	public void testTickedCheckBox() {
