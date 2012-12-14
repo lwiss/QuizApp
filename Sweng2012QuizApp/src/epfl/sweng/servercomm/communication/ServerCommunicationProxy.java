@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-
+import java.util.Map;
+import java.util.Set;
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -168,23 +169,27 @@ public final class ServerCommunicationProxy implements Communication {
 	}
 
 	public void sendCachedContent() {
-		HashMap<QuizQuestion, Rating> listOfQuizQuestionToSubmit = caheManager
+		Map<QuizQuestion, Rating> listOfQuizQuestionToSubmit = caheManager
 				.getListOfQuizQuestionTosubmit();
 		List<Rating> listOfUserRating = caheManager
 				.getListOfUserRatingToSubmit();
 		SparseArray<QuizQuestion> listOfAllQuizzQuestionCached = caheManager
 				.getListOfAllCachedQuizzQuestion();
-
-		for (QuizQuestion quizQuestion : listOfQuizQuestionToSubmit.keySet()) {
-			postQuestion(quizQuestion);
-			listOfQuizQuestionToSubmit.remove(quizQuestion);
-			/**
-			 * try { Log.d("Quizz Question To submit", quizQuestion.toString());
-			 * serverCommunication.postQuestion(quizQuestion);
-			 * listOfQuizQuestionToSubmit.remove(quizQuestion); } catch
-			 * (CommunicationException e) { // this case only happens if we have
-			 * 500 status or an // IOException MainActivity.setOnline(false); }
-			 */
+		Set<QuizQuestion> set = listOfQuizQuestionToSubmit.keySet();
+		synchronized (set) {
+			for (QuizQuestion quizQuestion : set) {
+				postQuestion(quizQuestion);
+				listOfQuizQuestionToSubmit.remove(quizQuestion);
+				/**
+				 * try { Log.d("Quizz Question To submit",
+				 * quizQuestion.toString());
+				 * serverCommunication.postQuestion(quizQuestion);
+				 * listOfQuizQuestionToSubmit.remove(quizQuestion); } catch
+				 * (CommunicationException e) { // this case only happens if we
+				 * have 500 status or an // IOException
+				 * MainActivity.setOnline(false); }
+				 */
+			}
 		}
 
 		for (Rating rating : listOfUserRating) {

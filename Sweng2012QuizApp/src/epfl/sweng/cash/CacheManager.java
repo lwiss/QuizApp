@@ -1,6 +1,8 @@
 package epfl.sweng.cash;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -49,7 +51,8 @@ public final class CacheManager implements Cache {
 		onlineCachedQuizQuestionList = new SparseArray<QuizQuestion>();
 		onlineCachedRatings = new SparseArray<Rating>();
 		offlineCachedQuizQuestionVsRatings = new HashMap<QuizQuestion, Rating>();
-		listOfUserRatingToSubmit = new ArrayList<Rating>();
+		listOfUserRatingToSubmit = Collections
+				.synchronizedList(new ArrayList<Rating>());
 	}
 
 	/**
