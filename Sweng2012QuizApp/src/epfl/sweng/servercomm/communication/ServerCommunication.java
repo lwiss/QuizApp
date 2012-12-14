@@ -106,7 +106,7 @@ public final class ServerCommunication implements Communication {
 	 * @throws CommunicationException
 	 */
 	public boolean postQuestion(QuizQuestion question)
-			throws CommunicationException {
+		throws CommunicationException {
 		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject();
 		try {
@@ -165,7 +165,7 @@ public final class ServerCommunication implements Communication {
 	 */
 
 	public Rating getRatings(QuizQuestion quizQuestion)
-			throws CommunicationException {
+		throws CommunicationException {
 		int questionId = quizQuestion.getId();
 		Rating rating = new Rating(-1, -1, -1, null, quizQuestion);
 		getAllRatings(questionId, rating);
@@ -175,7 +175,7 @@ public final class ServerCommunication implements Communication {
 	}
 
 	private void getAllRatings(int id, Rating rating)
-			throws CommunicationException {
+		throws CommunicationException {
 		HttpResponse httpResponse = getRequest(RATING_URL_SERVER + "/" + id
 				+ "/ratings");
 		if (httpResponse != null) {
@@ -210,38 +210,38 @@ public final class ServerCommunication implements Communication {
 				+ "/rating");
 		if (httpResponse != null) {
 			switch (httpResponse.getStatusLine().getStatusCode()) {
-			case OK_STATUS:
-				try {
-					String response = EntityUtils.toString(httpResponse
-							.getEntity());
-					JSONObject json = new JSONObject(response);
-					rating.setVerdict(json.getString("verdict"));
-				} catch (IOException e) {
-					throw new CommunicationException(e);
-				} catch (JSONException e) {
+				case OK_STATUS:
+					try {
+						String response = EntityUtils.toString(httpResponse
+								.getEntity());
+						JSONObject json = new JSONObject(response);
+						rating.setVerdict(json.getString("verdict"));
+					} catch (IOException e) {
+						throw new CommunicationException(e);
+					} catch (JSONException e) {
+						rating.setVerdict("");
+					}
+					break;
+				case NO_CONTENT_STATUS:
+					rating.setVerdict("You have not rated this question");
+					break;
+				case NOT_FOUND_STATUS:
 					rating.setVerdict("");
-				}
-				break;
-			case NO_CONTENT_STATUS:
-				rating.setVerdict("You have not rated this question");
-				break;
-			case NOT_FOUND_STATUS:
-				rating.setVerdict("");
-			case UNAUTHORIZED_STATUS:
-				try {
-					String response = EntityUtils.toString(httpResponse
-							.getEntity());
-					JSONObject json = new JSONObject(response);
-					rating.setVerdict(json.getString("message"));
+				case UNAUTHORIZED_STATUS:
+					try {
+						String response = EntityUtils.toString(httpResponse
+								.getEntity());
+						JSONObject json = new JSONObject(response);
+						rating.setVerdict(json.getString("message"));
+						throw new CommunicationException();
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				case ERROR_STATUS:
 					throw new CommunicationException();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-			case ERROR_STATUS:
-				throw new CommunicationException();
-			default:
+				default:
 			}
 		} else {
 			rating.setVerdict("");
@@ -268,7 +268,7 @@ public final class ServerCommunication implements Communication {
 	 * quizzQuestion
 	 */
 	public RateState postRating(String verdict, QuizQuestion quizQuestion)
-			throws CommunicationException {
+		throws CommunicationException {
 		int questionID = quizQuestion.getId();
 		return postUserRating(questionID, verdict);
 
