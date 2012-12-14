@@ -151,7 +151,7 @@ public final class CacheManager implements Cache {
 		int i = allCachedQuestion.size();
 		if (i != 0) {
 			i = new Random().nextInt(i);
-			return onlineCachedQuizQuestionList.valueAt(i);
+			return allCachedQuestion.valueAt(i);
 		} else {
 			return null;
 		}

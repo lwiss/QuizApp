@@ -47,6 +47,8 @@ public class CheckBoxTest extends
 		Log.d("Verdict", rating.getVerdict());
 		assertTrue(quizQuestion.getId() == QUIZID);
 		assertTrue(rating.getVerdict().equals("like"));
+		
+		
 		solo.goBack();
 		solo.clickOnButton(1);
 		solo.enterText(0, "2+2=?");
@@ -58,14 +60,15 @@ public class CheckBoxTest extends
 		solo.scrollDown();
 		solo.clickOnText("Submit");
 		final int id = 42;
-		quizQuestion = CacheManager.getInstance().getListCachedQuizQuestion()
-				.get(id);
+		solo.waitForText("Question succefully posted");
+		quizQuestion = CacheManager.getInstance().getListCachedQuizQuestion().get(id);
 		Log.d("Question cached", quizQuestion.toString());
 		assertTrue(quizQuestion.getQuestion().equals("2+2=?"));
 		solo.goBack();
+		solo.clickOnCheckBox(0);
 	}
 
-	public void testTickedCheckBox() {
+	public void testATickedCheckBox() {
 		assertTrue(solo.searchText("Offline mode"));
 
 		/**
