@@ -1,5 +1,6 @@
 package epfl.sweng.cash;
 
+import java.util.ArrayList;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.showquestions.Rating;
 import epfl.sweng.showquestions.Rating.RateState;
@@ -21,6 +22,10 @@ public interface Cache {
 	 */
 	void cacheOnlineQuizQuestion(QuizQuestion quizQuestion);
 
+	/**
+	 * 
+	 * @param rating
+	 */
 	void cacheOnlineRatings(Rating rating);
 
 	/**
@@ -33,6 +38,7 @@ public interface Cache {
 	 * !!!
 	 * 
 	 * return rate state , if the rate already exists and has been updated ,
+
 	 * return updated status else return created status
 	 */
 	RateState cacheUserRating(Rating rating);
@@ -45,5 +51,25 @@ public interface Cache {
 	 */
 
 	void cacheQuizQuestionToSubmit(QuizQuestion quizQuestion);
+
+	/**
+	 * this method selects a random quizQuestion from the set of all 
+	 * cached questions
+	 * @return the quizQuestion being selected
+	 */
+	QuizQuestion getCachedQuizQuestion();
+
+	/**
+	 * return a rating of a question from the list of all ratings
+	 * @param questionId
+	 * @return
+	 */
+	Rating getRatingQuestion(QuizQuestion quizQuestion);
+	
+	/**
+	 * this method retrieves the set of quizQuestions to be submitted
+	 * @return an ArrayList containing all quizQuestions to be submitted 
+	 */
+	ArrayList<QuizQuestion> getListOfQuizQuestionTosubmit();
 
 }

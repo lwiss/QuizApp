@@ -1,5 +1,7 @@
 package epfl.sweng.showquestions;
 
+import epfl.sweng.quizquestions.QuizQuestion;
+
 /**
  * This class describes a rating of a question
  * 
@@ -8,7 +10,6 @@ package epfl.sweng.showquestions;
  */
 public class Rating {
 
-	private static final String NO_RATE_MSG = "You have not rated this question";
 	private int likeCount;
 	private int dislikeCount;
 	private int incorrectCount;
@@ -19,15 +20,8 @@ public class Rating {
 	 * 
 	 */
 	private String verdict;
-	private int questionId;
 
-	public int getQuestionId() {
-		return questionId;
-	}
-
-	public void setQuestionId(int questionID) {
-		this.questionId = questionID;
-	}
+	private QuizQuestion quizQuestion;
 
 	/**
 	 * 
@@ -84,18 +78,55 @@ public class Rating {
 	}
 
 	public Rating(int likecount, int dislikecount, int incorrectcount,
-			String userverdict, int questionID) {
+			String userverdict, QuizQuestion quizquestion) {
 		likeCount = likecount;
 		dislikeCount = dislikecount;
 		incorrectCount = incorrectcount;
-		
-		verdict = (userverdict!=null) ? userverdict : NO_RATE_MSG;
-		questionId = questionID;
+		verdict = userverdict;
+		this.quizQuestion = quizquestion;
+
 	}
 
-	public Rating(String userVerdict, int questionID) {
+	public Rating(String userVerdict, QuizQuestion quizquestion) {
 		verdict = userVerdict;
-		questionId = questionID;
+		this.quizQuestion = quizquestion;
+	}
+
+	public QuizQuestion getQuizQuestion() {
+		return quizQuestion;
+	}
+
+	public void setQuizQuestion(QuizQuestion quizquestion) {
+		this.quizQuestion = quizquestion;
+	}
+
+	public void updateCounts(String myVerdict) {
+		if (myVerdict.equals(verdict)) {
+			// this means that there is no change
+		} else { // this means that the user has changed his mind
+
+			if (myVerdict.equals("like")) {
+				likeCount++;
+				decrementCount(verdict);
+			} else if (myVerdict.equals("dislike")) {
+				dislikeCount++;
+				decrementCount(verdict);
+			} else {
+				incorrectCount++;
+				decrementCount(verdict);
+			}
+		}
+	}
+
+	private void decrementCount(String myVerdict) {
+		if (myVerdict.equals("like")) {
+			likeCount--;
+		} else if (myVerdict.equals("dislike")) {
+			dislikeCount--;
+		} else {
+			incorrectCount--;
+		}
+
 	}
 
 }

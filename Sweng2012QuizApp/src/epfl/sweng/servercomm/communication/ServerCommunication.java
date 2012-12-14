@@ -2,7 +2,6 @@ package epfl.sweng.servercomm.communication;
 
 import java.io.IOException;
 
-
 import org.apache.http.HttpResponse;
 
 import org.apache.http.client.methods.HttpGet;
@@ -17,6 +16,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import epfl.sweng.cash.CacheManager;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
@@ -94,7 +94,7 @@ public final class ServerCommunication implements Communication {
 	}
 
 	/**
-	 * This method is responsable for posting a quizz question
+	 * This method is responsible for posting a quiz question
 	 * 
 	 * @throws CommunicationException
 	 */
@@ -121,7 +121,21 @@ public final class ServerCommunication implements Communication {
 					.execute(post);
 			if (response != null) {
 				int status = response.getStatusLine().getStatusCode();
-				return status == CREATED_STATUS;
+				if (status == CREATED_STATUS) {
+					String responseEntity = EntityUtils.toString(response
+							.getEntity());
+					try {
+						QuizQuestion quizQuestion = new QuizQuestion(
+								responseEntity);
+						CacheManager.getInstance().cacheOnlineQuizQuestion(
+								quizQuestion);
+					} catch (JSONException e) {
+						throw new CommunicationException();
+					}
+					return true;
+				} else {
+					throw new CommunicationException();
+				}
 			} else {
 				throw new CommunicationException();
 			}
@@ -138,8 +152,10 @@ public final class ServerCommunication implements Communication {
 	 * thrown
 	 */
 
-	public Rating getRatings(int questionId) throws CommunicationException {
-		Rating rating = new Rating(-1, -1, -1, null, questionId);
+	public Rating getRatings(QuizQuestion quizQuestion)
+		throws CommunicationException {
+		int questionId = quizQuestion.getId();
+		Rating rating = new Rating(-1, -1, -1, null, quizQuestion);
 		getAllRatings(questionId, rating);
 		getRating(questionId, rating);
 		return rating;
@@ -229,8 +245,9 @@ public final class ServerCommunication implements Communication {
 	 * This method is responsable of posting a rating of a user to a
 	 * quizzQuestion
 	 */
-	public RateState postRating(String verdict, int questionID)
+	public RateState postRating(String verdict, QuizQuestion quizQuestion)
 		throws CommunicationException {
+		int questionID = quizQuestion.getId();
 		return postUserRating(questionID, verdict);
 
 	}
@@ -256,7 +273,7 @@ public final class ServerCommunication implements Communication {
 				} else if (status == CREATED_STATUS) {
 					return RateState.REGISTRED;
 				} else {
-					return RateState.NOTFOUND;
+					throw new CommunicationException();
 				}
 
 			} else {

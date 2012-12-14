@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
+import android.webkit.WebView.FindListener;
 import android.widget.CheckBox;
 
 /**
@@ -22,7 +23,8 @@ import android.widget.CheckBox;
 public class MainActivity extends Activity {
 	public final static String PREF_NAME = "user_session";
 	private static boolean online = false;
-	private static String sessionId; 
+	private static String sessionId;
+	private static CheckBox checkBox;
 
 	public static boolean isOnline() {
 		return online;
@@ -30,6 +32,7 @@ public class MainActivity extends Activity {
 
 	public static void setOnline(boolean onLine) {
 		MainActivity.online = onLine;
+		checkBox.setChecked(!onLine);
 	}
 
 	@Override
@@ -44,6 +47,7 @@ public class MainActivity extends Activity {
 			startActivity(intent);
 		}
 		MainActivity.setSessionId(settings.getString("SESSION_ID", null));
+		checkBox = (CheckBox) findViewById(R.id.chekboxOffline);
 		ServerCommunicationProxy.getInstance();
 	}
 
@@ -89,6 +93,9 @@ public class MainActivity extends Activity {
 
 		boolean isCheked = ((CheckBox) view).isChecked();
 		MainActivity.setOnline(!isCheked);
+		if (!isCheked) {
+			ServerCommunicationProxy.getInstance().sendCachedContent();
+		}
 
 	}
 

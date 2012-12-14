@@ -2,6 +2,7 @@ package epfl.sweng.servercomm.communication;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import android.util.Log;
 import epfl.sweng.cash.CacheManager;
@@ -65,6 +66,7 @@ public final class ServerCommunicationProxy implements Communication {
 				MainActivity.setOnline(false);
 			}
 		} else {
+			quizQuestion = caheManager.getCachedQuizQuestion();
 			// display the cahced information to the user using a method defined
 			// in CacheManager
 		}
@@ -81,7 +83,6 @@ public final class ServerCommunicationProxy implements Communication {
 		if (MainActivity.isOnline()) {
 			try {
 				questionPosted = serverCommunication.postQuestion(quizQuestion);
-				caheManager.cacheOnlineQuizQuestion(quizQuestion);
 			} catch (CommunicationException e) {
 				questionPosted = false;
 			}
@@ -94,28 +95,30 @@ public final class ServerCommunicationProxy implements Communication {
 		return questionPosted;
 	}
 
-	public Rating getRatings(int questionId) {
+	public Rating getRatings(QuizQuestion quizQuestion) {
 		Rating rating = null;
 		if (MainActivity.isOnline()) {
 			try {
-				rating = serverCommunication.getRatings(questionId);
+				rating = serverCommunication.getRatings(quizQuestion);
 				caheManager.cacheOnlineRatings(rating);
 			} catch (CommunicationException e) {
 				rating = null;
 				MainActivity.setOnline(false);
 			}
 		} else {
+			rating = caheManager.getRatingQuestion(quizQuestion);
 			// return the cached informati
 		}
 		return rating;
 	}
 
-	public RateState postRating(String verdict, int questionID) {
+	public RateState postRating(String verdict, QuizQuestion quizQuestion) {
+		
 		RateState rateState = null;
 		if (MainActivity.isOnline()) {
 
 			try {
-				rateState = serverCommunication.postRating(verdict, questionID);
+				rateState = serverCommunication.postRating(verdict, quizQuestion);
 				// do not have to cahe because getRatings will be called
 				// and the rating will be cached
 			} catch (CommunicationException e) {
@@ -132,13 +135,47 @@ public final class ServerCommunicationProxy implements Communication {
 			// question !
 			// Use the method updateRating defined in Rating
 			// store it using the cacheManager
-			
-			// this method will save the user rating in a list in order to send it after to the 
-			// to the server and will save it in list_of_all_ratings in the way that if there
-			// is a question of the same id  , it update the state of that question 
-			caheManager.cacheUserRating(new Rating(verdict, questionID));
+
+			// this method will save the user rating in a list in order to send
+			// it after to the
+			// to the server and will save it in list_of_all_ratings in the way
+			// that if there
+			// is a question of the same id , it update the state of that
+			// question !!
+			rateState = caheManager.cacheUserRating(new Rating(verdict,
+					quizQuestion));
 		}
 		return rateState;
+
+	}
+
+	//TODO adapt this method to 
+	public void sendCachedContent() {
+		List<QuizQuestion> listOfQuizQuestionToSubmit = caheManager
+				.getListOfQuizQuestionTosubmit();
+		List<Rating> listOfUserRating = caheManager
+				.getListOfUserRatingToSubmit();
+
+		for (QuizQuestion quizQuestion : listOfQuizQuestionToSubmit) {
+			try {
+				serverCommunication.postQuestion(quizQuestion);
+				listOfQuizQuestionToSubmit.remove(quizQuestion);
+			} catch (CommunicationException e) {
+				MainActivity.setOnline(false);
+			}
+
+		}
+
+		for (Rating rating : listOfUserRating) {
+
+			try {
+				serverCommunication.postRating(rating.getVerdict(),
+						rating.getQuizQuestion());
+				listOfUserRating.remove(rating);
+			} catch (CommunicationException e) {
+				MainActivity.setOnline(false);
+			}
+		}
 
 	}
 
