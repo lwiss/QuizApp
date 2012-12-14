@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 
@@ -41,7 +42,9 @@ public class FetchQuestionAsyncTask extends
 		// The communication with the server is passed throw the proxy
 		QuizQuestion quizzQuestion = ServerCommunicationProxy.getInstance()
 				.getQuizQuestion();
-		activity.setQuizQuestion(quizzQuestion);
+		if (quizzQuestion != null) {
+			activity.setQuizQuestion(quizzQuestion);
+		}
 		return quizzQuestion;
 		/**
 		 * HttpGet httpGet = new HttpGet(URL); SharedPreferences preference =
@@ -66,39 +69,44 @@ public class FetchQuestionAsyncTask extends
 
 	@Override
 	protected void onPostExecute(QuizQuestion quizQuestion) {
-		final TextView questionView = activity.getQuestionView();
-		final ListView answersView = activity.getAnswersView();
-		final Button nextQuestionButton = activity.getNextQuestionButton();
-		final String question = quizQuestion.getQuestion();
-		final List<String> answers = quizQuestion.getAnswers();
-		final int solutionIndex = quizQuestion.getSolutionIndex();
-		questionView.setText(question);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity,
-				R.layout.answer_show, answers);
-		answersView.setAdapter(adapter);
-		answersView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				TextView textView = (TextView) view;
-				if (position == solutionIndex) {
-					textView.setText(textView.getText() + " \u2714");
-					nextQuestionButton.setEnabled(true);
-					answersView.setEnabled(false);
-				} else {
-					if (textView.isEnabled()) {
-						textView.setText(textView.getText() + " \u2718");
-						textView.setEnabled(false);
+		if (quizQuestion != null) {
+			final TextView questionView = activity.getQuestionView();
+			final ListView answersView = activity.getAnswersView();
+			final Button nextQuestionButton = activity.getNextQuestionButton();
+			final String question = quizQuestion.getQuestion();
+			final List<String> answers = quizQuestion.getAnswers();
+			final int solutionIndex = quizQuestion.getSolutionIndex();
+			questionView.setText(question);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(activity,
+					R.layout.answer_show, answers);
+			answersView.setAdapter(adapter);
+			answersView.setOnItemClickListener(new OnItemClickListener() {
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					TextView textView = (TextView) view;
+					if (position == solutionIndex) {
+						textView.setText(textView.getText() + " \u2714");
+						nextQuestionButton.setEnabled(true);
+						answersView.setEnabled(false);
+					} else {
+						if (textView.isEnabled()) {
+							textView.setText(textView.getText() + " \u2718");
+							textView.setEnabled(false);
+						}
 					}
 				}
-			}
-		});
-		nextQuestionButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				activity.initializeActivity();
-				nextQuestionButton.setEnabled(false);
-				answersView.setEnabled(true);
-			}
-		});
+			});
+			nextQuestionButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					activity.initializeActivity();
+					nextQuestionButton.setEnabled(false);
+					answersView.setEnabled(true);
+				}
+			});
+		} else {
+			Toast.makeText(activity, "There is no questions cacehed ",
+					Toast.LENGTH_LONG).show();
+		}
 	}
 
 }

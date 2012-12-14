@@ -16,7 +16,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import epfl.sweng.cash.CacheManager;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
@@ -125,7 +124,7 @@ public final class ServerCommunication implements Communication {
 			post.setHeader(new BasicHeader("Content-type", "application/json"));
 			post.setHeader("Authorization",
 					"Tequila " + MainActivity.getSessionId());
-			
+
 			HttpResponse response = SwengHttpClientFactory.getInstance()
 					.execute(post);
 			if (response != null) {
@@ -138,8 +137,10 @@ public final class ServerCommunication implements Communication {
 								responseEntity);
 						CacheManager.getInstance().cacheOnlineQuizQuestion(
 								quizQuestion);
-						CacheManager.getInstance().cacheOnlineRatings(new Rating(0, 0, 0, null, quizQuestion));
-						//CacheManager.getInstance().getListOfQuizQuestionTosubmit().remove(question);
+
+						CacheManager.getInstance().cacheOnlineRatings(
+								new Rating(0, 0, 0, null, quizQuestion));
+
 					} catch (JSONException e) {
 						return false;
 					}
@@ -290,7 +291,9 @@ public final class ServerCommunication implements Communication {
 			response = SwengHttpClientFactory.getInstance().execute(post);
 			if (response != null) {
 				int status = response.getStatusLine().getStatusCode();
-				response.getEntity().getContent().close();
+				if (response.getEntity() != null) {
+					response.getEntity().getContent().close();
+				}
 				if (status == OK_STATUS) {
 					return RateState.UPDATED;
 				} else if (status == CREATED_STATUS) {

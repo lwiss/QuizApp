@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import android.util.Log;
 import android.util.SparseArray;
 import epfl.sweng.cash.CacheManager;
@@ -176,6 +175,7 @@ public final class ServerCommunicationProxy implements Communication {
 		SparseArray<QuizQuestion> listOfAllQuizzQuestionCached = caheManager
 				.getListOfAllCachedQuizzQuestion();
 
+
 		Log.d("Step", "Starting");
 
 		// send the newly submitted question
@@ -197,6 +197,7 @@ public final class ServerCommunicationProxy implements Communication {
 			 * (CommunicationException e) { // this case only happens if we have
 			 * 500 status or an // IOException MainActivity.setOnline(false); }
 			 */
+
 		}
 
 		Log.d("Step", "Step 1 done");

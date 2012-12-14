@@ -1,6 +1,7 @@
 package epfl.sweng.cash;
 
-import java.util.HashMap;
+import java.util.Map;
+
 import android.util.SparseArray;
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.showquestions.Rating;
@@ -74,7 +75,7 @@ public interface Cache {
 	 * 
 	 * @return an ArrayList containing all quizQuestions to be submitted
 	 */
-	HashMap<QuizQuestion, Rating> getListOfQuizQuestionTosubmit();
+	Map<QuizQuestion, Rating> getListOfQuizQuestionTosubmit();
 
 	SparseArray<QuizQuestion> getListOfAllCachedQuizzQuestion();
 
