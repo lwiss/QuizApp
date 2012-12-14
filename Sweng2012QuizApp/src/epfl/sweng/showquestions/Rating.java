@@ -119,14 +119,21 @@ public class Rating {
 	}
 
 	private void decrementCount(String myVerdict) {
-		if (myVerdict.equals("like")) {
-			likeCount--;
-		} else if (myVerdict.equals("dislike")) {
-			dislikeCount--;
-		} else {
-			incorrectCount--;
+		if (myVerdict != null) {
+			if (myVerdict.equals("like")) {
+				likeCount--;
+			} else if (myVerdict.equals("dislike")) {
+				dislikeCount--;
+			} else {
+				incorrectCount--;
+			}
 		}
 
 	}
 
+	public String toString() {
+		return " question: " + quizQuestion.getQuestion() + " #like: "
+				+ likeCount + "#dislike " + dislikeCount + " #incorrect "
+				+ incorrectCount + "  Verdict " + verdict;
+	}
 }

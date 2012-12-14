@@ -22,14 +22,14 @@ public class QuizQuestion {
 	private Set<String> tags;
 	private int id;
 	private String owner;
-	
+
 	private static final int MAX_QUESTION_LENGTH = 500;
 	private static final int MAX_ANSWER_LENGTH = 500;
 	private static final int MAX_TAG_LENGTH = 20;
 	private static final int MAX_OWNER_LENGTH = 20;
 	private static final int MAX_ANSWERS_NUMBER = 10;
 	private static final int MIN_ANSWERS_NUMBER = 2;
-	
+
 	public QuizQuestion(String json) throws JSONException {
 		JSONObject jsonObject = new JSONObject(json);
 		question = jsonObject.getString("question");
@@ -81,7 +81,7 @@ public class QuizQuestion {
 	public String getOwner() {
 		return owner;
 	}
-	
+
 	public int auditErrors(int depth) {
 		int errors = 0;
 		if (depth < 0) {
@@ -193,7 +193,7 @@ public class QuizQuestion {
 		}
 		return true;
 	}
-	
+
 	public static boolean answersAreOk(ArrayList<String> answers) {
 		for (String ans : answers) {
 			if (!answerIsOK(ans)) {
@@ -209,5 +209,11 @@ public class QuizQuestion {
 		}
 		return false;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Question : " + question + " id :" + id + " answers : "
+				+ answers + " tags : " + tags;
+	}
+
 }

@@ -92,10 +92,11 @@ public class MainActivity extends Activity {
 
 		boolean isCheked = ((CheckBox) view).isChecked();
 		MainActivity.setOnline(!isCheked);
-		/**
-		 * if (!isCheked) {
-		 * ServerCommunicationProxy.getInstance().sendCachedContent(); }
-		 */
+
+		if (!isCheked) {
+			// ServerCommunicationProxy.getInstance().sendCachedContent();
+			new SendCachAsyncTask().execute();
+		}
 
 	}
 

@@ -125,6 +125,7 @@ public final class ServerCommunication implements Communication {
 			post.setHeader(new BasicHeader("Content-type", "application/json"));
 			post.setHeader("Authorization",
 					"Tequila " + MainActivity.getSessionId());
+			
 			HttpResponse response = SwengHttpClientFactory.getInstance()
 					.execute(post);
 			if (response != null) {
@@ -137,6 +138,7 @@ public final class ServerCommunication implements Communication {
 								responseEntity);
 						CacheManager.getInstance().cacheOnlineQuizQuestion(
 								quizQuestion);
+						CacheManager.getInstance().cacheOnlineRatings(new Rating(0, 0, 0, null, quizQuestion));
 					} catch (JSONException e) {
 						return false;
 					}
