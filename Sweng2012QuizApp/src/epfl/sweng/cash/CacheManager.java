@@ -1,9 +1,11 @@
 package epfl.sweng.cash;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Set;
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -128,35 +130,29 @@ public final class CacheManager implements Cache {
 		return state;
 	}
 
-	public QuizQuestion getCachedQuizQuestion() {
-		// is a random int
-		int i = new Random().nextInt(2);
-		if (onlineCachedQuizQuestionList.size() == 0) {
-			i = 1;
-		} else if (offlineCachedQuizQuestionVsRatings.keySet().toArray().length == 0) {
-			i = 0;
+	public SparseArray<QuizQuestion> getListCachedQuizQuestion() {
+		SparseArray<QuizQuestion> mergedList = new SparseArray<QuizQuestion>();
+		for (int i = 0; i < onlineCachedQuizQuestionList.size(); i++) {
+			mergedList.put(onlineCachedQuizQuestionList.keyAt(i),
+					onlineCachedQuizQuestionList.valueAt(i));
 		}
-		if (i == 0) { // the question will be selected from the
-						// onlineCachedQuizQuestion List
-			int j = onlineCachedQuizQuestionList.size();
-			if (j != 0) {
-				j = new Random().nextInt(j);
-				return onlineCachedQuizQuestionList.valueAt(j);
-			} else {
-				return null;
-			}
+		Set<QuizQuestion> set = offlineCachedQuizQuestionVsRatings.keySet();
+		Iterator<QuizQuestion> iterator = set.iterator();
+		while (iterator.hasNext()) {
+			QuizQuestion qq = iterator.next();
+			mergedList.put(qq.getId(), qq);
+		}
+		return mergedList;
+	}
 
-		} else { // the question will be selected from the
-					// offlineCachedQuizQuestion List
-			Object[] q = offlineCachedQuizQuestionVsRatings.keySet().toArray();
-			int j = q.length;
-			if (j != 0) {
-				j = new Random().nextInt(j);
-				return (QuizQuestion) q[j];
-			} else {
-				return null;
-			}
-
+	public QuizQuestion getCachedQuizQuestion() {
+		SparseArray<QuizQuestion> allCachedQuestion = getListCachedQuizQuestion();
+		int i = allCachedQuestion.size();
+		if (i != 0) {
+			i = new Random().nextInt(i);
+			return onlineCachedQuizQuestionList.valueAt(i);
+		} else {
+			return null;
 		}
 	}
 
