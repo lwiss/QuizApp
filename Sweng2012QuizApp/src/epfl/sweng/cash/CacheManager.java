@@ -1,4 +1,5 @@
 package epfl.sweng.cash;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -42,8 +43,6 @@ public final class CacheManager implements Cache {
 	 * the list that contains ratings
 	 */
 	private List<Rating> listOfUserRatingToSubmit;
-
-	
 
 	private CacheManager() {
 		onlineCachedQuizQuestionList = new SparseArray<QuizQuestion>();
@@ -126,8 +125,13 @@ public final class CacheManager implements Cache {
 	}
 
 	public QuizQuestion getCachedQuizQuestion() {
-		// is a random int
+
 		int i = new Random().nextInt(2);
+		if (onlineCachedQuizQuestionList.size() == 0) {
+			i=1;
+		} else if (offlineCachedQuizQuestionVsRatings.keySet().toArray().length == 0) {
+			i=0;
+		}
 		if (i == 0) { // the question will be selected from the
 						// onlineCachedQuizQuestion List
 			int j = onlineCachedQuizQuestionList.size();
@@ -168,6 +172,7 @@ public final class CacheManager implements Cache {
 	public SparseArray<QuizQuestion> getListOfAllCachedQuizzQuestion() {
 		return onlineCachedQuizQuestionList;
 	}
+
 	public List<Rating> getListOfUserRatingToSubmit() {
 		return listOfUserRatingToSubmit;
 	}
