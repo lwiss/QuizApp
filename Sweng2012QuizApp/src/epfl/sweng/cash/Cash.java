@@ -1,5 +1,7 @@
 package epfl.sweng.cash;
 
+import java.util.List;
+
 import epfl.sweng.quizquestions.QuizQuestion;
 import epfl.sweng.showquestions.Rating;
 import epfl.sweng.showquestions.Rating.RateState;
@@ -46,9 +48,12 @@ public interface Cash {
 
 	/**
 	 * return a rating of a question from the list of all ratings
+	 * 
 	 * @param questionId
 	 * @return
 	 */
 	Rating getRatingQuestion(QuizQuestion quizQuestion);
+
+	List<QuizQuestion> getListOfAllCachedQuizzQuestion();
 
 }

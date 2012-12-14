@@ -66,4 +66,9 @@ public final class CacheManager implements Cash {
 		return null;
 	}
 
+	public List<QuizQuestion> getListOfAllCachedQuizzQuestion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
