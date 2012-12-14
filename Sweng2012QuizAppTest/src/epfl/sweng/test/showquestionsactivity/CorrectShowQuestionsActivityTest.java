@@ -4,6 +4,7 @@ import org.json.JSONException;
 
 import com.jayway.android.robotium.solo.Solo;
 
+import epfl.sweng.entry.MainActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.showquestions.ShowQuestionsActivity;
 import android.test.ActivityInstrumentationTestCase2;
@@ -25,6 +26,7 @@ public class CorrectShowQuestionsActivityTest extends
 
 	@Override
 	protected void setUp() throws Exception {
+		MainActivity.setOnlineTest(true);
 		SwengHttpClientFactory.setInstance(new MockHttpClient());
 		Thread.sleep(TIME);
 		solo = new Solo(getInstrumentation(), getActivity());

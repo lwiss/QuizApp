@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
+import android.webkit.WebView.FindListener;
 import android.widget.CheckBox;
 
 /**
@@ -27,6 +28,10 @@ public class MainActivity extends Activity {
 
 	public static boolean isOnline() {
 		return online;
+	}
+
+	public static void setOnlineTest(boolean onLine) {
+		MainActivity.online = onLine;
 	}
 
 	public static void setOnline(boolean onLine) {
