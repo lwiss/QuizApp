@@ -21,7 +21,7 @@ import android.widget.CheckBox;
  */
 public class MainActivity extends Activity {
 	public final static String PREF_NAME = "user_session";
-	private static boolean online = false;
+	private static boolean online = true;
 	private static String sessionId;
 	private static CheckBox checkBox;
 
