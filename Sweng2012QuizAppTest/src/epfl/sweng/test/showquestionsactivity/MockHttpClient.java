@@ -13,7 +13,7 @@ import org.apache.http.message.BasicHttpResponse;
 import org.apache.http.message.BasicStatusLine;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.HttpRequestExecutor;
-import org.json.JSONObject;
+
 
 import android.util.Log;
 
@@ -39,7 +39,7 @@ public class MockHttpClient extends DefaultHttpClient {
 				final HttpClientConnection conn, final HttpContext context)
 			throws IOException, HttpException {
 			final int statusOk = 200;
-			final int createdOk = 201 ; 
+			final int createdOk = 201; 
 			String uri = request.getRequestLine().getUri();
 			String method = request.getRequestLine().getMethod();
 

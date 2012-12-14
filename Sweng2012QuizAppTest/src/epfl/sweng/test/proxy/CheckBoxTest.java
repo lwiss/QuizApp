@@ -5,7 +5,6 @@ import com.jayway.android.robotium.solo.Solo;
 import epfl.sweng.cash.CacheManager;
 import epfl.sweng.entry.MainActivity;
 import epfl.sweng.quizquestions.QuizQuestion;
-import epfl.sweng.quizzes.ShowAvailableQuizzesActivity;
 import epfl.sweng.quizzes.ShowQuizActivity;
 import epfl.sweng.servercomm.SwengHttpClientFactory;
 import epfl.sweng.showquestions.Rating;
@@ -23,7 +22,7 @@ import android.util.Log;
 public class CheckBoxTest extends
 		ActivityInstrumentationTestCase2<MainActivity> {
 	private Solo solo;
-	private final static int quizId = 4243;
+	private final static int QUIZID = 4243;
 
 	public CheckBoxTest() {
 		super(MainActivity.class);
@@ -46,10 +45,9 @@ public class CheckBoxTest extends
 		Rating rating = CacheManager.getInstance().getRatingQuestion(
 				quizQuestion);
 		Log.d("Verdict", rating.getVerdict());
-		assertTrue(quizQuestion.getId() == quizId);
+		assertTrue(quizQuestion.getId() == QUIZID);
 		assertTrue(rating.getVerdict().equals("like"));
 		solo.goBack();
-		
 		solo.clickOnButton(1);
 		solo.enterText(0, "2+2=?");
 		solo.enterText(1, "3");

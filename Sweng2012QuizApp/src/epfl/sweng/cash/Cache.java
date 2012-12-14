@@ -1,6 +1,5 @@
 package epfl.sweng.cash;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import android.util.SparseArray;
