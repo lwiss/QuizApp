@@ -3,7 +3,9 @@ package epfl.sweng.servercomm.communication;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import android.util.Log;
 import android.util.SparseArray;
@@ -87,8 +89,8 @@ public final class ServerCommunicationProxy implements Communication {
 		if (MainActivity.isOnline()) {
 			try {
 				questionPosted = serverCommunication.postQuestion(quizQuestion);
-				Log.d("CACHED QUESTIONS  ",
-						caheManager.showCahcedQuizQuestion());
+				// Log.d("CACHED QUESTIONS  ",
+				// caheManager.showCahcedQuizQuestion());
 			} catch (CommunicationException e) {
 				MainActivity.setOnline(false);
 				questionPosted = false;
@@ -121,7 +123,7 @@ public final class ServerCommunicationProxy implements Communication {
 				Log.d("rating", "" + rating);
 				Log.d("Rating in OFFLINE MODE", rating.toString());
 			}
-			// return the cached informati
+			// return the cached information
 		}
 		return rating;
 	}
@@ -135,11 +137,11 @@ public final class ServerCommunicationProxy implements Communication {
 				rateState = serverCommunication.postRating(verdict,
 						quizQuestion);
 
-				// do not have to cahe because getRatings will be called
+				// do not have to cache because getRatings will be called
 				// and the rating will be cached
 			} catch (CommunicationException e) {
 				// do not have to cahce the rating and after send it when a
-				// communication error happens : Seen in Piazza!
+				// communication error happens : Saw in Piazza!
 				rateState = RateState.NOTFOUND;
 				MainActivity.setOnline(false);
 
@@ -147,7 +149,7 @@ public final class ServerCommunicationProxy implements Communication {
 
 		} else {
 			// treat the rating of the user as if it was in online mode:
-			// change the rate of the user correspending to the id of the
+			// change the rate of the user corresponding to the id of the
 			// question !
 			// Use the method updateRating defined in Rating
 			// store it using the cacheManager
@@ -174,9 +176,20 @@ public final class ServerCommunicationProxy implements Communication {
 		SparseArray<QuizQuestion> listOfAllQuizzQuestionCached = caheManager
 				.getListOfAllCachedQuizzQuestion();
 
-		for (QuizQuestion quizQuestion : listOfQuizQuestionToSubmit.keySet()) {
+		Log.d("Step", "Starting");
+
+		// send the newly submitted question
+		Set<QuizQuestion> list = listOfQuizQuestionToSubmit.keySet();
+		Iterator<QuizQuestion> iterator = list.iterator();
+		while (iterator.hasNext()) {
+			QuizQuestion quizQuestion = iterator.next();
 			postQuestion(quizQuestion);
-			listOfQuizQuestionToSubmit.remove(quizQuestion);
+			iterator.remove();
+			// solution 2: if !postQuestion() then toKeep.add(quizQuestion);
+			// replace listOfQuestionsToSubmit with toKeep at the end
+			// solution 3: if postQeustion() then toRemove.add(quizQuestion);
+			// call listOfQuestionsToSubmit.removeAll(toRemove) at the end
+			// listOfQuizQuestionToSubmit.remove(quizQuestion);
 			/**
 			 * try { Log.d("Quizz Question To submit", quizQuestion.toString());
 			 * serverCommunication.postQuestion(quizQuestion);
@@ -186,9 +199,15 @@ public final class ServerCommunicationProxy implements Communication {
 			 */
 		}
 
-		for (Rating rating : listOfUserRating) {
+		Log.d("Step", "Step 1 done");
+
+		// send all user ratings
+		Iterator<Rating> iterator2;
+		iterator2 = listOfUserRating.iterator();
+		while (iterator.hasNext()) {
+			Rating rating = iterator2.next();
 			postRating(rating.getVerdict(), rating.getQuizQuestion());
-			listOfUserRating.remove(rating);
+			iterator2.remove();
 			/**
 			 * try { serverCommunication.postRating(rating.getVerdict(),
 			 * rating.getQuizQuestion()); listOfUserRating.remove(rating); }
@@ -197,6 +216,8 @@ public final class ServerCommunicationProxy implements Communication {
 			 * MainActivity.setOnline(false); }
 			 */
 		}
+
+		Log.d("Step", "Step 2 done");
 
 		// get the latest ratings of all quizQuestion
 
@@ -213,6 +234,7 @@ public final class ServerCommunicationProxy implements Communication {
 			}
 
 		}
+		Log.d("Step", "Step 3 done");
 
 	}
 

@@ -139,6 +139,7 @@ public final class ServerCommunication implements Communication {
 						CacheManager.getInstance().cacheOnlineQuizQuestion(
 								quizQuestion);
 						CacheManager.getInstance().cacheOnlineRatings(new Rating(0, 0, 0, null, quizQuestion));
+						//CacheManager.getInstance().getListOfQuizQuestionTosubmit().remove(question);
 					} catch (JSONException e) {
 						return false;
 					}

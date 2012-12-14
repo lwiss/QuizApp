@@ -101,28 +101,24 @@ public final class CacheManager implements Cache {
 
 		// update the rating corresponding to this question
 		int qId = q.getId();
+		Rating r;
 		if (qId == -1) { // this means that the question belongs to the
 							// questions to be submitted
-			Rating r = offlineCachedQuizQuestionVsRatings.get(q);
-			if (r.getVerdict() == null) {
-				state = RateState.REGISTRED;
-			} else {
-				state = RateState.UPDATED;
-			}
-			r.updateCounts(rating.getVerdict());
-			r.setVerdict(rating.getVerdict());
+			r = offlineCachedQuizQuestionVsRatings.get(q);
+
 		} else { // this means that the question belongs to the questions
 					// fetched from the server (on online mode)
-			Rating r = onlineCachedRatings
+			r = onlineCachedRatings
 					.get(rating.getQuizQuestion().getId());
-			if (r.getVerdict() == null) {
-				state = RateState.REGISTRED;
-			} else {
-				state = RateState.UPDATED;
-			}
-			r.updateCounts(rating.getVerdict());
-			r.setVerdict(rating.getVerdict());
+
 		}
+		if (r.getVerdict() == null) {
+			state = RateState.REGISTRED;
+		} else {
+			state = RateState.UPDATED;
+		}
+		r.updateCounts(rating.getVerdict());
+		r.setVerdict(rating.getVerdict());
 
 		return state;
 	}
